@@ -1,0 +1,30 @@
+.bmi_history_container {
+  display: table;
+  width: 100%;
+}
+
+.history {
+  border-radius: 25rpx;
+  border: 1rpx solid #636580;
+  background-color: white;
+  margin: 20rpx 20rpx;
+}
+
+.record {
+  border-bottom: 1rpx solid #efefef;
+  padding: 15rpx 5rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  color: #1ECBBE;
+}
+
+.record text{
+  margin: 5rpx 7rpx;
+}
+
+.no_history {
+  text-align: center;
+  color: #1ECBBE;
+}

@@ -1,0 +1,75 @@
+.coin_detail_container {
+  background-color: #ffff00;
+  display: table;
+  width: 100%;
+}
+
+.head {
+  border-radius: 20rpx;
+  margin: 10rpx 20rpx;
+  height: 120rpx;
+  border: 1rpx solid #636580;
+  text-align: center;
+  font-size: 33rpx;
+  font-weight: bold;
+  background-color: white;
+}
+
+.sum {
+  float: left;
+  margin: 20rpx 112rpx;
+}
+
+.balance {
+  color: orange;
+}
+
+.detail {
+  border-radius: 25rpx;
+  border: 1rpx solid #636580;
+  background-color: white;
+  margin: 20rpx 20rpx;
+}
+
+.record {
+  border-bottom: 1rpx solid #efefef;
+  padding: 15rpx 35rpx;
+}
+
+.record text {
+  display: flex;
+  font-size: 30rpx;
+}
+
+.record>view:first-child {
+  float: right;
+  margin: 10rpx 40rpx;
+  color: orange;
+}
+
+.record image {
+  float: left;
+  margin-top: 5rpx;
+}
+
+.select {
+  color: white;
+  background-color: orange;
+}
+
+.goods_img {
+  float: left;
+  width: 90rpx;
+  height: 90rpx;
+  margin: 10rpx 10rpx 0rpx 10rpx;
+}
+
+.no_conversion {
+  text-align: center;
+}
+
+.icon {
+  width: 35rpx;
+  height: 35rpx;
+  float: left;
+}

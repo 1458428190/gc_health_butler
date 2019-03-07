@@ -1,0 +1,54 @@
+<!-- 个人中心 -->
+<view class='me_container'>
+  <view class='head_image' bindtap='me'>
+    <image src='{{userData.user.avatarUrl}}'></image>
+    <text>{{userData.user.nickName}}</text>
+  </view>
+  <view class='info'>
+    <view bindtap='getHealthCoin'>
+      <text>{{userData.user.healthCoin}}</text>
+      <text>健康金币</text>
+    </view>
+    <text class='text_center'>|</text>
+    <view bindtap='getRank'>
+      <text>{{userData.rankCoin}}</text>
+      <text>当前排名</text>
+    </view>
+    <text class='text_center'>|</text>
+    <view bindtap='nvToConversion'>
+      <text>{{userData.recordCount}}</text>
+      <text>礼品兑换</text>
+    </view>
+  </view>
+  <view class='nav'>
+    <view bindtap='me'>
+      <image src='../../image/homepage.png'></image>
+      <view class='text'><text>我的主页</text><text class='skip'>></text></view>
+    </view>
+    <view bindtap='getHealthCoin'>
+      <image src='../../image/trading.png'></image>
+      <view class='text'><text>交易详情</text><text class='skip'>></text></view>
+    </view>
+
+    <view bindtap='conversionRecord'>
+      <image src='../../image/conversion.png'></image>
+      <view class='text'><text>兑换记录</text><text class='skip'>></text></view>
+    </view>
+  
+    <view bindtap='getOperation'>
+      <image src='../../image/handbook.png'></image>
+      <view class='text'><text>操作手册</text><text class='skip'>></text></view>
+    </view>
+
+    <button open-type="contact" bindcontact="handleContact"  class='service_button'>
+      <image src='../../image/service.png'></image>
+      <view class='text'><text class='service_text'>联系客服</text><text class='skip'>></text></view>
+    </button>
+
+    <!-- <view bindtap='feedback'>
+      <image src='../../image/feedback.png'></image>
+      <view class='text'><text>意见反馈</text><text class='skip'>></text></view>
+    </view> -->
+
+  </view>
+</view>

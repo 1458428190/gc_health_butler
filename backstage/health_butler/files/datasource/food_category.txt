@@ -1,0 +1,123 @@
+## 食物分类数据源 food_category  来源 - 160趣健康
+
+## 针对 https://api.160nurse.com/index.php?c=foods&a=category 的抓包记录
+
+### 请求 Request:
+
+GET /index.php?c=foods&a=category HTTP/1.1
+Host: api.160nurse.com
+Content-Type: application/json
+Connection: keep-alive
+Accept: */*
+User-Agent: Mozilla/5.0 (iPad; CPU OS 12_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16C50 MicroMessenger/7.0.2(0x17000222) NetType/WIFI Language/zh_CN
+Referer: https://servicewechat.com/wx4e358e1f2ead4c7b/67/page-frame.html
+Accept-Language: zh-cn
+Accept-Encoding: br, gzip, deflate
+
+
+### 请求 Response:
+
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 21 Feb 2019 13:39:58 GMT
+Content-Type: application/json; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Vary: Accept-Encoding
+Set-Cookie: XHSESSION=ti7tckkadpcfcfgn6qnrg22104; path=/; HttpOnly
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Pragma: no-cache
+Content-Encoding: gzip
+
+{
+    "status": 1,
+    "info": "",
+    "data": [
+        {
+            "id": "1",
+            "cat_name": "水果类",
+            "parent_name": "",
+            "img_url": "http://resource.160nurse.com/upload/foods/category/index_icon1.jpg",
+            "sort": "1"
+        },
+        {
+            "id": "2",
+            "cat_name": "肉类",
+            "parent_name": "",
+            "img_url": "http://resource.160nurse.com/upload/foods/category/index_icon2.jpg",
+            "sort": "2"
+        },
+        {
+            "id": "3",
+            "cat_name": "水产、鱼",
+            "parent_name": "",
+            "img_url": "http://resource.160nurse.com/upload/foods/category/index_icon3.jpg",
+            "sort": "3"
+        },
+        {
+            "id": "4",
+            "cat_name": "蔬菜",
+            "parent_name": "",
+            "img_url": "http://resource.160nurse.com/upload/foods/category/index_icon4.jpg",
+            "sort": "4"
+        },
+        {
+            "id": "5",
+            "cat_name": "五谷杂粮",
+            "parent_name": "",
+            "img_url": "http://resource.160nurse.com/upload/foods/category/index_icon5.jpg",
+            "sort": "5"
+        },
+        {
+            "id": "6",
+            "cat_name": "饮品",
+            "parent_name": "",
+            "img_url": "http://resource.160nurse.com/upload/foods/category/index_icon6.jpg",
+            "sort": "6"
+        },
+        {
+            "id": "7",
+            "cat_name": "零食小吃",
+            "parent_name": "",
+            "img_url": "http://resource.160nurse.com/upload/foods/category/index_icon7.jpg",
+            "sort": "7"
+        },
+        {
+            "id": "8",
+            "cat_name": "调料品",
+            "parent_name": "",
+            "img_url": "http://resource.160nurse.com/upload/foods/category/index_icon8.jpg",
+            "sort": "8"
+        },
+        {
+            "id": "9",
+            "cat_name": "坚果类",
+            "parent_name": "",
+            "img_url": "http://resource.160nurse.com/upload/foods/category/index_icon9.jpg",
+            "sort": "9"
+        },
+        {
+            "id": "10",
+            "cat_name": "蛋/豆/奶制品",
+            "parent_name": "",
+            "img_url": "http://resource.160nurse.com/upload/foods/category/index_icon10.jpg",
+            "sort": "10"
+        },
+        {
+            "id": "11",
+            "cat_name": "加工食品",
+            "parent_name": "",
+            "img_url": "http://resource.160nurse.com/upload/foods/category/index_icon11.jpg",
+            "sort": "11"
+        },
+        {
+            "id": "12",
+            "cat_name": "药食",
+            "parent_name": "",
+            "img_url": "http://resource.160nurse.com/upload/foods/category/index_icon12.jpg",
+            "sort": "12"
+        }
+    ]
+}
+

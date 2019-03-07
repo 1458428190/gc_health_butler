@@ -1,0 +1,76 @@
+<!-- 健康小圈 -->
+<!-- <import src='/pages/template/template' /> -->
+<wxs src="./../tools.wxs" module="tools" />
+<view class='community_container'>
+  <view class='head'>
+    <image wx:if="{{isMe}}" bindtap='back' class='back_all' src='../../image/back.png'></image>
+    <image wx:if="{{!isMe}}" bindtap='visitMe' class='head_image' src='{{user.avatarUrl}}'></image>
+    <image bindtap="share" class='share' src='../../image/share.png'></image>
+  </view>
+
+  <!-- <view class="container">
+	<block wx:for="{{imgalist}}" wx:for-item="image" class="previewimg">
+		<image src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
+	</block>
+</view> -->
+  <view class='content'>
+  <block wx:for="{{isMe?meShare:allShare}}" wx:key="{{index}}" wx:for-item="communityVo">
+    <view class='share_container'> 
+		  <!-- <template is='share' data="{{...item}}"></template> -->
+      <view class='user_info' >
+        <!-- 访问主页 -->
+        <image bindtap='visit' data-uid="{{communityVo.user.id}}" class='head_img' src='{{communityVo.user.avatarUrl}}'></image>
+        <view class='info'>
+          <text>{{communityVo.user.nickName}}</text>
+          <text class='share_time'>{{tools.formatShareTime(communityVo.community.createTime)}}</text>
+        </view>
+        <!-- 自己的动态可以删除 -->
+        <view class='delete_icon' bindtap='delete' data-cid='{{communityVo.community.id}}' wx:if="{{tools.isEqual(communityVo.community.uid, userData.user.id)}}">
+          <image src='../../image/delete_community.png'></image>
+        </view>
+      </view>
+      <view class='content'>
+        <text>{{communityVo.community.content}}</text>
+        <block wx:for="{{tools.parseImgList(communityVo.community.imgUrlList)}}" wx:for-item="image" wx:key="{{index}}">
+          <image class='list_image' src="{{image}}" data-src="{{image}}" data-list="{{tools.parseImgList(communityVo.community.imgUrlList)}}" bindtap="previewImage"></image>
+        </block>
+      </view>
+      <view class='comment'>
+        <view class='commentData'>
+          <!-- 点赞 -->
+          <image bindtap='praise' wx:if='{{!communityVo.praise}}' data-cid='{{communityVo.community.id}}' class='praiseIcon' src="../../image/praise_1.png"></image>
+          <!-- 取消点赞 -->
+          <image bindtap='cancel' wx:if='{{communityVo.praise}}' data-cid='{{communityVo.community.id}}' class='praiseIcon' src="../../image/praise.png"></image>
+          <!-- 时间限制, 去除评论功能-->
+          <!-- <image bindtap='comment' class='commentIcon' src='../../image/comment.png'></image> -->
+          <!-- 打赏
+          <image bindtap='reward' data-id='{{id}}' data-statu="open" class='rewardIcon' src='../../image/reward_2.png'></image> -->
+        </view>
+        <view class='praiseDetail'>
+          <image wx:if="{{communityVo.praiseUser.length >= 1}}" src='../../image/praise.png'></image>
+          <block wx:for="{{communityVo.praiseUser}}" wx:key="{{index}}">
+            <!-- 访问对方主页 -->
+            <text bindtap='visit' data-uid='{{item.id}}' class='user_text'>{{item.nickName}}</text>
+            <text wx:if="{{index < communityVo.praiseUser.length - 1}}">、</text>
+          </block>
+          <text wx:if="{{communityVo.praiseUser.length >= 1}}">等{{praiseUser.length}}人觉得很赞</text>
+        </view>
+        <!-- 时间限制, 去除评论功能 -->
+        <!-- <view class='commentDetail'>
+          <block wx:for="{{commentList}}" wx:key="{{index}}"> 
+          访问对方主页
+            <text bindtap='visit' class='user_text'>{{item.from}}</text>
+            <block wx:if="{{type===1}}">
+              <text> 回复 </text>
+              访问对方主页
+              <text bindtap='visit' class='user_text'>{{item.to}}</text>
+            </block>
+            回复评论
+            <text bindtap='reply'>: {{item.content}}</text>
+          </block>
+        </view> -->
+      </view>
+    </view>
+	</block>
+  </view>
+</view>

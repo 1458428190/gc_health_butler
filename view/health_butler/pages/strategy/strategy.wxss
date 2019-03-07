@@ -1,0 +1,19 @@
+.strategy_container {
+  align-items: center;
+  text-align: center;
+  background-color: #1ECBBE;
+  display: table;
+  width: 100%;
+  height: 100vh;
+}
+
+.header {
+  font-size: 60rpx;
+  color: blue;
+}
+
+.content {
+  text-align: left;
+  margin-left: 50rpx;
+  margin: 50rpx 20rpx;
+}

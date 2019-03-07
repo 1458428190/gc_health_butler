@@ -1,0 +1,40 @@
+<!-- BMI计算器 -->
+<view class='bmi_container'>
+  <view class='show'> 
+    <view class='description'><text>您的BMI指数</text></view>
+    <view class='bmi_data'><text>{{bmi}}</text></view>
+    <view class='status'>
+      <text>身体状况: {{bmiTable[index].statu}}</text>
+      <text>标准体重: {{standardWeight}}</text>
+    </view>
+    <view class='suggest'>
+      <view><text>关于您的BMI指数所给出的相关建议</text></view>
+      <view><text>{{bmiTable[index].suggest}}</text></view>
+    </view>
+  </view>
+
+  <view class='input_from'>
+    <view>
+      <text>身高: </text><input bindinput='heightBindinput' type="digit" maxlength="4" value='{{height}}' placeholder='请输入您的身高' placeholder-class='placeholder'></input><text>单位:CM</text>
+    </view>
+    <view> 
+      <text>体重: </text><input bindinput='weightBindinput' type="digit" maxlength="5" value='{{weight}}' placeholder='请输入您的体重' placeholder-class='placeholder'></input><text>单位:KG</text>
+    </view>
+    <view class='button_view'>
+      <button class='calculate' bindtap='calculate'>点击计算</button>
+      <button class='afresh' bindtap='afresh'>重新计算</button>
+      <button class='getHistory' bindtap='getHistory'>查看历史</button>
+    </view>
+  </view>
+
+  <view class='comparison_table'>
+    <view><text>BMI标准对照表</text></view>
+    <view class='table'>
+      <view><text>状况分类</text><text>BMI范围</text></view>
+      <view><text>偏瘦</text><text> {{'<=18.4'}}</text></view>
+      <view><text>正常</text><text>18.5~23.9</text></view>
+      <view><text>过重</text><text>24.0~27.9</text></view>
+      <view><text>肥胖</text><text>>=28.0</text></view>
+    </view>
+  </view>
+</view>

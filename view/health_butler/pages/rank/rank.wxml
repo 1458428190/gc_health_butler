@@ -1,0 +1,77 @@
+<!-- 排行榜 -->
+<view class='rank_container'>
+  <view class='champion' wx:if='{{allRankData.championList[select]!=null}}'>
+    <image src='{{allRankData.championList[select].avatarUrl}}'></image>
+    <view>
+      <text class='name'>{{allRankData.championList[select].nickName}}</text>
+      <text>{{championDescription[select]}}</text>
+    </view>
+  </view>
+
+  <view class='champion' wx:if='{{allRankData.championList[select]==null}}'>
+    <image src='https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=638071620,3782959301&fm=26&gp=0.jpg'></image>
+    <view>
+      <text class='name'></text>
+      <text>无人获得冠军</text>
+    </view>
+  </view>
+
+  <view class='me'>
+    <image src='{{allRankData.user.avatarUrl}}'></image>
+    <view class='me_info'>
+      <view><text>{{allRankData.user.nickName}}</text></view>
+      <view><text>{{allRankData.user.province + " "+ allRankData.user.city}}</text></view>
+    </view>
+    <view class='me_data'>
+      <view>
+        <view><text>{{allRankData.userData[select]}}</text></view>
+        <view><text>{{description[select]}}</text></view>
+      </view>
+      <view>
+        <view><text>{{allRankData.userRank[select]}}</text></view>
+        <view><text>排名</text></view>
+      </view>
+      <view>
+        <view><text>{{allRankData.rankData[select].length}}</text></view>
+        <view><text>总人数</text></view>
+      </view>
+    </view>
+  </view>
+
+  <view class='detail'>
+    <view class='nav'>
+      <view>
+        <text bindtap='stepRank' class='{{select ===0?"select left_edge":""}}'>今日步数</text>
+        <text bindtap='coinRank' class='{{select ===1?"select":""}}'>健康财富</text>
+        <text bindtap='getUpRank' class='{{select ===2?"select":""}}'>健康早起</text>
+        <text bindtap='sleepRank' class='{{select ===3?"select right_edge":""}}'>昨日早睡</text>
+      </view>
+    </view>
+
+    <view class="no_data" wx:if='{{allRankData.rankData[select].length <= 0}}'>
+        <text>暂无记录~</text>
+    </view>
+
+    <block wx:for='{{allRankData.rankData[select]}}' wx:key='{{index}}'>
+      <view class='{{index<=2? "data topRank":"data"}}'>
+        <view><text>{{index+1}}</text></view>
+        <image class='head_image' src='{{item.user.avatarUrl}}'></image>
+        <view class='user_info'>
+          <view><text>{{item.user.nickName}}</text></view>
+          <view><text>{{item.user.province+" "+item.user.city}}</text></view>
+        </view>
+        <view class='praise'>
+          <!-- 去除喜欢 -->
+          <!-- <view>
+            <image class='icon' src='http://img3.imgtn.bdimg.com/it/u=2967920487,422744784&fm=26&gp=0.jpg'></image>
+            <text class='like'>{{item.like}}</text>
+          </view> -->
+          <view>
+            <image class='icon' src='{{imgIcon[select]}}'></image>
+            <text>{{item.value}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

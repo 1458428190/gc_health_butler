@@ -1,0 +1,44 @@
+<!-- 健康币明细 -->
+<wxs src="./../tools.wxs" module="tools" />
+<view class='coin_detail_container'>
+  <view class='head'> 
+    <view class='coin'>
+      <view><text class='balance'>{{coinDealList.healthCoin}}</text></view>
+      <!-- <view><text>健康币</text></view> -->
+      <view><image class='middle_icon' src='../../image/health_coin.png'></image></view>
+    </view>
+    <view class='sum_container'>
+      <view class='sum'>
+        <view class='sum_data'><text>{{coinDealList.sumIncome}}</text></view>
+        <view><image class='icon' src='../../image/income.png'></image><text>累计收入</text></view>
+      </view>
+      <view class='sum'>
+        <view class='sum_data'><text>{{coinDealList.sumExpend}}</text></view>
+        <view><image class='icon' src='../../image/expend.png'></image><text>累计支出</text></view>
+      </view>
+    </view>
+  </view>
+
+  <view class='detail'>
+    <view class='nav'>
+      <view>
+        <text bindtap='income' class='{{select ===0?"select border_left":""}}'>收入明细</text>
+        <text bindtap='expense' class='{{select ===1?"select border_right":""}}'>支出明细</text>
+      </view>
+    </view>
+    
+    <view class='no_detail' wx:if="{{detailList.length <= 0}}">
+      <text>暂无记录~</text>
+    </view> 
+
+    <block wx:for='{{detailList}}' wx:key='{{index}}'>
+      <view class='deal'>
+        <view><image src='../../image/health_coin.png' class='icon'></image><text>{{item.coin>0?'+'+item.coin:item.coin}}</text></view>
+        <view>
+          <text>{{item.description}}</text>
+          <text>{{tools.formatTime(item.createTime)}}</text>
+        </view>
+      </view>  
+    </block>
+  </view>
+</view>

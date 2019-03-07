@@ -1,0 +1,16 @@
+<!-- 兑换界面 -->
+<view class='conversion_container'>
+  <view class='block'>
+    <block wx:for="{{goodsList}}" wx:key="{{index}}">
+      <view class='goods'>
+        <image src='{{item.imgUrl}}'></image>
+        <view class='name'><text>{{item.name}}</text></view>
+        <view class='goods_data'>
+          <font class='price'><text>{{item.price}}</text>健康币</font>
+          <font class='surplus'>还剩<text>{{item.surplus}}</text>件</font>
+        </view>
+        <button wx:if='{{item.surplus > 0}}' bindtap='conversion' data-id='{{item.id}}'>兑换</button>
+      </view>
+    </block>
+  </view>
+</view>

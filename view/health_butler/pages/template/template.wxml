@@ -1,0 +1,57 @@
+<!-- 说说模板 -->
+<wxs src="./../tools.wxs" module="tools" />
+<template name="share">
+  
+    <view class='user_info' >
+      <!-- 访问主页 -->
+      <image bindtap='visit' data-uid="{{user.id}}" class='head_img' src='{{user.avatarUrl}}'></image>
+      <view class='info'>
+        <text>{{user.nickName}}</text>
+        <text class='share_time'>{{tools.formatShareTime(community.createTime)}}</text>
+      </view>
+    </view>
+    <view class='content'>
+      <text>{{community.content}}</text>
+      <block wx:for="{{tools.parseImgList(community.imgUrlList)}}" wx:for-item="image" wx:key="{{index}}">
+        <image class='list_image' src="{{image}}" data-src="{{image}}" data-list="{{tools.parseImgList(community.imgUrlList)}}" bindtap="previewImage"></image>
+      </block>
+    </view>
+    <view class='comment'>
+      <view class='commentData'>
+        <!-- 点赞 -->
+        <image bindtap='praise' wx:if='{{!praise}}' data-cid='{{community.id}}' class='praiseIcon' src="../../image/praise_1.png"></image>
+        <!-- 取消点赞 -->
+        <image bindtap='cancel' wx:if='{{praise}}' data-cid='{{community.id}}' class='praiseIcon' src="../../image/praise.png"></image>
+        <!-- 时间限制, 去除评论功能-->
+        <!-- <image bindtap='comment' class='commentIcon' src='../../image/comment.png'></image> -->
+        <!-- 打赏
+        <image bindtap='reward' data-id='{{id}}' data-statu="open" class='rewardIcon' src='../../image/reward_2.png'></image> -->
+      </view>
+      <view class='praiseDetail'>
+        <image src='../../image/praise.png'></image>
+        <block wx:for="{{praiseUser}}" wx:key="{{index}}">
+          <!-- 访问对方主页 -->
+          <text bindtap='visit' data-uid='{{item.id}}' class='user_text'>{{item.nickName}}</text>
+          <text wx:if="{{index < praiseUser.length - 1}}">、</text>
+        </block>
+        <text wx:if="{{praiseCount >= 1}}">等{{praiseUser.length}}人觉得很赞</text>
+      </view>
+
+
+
+      <!-- 时间限制, 去除评论功能 -->
+      <!-- <view class='commentDetail'>
+        <block wx:for="{{commentList}}" wx:key="{{index}}"> 
+         访问对方主页
+          <text bindtap='visit' class='user_text'>{{item.from}}</text>
+          <block wx:if="{{type===1}}">
+            <text> 回复 </text>
+            访问对方主页
+            <text bindtap='visit' class='user_text'>{{item.to}}</text>
+          </block>
+          回复评论
+          <text bindtap='reply'>: {{item.content}}</text>
+        </block>
+      </view> -->
+    </view>
+</template>

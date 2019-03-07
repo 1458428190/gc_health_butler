@@ -1,0 +1,32 @@
+.test_container {
+  width: 100vw;
+  height: 100vh;
+  background:black;
+}
+
+.canvas-test{
+    width: 100vw;
+    height: 60vh;
+    background:black;
+}
+
+.tip {
+  position: fixed;
+  top: 80vh;
+  color: #1ECBBE;
+  font-size: 50rpx;
+  font-weight: bold;
+  align-items: center;
+  text-align: center;
+  margin: 10rpx auto;
+  width: 100%;
+}
+
+image {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 75rpx;
+  border: 5rpx #1ECBBE solid;
+  display: flex;
+  margin: 20rpx auto;
+}

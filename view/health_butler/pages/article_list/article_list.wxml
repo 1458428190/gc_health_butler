@@ -1,0 +1,27 @@
+<!-- 科普资讯 -->
+<wxs src="./../tools.wxs" module="tools" />
+<view class="article_list_container">
+  <view class='nav' bindtap='selectType'>
+    <block wx:for="{{articleCategoryList}}" wx:key="{{index}}">
+      <button data-cid='{{item.id}}' class='{{cid==item.id?"select":""}}'>{{tools.keepTwo(item.name)}}</button>
+    </block>
+  </view>
+  <view class='articleContent'>
+  <block wx:for='{{articleList}}' wx:key="{{key}}" wx:for-item="article">
+    <view class='abstract' bindtap='getArticleDetail' data-id='{{article.id}}'>
+      <image class="thumbnail" src='{{article.imgUrl}}'></image>
+      <view class='article'>
+        <text class='title'>{{article.title}}</text>
+        <!-- <block wx:for='{{article.keywords}}' wx:key="{{index}}" wx:for-item="keyword">
+          <text class='keyword'>{{keyword}}</text>
+        </block> -->
+        <view class='articleInfo'>
+          <text>{{tools.formatTime(article.createTime)}}</text>
+          <image class="see" src='../../image/icon_see.png'></image>
+          <text>{{article.see}}</text>
+        </view> 
+      </view>
+    </view>
+  </block>
+  </view>
+</view>

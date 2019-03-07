@@ -1,0 +1,80 @@
+<!-- 健康中心 -->
+<view class='center_container'>
+  <view class='health_info'>
+    <view class='nav_head'>
+      <view class='strategy'>
+        <image class='head_icon' src='../../image/strategy.png'></image>
+        <text bindtap='getStrategy'>攻略</text>
+      </view>
+      <view class='invite'>
+        <button open-type="share">邀请<image class='head_icon' src='../../image/invite.png'></image></button>
+        <!-- <text>邀请好友</text> -->
+      </view>
+    </view>
+    <view class='data'>
+      <view class='health_coin' bindtap='getHealthCoin'>
+        <!-- <view><text>健康币</text></view> -->
+        <view><image class='middle_icon' src='../../image/health_coin.png'></image></view>
+        <view><text>{{userData.user.healthCoin}}</text></view>
+      </view>
+      <view class='step' bindtap='getStep'>
+        <view>
+          <!-- <view><text>今日步数</text></view> -->
+          <view><image class='middle_icon' src='../../image/step.png'></image></view>
+          <view><text>{{userData.user.nowStep}}</text></view>
+          <view><text>每天24点清空步数</text></view>
+        </view>
+      </view>
+      <view class='rank' bindtap='getRank'>
+        <!-- <view><text>排名</text></view> -->
+        <view><image class='middle_icon' src='../../image/rank.png'></image></view>
+        <view><text>{{userData.rankStep}}</text></view>
+      </view>
+    </view>
+
+    <view class='nav_button'>
+      <button bindtap='clockIn'>打卡</button>
+      <button bindtap='exchange'>兑换</button>
+    </view>
+  </view>
+  <view class='task'>
+    <view class='nav_task'>
+      <text bindtap='navToHealthTest' class='{{navSelect===0?"select_nav":""}}'>健康测试</text>
+      <text bindtap='navToTask' class='{{navSelect===1?"select_nav":""}}'>挑战任务</text>
+    </view>
+    <view wx:if='{{navSelect==0}}' class='health_test'>
+      <view class='bmi' bindtap='nvToBmi'>
+        <image src='https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3161818690,1014408373&fm=26&gp=0.jpg'></image>
+        <view>
+          <text class='test_name'>BMI指数计算</text>
+          <text class='nav_to'>去计算 ></text>
+        </view>
+      </view>
+      <view class='ai_test' bindtap='nvAiTest'>
+        <image src='https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1487559784,2191730747&fm=26&gp=0.jpg'></image>
+        <view>
+          <text class='test_name'>AI智能测肤</text>
+          <text class='nav_to'>去评测 ></text>
+        </view>
+      </view>
+    </view>
+
+    <block wx:if='{{navSelect==1}}' wx:for='{{taskList}}' wx:key='{{index}}' wx:for-item="task">
+      <view class='task_detail'>
+        <image class='task_img' src='{{task.imgUrl}}'></image>
+        <view class='task_description'>
+          <view><text>{{task.title}}</text></view>
+          <view><text>{{task.description}}</text></view>
+        </view>
+        <view class='award'>
+          <view>
+            <image class='icon' src='../../image/coin.png'></image>
+            <text>{{task.reward}}</text>
+          </view>
+          <!-- <button bindgetuserinfo='finishTask' data-type="{{task.category2}}">去完成</button> -->
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+

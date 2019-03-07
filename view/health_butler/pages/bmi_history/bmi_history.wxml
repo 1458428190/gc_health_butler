@@ -1,0 +1,18 @@
+<!-- BMI历史数据 -->
+<wxs src="./../tools.wxs" module="tools" />
+<view class='bmi_history_container'>
+  <view class='history'>
+    <view class='no_history' wx:if='{{historyList.length <= 0}}'>
+      <text> 暂无BMI历史记录 </text>
+    </view>
+    
+    <block wx:for='{{historyList}}' wx:key='{{index}}'>
+      <view class='record'>
+        <text>{{tools.formatTime(item.createTime)}}</text>
+        <text>{{item.height}}cm</text>
+        <text>{{item.weight}}kg</text>
+        <text>{{item.bmi}}b</text>
+      </view>
+    </block>
+  </view>
+</view>

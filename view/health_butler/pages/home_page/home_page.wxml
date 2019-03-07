@@ -1,0 +1,85 @@
+<!-- 个人主页 -->
+<wxs src="./../tools.wxs" module="tools" />
+<!-- 打赏弹窗 -->
+<!--mask-->  
+<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>  
+<!--content-->  
+<!--使用animation属性指定需要执行的动画-->  
+<view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">  
+  <!--drawer content-->  
+  <view class="drawer_title"><image src='../../image/reward.png'></image>打赏</view>  
+  <view class="drawer_content">  
+    <view class="top grid">  
+      <text>对方: </text>
+      <text class='name'>{{user.nickName}}</text>
+    </view>  
+    <view class="top bottom grid">  
+      <text>提醒: </text>
+      <text class='remark'>一旦交易,无法取消</text>
+    </view>  
+    <view class='coin'>
+      <text>健康币: </text>
+      <input type='number' bindinput="bindinput" maxlength='7' name="coin"></input>
+    </view>
+  </view> 
+  <view class='option'>
+    <view class="btn_cancel" bindtap="cancel" data-statu="close">取消</view>  
+    <view class="btn_ok" bindtap="confirm" data-statu="close">确定</view>  
+  </view>
+</view>
+
+<view class='home_page_container'>
+  <view>
+    <swiper class='cover'
+      indicator-dots="false"
+      autoplay="true"
+      indicator-active-color="#1ECBBE"
+      bindtap='changeCover'
+    >
+      <block wx:for='{{user.coverImgUrl!=""?tools.parseImgList(user.coverImgUrl):defaultImg}}' wx:key="{{index}}">
+        <swiper-item autoplay="true" circular="true">
+          <image src="{{item}}"/>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class='info'>
+    <view class='me'>
+      <image class='head_img' src='{{user.avatarUrl}}'></image>
+      <view class='me_info'>
+        <view><text>{{user.nickName}}</text></view>
+        <view><text>{{user.province + " " + user.city}}</text></view>
+      </view>
+      <view class='me_data'>
+        <view>
+          <view><text>{{user.sumStep}}</text></view>
+          <view><text>总步数</text></view>
+        </view>
+        <view bindtap='nvToHealthCoinDetail'>
+          <view><text>{{user.healthCoin}}</text></view>
+          <view><text>健康币</text></view>
+        </view>
+        <view>
+          <view><text class='reward'>{{user.reward}}</text></view>
+          <view><text>赏币</text></view>
+        </view>
+        <view>
+         <!-- 打赏 -->
+          <image wx:if='{{!isMe}}' bindtap='reward' data-id='{{id}}' data-statu="open" class='rewardIcon' src='../../image/reward.png'></image>
+        </view>
+    </view>
+    <view class="stepData">
+
+      <!-- TODO 用户自己选择图形,有bug -->
+      <!-- <view bindtap='changeType'>
+        <text data-index='0' class="{{select==0?'select':''}}">线形</text>
+        <text data-index='1' class="{{select==1?'select':''}}">柱形</text>
+      </view> -->
+      <ff-canvas wx:if="{{runData.length > 0}}" id="stepsPan" canvas-id="stepsPan" opts="{{opts}}"></ff-canvas>
+      <text class='tip' wx:if="{{runData.length <= 0}}">未授权步数信息，无法展示</text>
+    </view>
+  </view>
+  </view>
+</view>
+
+

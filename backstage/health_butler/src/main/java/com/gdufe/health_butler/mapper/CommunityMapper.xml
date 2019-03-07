@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gdufe.health_butler.dao.CommunityMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.gdufe.health_butler.entity.Community">
+        <id column="id" property="id" />
+        <result column="uid" property="uid" />
+        <result column="content" property="content" />
+        <result column="img_url_list" property="imgUrlList" />
+        <result column="is_delete" property="isDelete" />
+        <result column="praise" property="praise" />
+        <result column="reward" property="reward" />
+        <result column="only_me" property="onlyMe" />
+        <result column="create_time" property="createTime" />
+        <result column="modified_time" property="modifiedTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, uid, content, img_url_list, is_delete, praise, reward, only_me, create_time, modified_time
+    </sql>
+
+</mapper>

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {},
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#1ECBBE",
+  "navigationBarTitleText": "BMI身体指数计算器",
+  "navigationBarTextStyle": "black"
+}

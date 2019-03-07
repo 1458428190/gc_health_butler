@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "calendar": "plugin://calendar/calendar"
+  },
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#1ECBBE",
+  "navigationBarTitleText": "打卡",
+  "navigationBarTextStyle": "black"
+}

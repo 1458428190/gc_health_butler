@@ -1,0 +1,116 @@
+.search {
+  background-color: #1ECBBE;
+  width: 100%;
+  height: 100rpx;
+  padding-bottom: 20rpx;
+  display: table;
+  position: fixed;
+  top: 0rpx;
+}
+
+.back_home{
+  width: 60rpx;
+  height: 60rpx;
+  position: fixed;
+  top: 30rpx;
+  left: 10rpx;
+}
+
+.search input {
+  font-size:35rpx;
+  border:1rpx solid #1ECBBE;
+  border-radius: 20rpx;
+  color:#6a6f77;
+  background-color: rgb(218, 212, 212);
+  width: 60%;
+  position: fixed;
+  top: 20rpx;
+  left: 80rpx;
+  padding: 10rpx 70rpx;
+}
+
+.search_icon {
+  width: 50rpx;
+  height: 50rpx;
+  position: fixed;
+  top: 33rpx;
+  left: 90rpx;
+}
+
+.list, .no_res {
+  position: fixed;
+  top: 120rpx;
+  bottom: 0rpx; /* 一定要加才会出现滚动条 */
+  /* width: 100%; */
+  overflow-y: scroll;
+}
+
+.food {
+  height: 190rpx;
+  width: 80vh;
+  margin: 20rpx 0rpx;
+  padding: 10rpx 20rpx;
+  border-bottom: 2rpx solid #efefef;
+}
+
+.food image{
+  width: 150rpx;
+  height: 150rpx;
+  float: left;
+}
+
+.food .food_name {
+  font-size: 40rpx;
+  font-weight: bold;
+  margin-left: 20rpx;
+}
+
+.food .brief {
+  padding-left: 20rpx;
+  padding-top: 10rpx;
+  font-size: 30rpx;
+  width: 550rpx;
+  color: #adaaaa;
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all; /* 追加这一行代码 */
+}
+
+.food .value {
+  margin-left: 20rpx;
+  width: 100%;
+}
+
+.food>.value>text {
+  margin: 60rpx 10rpx 20rpx 20rpx;
+}
+
+.affact {
+  color: gold;
+}
+
+.nutrition {
+  color: red;
+}
+
+.avoid_num {
+  color: orange;
+}
+
+.suitable_num {
+  color: blue;
+}
+
+.no_res {
+  text-align: center;
+  font-size: 40rpx;
+  color: orange;
+}
+
+.no_res text {
+  padding: 100rpx 300rpx;
+}
+

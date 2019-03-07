@@ -1,0 +1,112 @@
+.me_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: white;
+  height: 100vh;
+} 
+
+.head_image image{
+  width: 120rpx;
+  height: 120rpx;
+  display: flex;
+  margin: 30rpx auto;
+  border-radius: 60rpx;
+  box-shadow:0rpx 2rpx 5rpx 5rpx #1ECBBE;
+}
+
+.head_image text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+}
+
+.info{
+  display: flex;
+  flex-direction: raw;
+  margin: 7vh 0rpx;
+  margin-top: 5vh;
+}
+
+.info view {
+  margin: 0rpx 30rpx;
+}
+
+.info view text {
+  display: flex;
+  font-size: 30rpx;
+  margin: 15rpx auto;
+}
+
+.info>view>text:first-child{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #1ECBBE;
+  font-weight: bold;
+}
+
+.text_center {
+  margin: 42rpx 10rpx;
+}
+
+button::after {
+  border: none;
+}
+
+.nav {
+  width: 100%;
+  border-top: 20rpx #efefef solid;
+}
+
+.nav image {
+  float: left;
+  width: 55rpx;
+  height: 55rpx;
+  margin: 20rpx 40rpx;
+}
+
+.nav>view {
+  width: 100%;
+  height: 95rpx;
+  border-bottom: 2rpx #efefef solid;
+}
+
+.text {
+  font-size: 37rpx;
+  padding-top: 25rpx;
+}
+
+.service_button {
+  width: 100%;
+  height: 95rpx;
+  border-bottom: 1rpx #efefef solid;
+  padding: 0rpx;
+  background-color: white;
+  display: flex;
+}
+
+.service_button .text {
+  width: 100%;
+  font-size: 37rpx;
+  padding-top: 25rpx;
+  line-height: 43rpx;
+  padding-left: 0rpx;
+}
+
+.text {
+  padding-top: 18rpx;
+}
+
+.service_text {
+  float: left;
+  margin-left: 10rpx;
+}
+
+.skip {
+  float: right;
+  margin-right: 40rpx;
+}
+

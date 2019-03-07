@@ -1,0 +1,66 @@
+## 食物列表数据源 food  来源 - 160趣健康
+
+## 针对 https://api.160nurse.com/foods/foods?cat_id=2&cat_name=%E6%B0%B4%E6%9E%9C%E7%B1%BB&keywords= 的抓包记录
+
+### 请求 Request:
+
+GET /foods/foods?cat_id=2&cat_name=%E6%B0%B4%E6%9E%9C%E7%B1%BB&keywords= HTTP/1.1
+Host: api.160nurse.com
+Content-Type: application/json
+Connection: keep-alive
+Accept: */*
+User-Agent: Mozilla/5.0 (iPad; CPU OS 12_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16C50 MicroMessenger/7.0.2(0x17000222) NetType/WIFI Language/zh_CN
+Referer: https://servicewechat.com/wx4e358e1f2ead4c7b/67/page-frame.html
+Accept-Language: zh-cn
+Accept-Encoding: br, gzip, deflate
+
+### 请求 Response:
+
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 21 Feb 2019 14:01:19 GMT
+Content-Type: application/json; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Vary: Accept-Encoding
+Set-Cookie: XHSESSION=57j3tjh37rc30jdjeoblr1j767; path=/; HttpOnly
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Pragma: no-cache
+Content-Encoding: gzip
+
+{
+    "status": 1,
+    "info": "",
+    "data": {
+        "total": "2",
+        "list": [
+            {
+                "food_id": "194",
+                "food_name": "冬枣",
+                "list_img": "http://resource.160nurse.com/upload/foods/194.jpg",
+                "alias_name": [
+                    "雁来红、苹果枣、冰糖枣、鲁北冬枣、沾化冬枣、黄骅冬枣"
+                ],
+                "brief": "增强免疫力、抗氧化、抗癌防癌、抗病毒、护肤、抗坏血、护齿、促进脂质代谢...",
+                "affect": 1,
+                "nutrition": 1,
+                "avoid_num": 0,
+                "suitable_num": 0
+            },
+            {
+                "food_id": "154",
+                "food_name": "苹果",
+                "list_img": "http://resource.160nurse.com/upload/foods/154.jpg",
+                "alias_name": [
+                    "滔婆、柰、柰子、频婆、平波、超丸子、天然子"
+                ],
+                "brief": "除烦、养胃、生津、醒酒、凉性、甘味、酸味、富含胡萝卜素、低蛋白质、低脂...",
+                "affect": 1,
+                "nutrition": 1,
+                "avoid_num": 7,
+                "suitable_num": 12
+            }
+        ]
+    }
+}

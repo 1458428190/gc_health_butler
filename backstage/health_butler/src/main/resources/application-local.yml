@@ -1,0 +1,79 @@
+#spring:
+#  datasource:
+##    driver-class-name:
+##    url:
+##    username: lcf
+##    password: 123456
+#    type: com.alibaba.druid.pool.DruidDataSource
+##    initial-size: 5                                                   # 初始化连接大小
+##    minIdle: 5                                                        # 最小连接池数量
+##    maxActive: 20                                                     # 最大连接池数量
+##    maxWait: 60000                                                    # 获取连接时最大等待时间，单位毫秒
+##    timeBetweenEvictionRunsMillis: 60000                              # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+##    minEvictableIdleTimeMillis: 300000                                # 配置一个连接在池中最小生存的时间，单位是毫秒
+##    validationQuery: SELECT 1 FROM DUAL                               # 测试连接
+##    testWhileIdle: true                                               # 申请连接的时候检测，建议配置为true，不影响性能，并且保证安全性
+##    testOnBorrow: false                                               # 获取连接时执行检测，建议关闭，影响性能
+##    testOnReturn: false                                               # 归还连接时执行检测，建议关闭，影响性能
+##    poolPreparedStatements: true                                      # 是否开启PSCache，PSCache对支持游标的数据库性能提升巨大，oracle建议开启，mysql下建议关闭
+##    maxPoolPreparedStatementPerConnectionSize: 20                     # 开启poolPreparedStatements后生效
+##    spring.datasource.filters: stat,wall,log4j                        # 配置扩展插件，常用的插件有=>stat:监控统计  log4j:日志  wall:防御sql注入
+##    # 过connectProperties属性来打开mergeSql功能;慢SQL记录
+##    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+#    druid:
+#      initial-size: 5
+#      max-active: 20
+#      min-idle: 5
+#      max-wait: 60000
+#      pool-prepared-statements: true
+#      max-pool-prepared-statement-per-connection-size: 20
+#      validation-query: SELECT 1 FROM USER
+#      validation-query-timeout: 10000
+#      filters: stat,wall,log4j
+#      test-while-idle: true
+#      test-on-return: false
+#      test-on-borrow: false
+#      min-evictable-idle-time-millis: 300000
+#      time-between-eviction-runs-millis: 60000
+#      driver: com.mysql.jdbc.Driver
+#      url: jdbc:mysql://localhost:3306/health_butler
+#      username: lcf
+#      password: 123456
+
+spring:
+  datasource:
+    name: druidDataSource
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/health_butler?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false
+    username: lcf
+    password: 123456
+    druid:
+      filters: stat,wall
+      max-active: 30
+      initial-size: 5
+      max-wait: 60000
+      min-idle: 5
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: select 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-open-prepared-statements: 50
+      max-pool-prepared-statement-per-connection-size: 20
+
+  devtools:                                                           # 热加载资源设置
+    restart:
+      exclude: static/**,public/**
+      enabled: true
+
+
+logging:
+  level:
+    com.gdufe.health_butler.dao: debug
+
+
+
+

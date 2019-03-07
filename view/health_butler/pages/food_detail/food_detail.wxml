@@ -1,0 +1,52 @@
+<!-- 食谱详情 -->
+<wxs src="./../tools.wxs" module="tools" />
+<view class='food_detail_container'>
+  <image wx:if="{{imgUrl}}" src='{{imgUrl}}'></image>
+  <view><text class='name'>{{name}}</text></view>
+  <!-- 食物相关信息 -->
+  <view class='info'>
+    <view wx:if="{{food.alias_name.length > 0}}">别名: <text> {{food.aliasName}}</text></view>
+    <view wx:if="{{food.avoid.length > 0}}">禁忌人群: <text> {{food.avoid}}</text></view>
+    <view wx:if="{{food.suitable.length > 0}}">适宜人群: <text> {{food.suitable}}</text></view>
+  </view>
+
+  <!-- 功效 -->
+  <view class='affect' wx:if="{{food.affect.length > 0 && food.affect!='null'}}">
+    <view><text>功效</text></view>
+    <text>{{food.affect}}</text>
+  </view>
+
+  <!-- 营养 -->
+  <view class='nutrition' wx:if="{{food.nutrition.length > 0 && food.nutrition!='null'}}">
+    <view><text>营养</text></view>
+    <text>{{food.nutrition}}</text>
+  </view>
+  
+  <!-- 相克 -->
+  <view class='foods_avoid' wx:if="{{food.foodsAvoid.length > 0 && food.foodsAvoid!='null'}}">
+    <view class='function'>
+      <image src='../../image/icon_delete.png'></image>
+      <view><text>相克</text></view>
+    </view>
+    <block wx:for="{{tools.parseToJson(food.foodsAvoid)}}" wx:key="{{index}}">
+      <view class='avoid_food'>
+        <text>{{item.avoid_suit_food}} : </text>
+        <text>{{item.avoid_suit_reason}}</text>
+      </view>
+    </block>
+  </view>
+
+  <!-- 宜搭 -->
+  <view class='foods_suit' wx:if="{{food.foodsSuit.length > 0 && food.foodsSuit!='null'}}">
+    <view class='function'>
+      <image src='../../image/icon_suit.png'></image>
+      <text>宜搭</text>
+    </view>
+    <block wx:for="{{tools.parseToJson(food.foodsSuit)}}" wx:key="{{index}}">
+      <view class='suit_food'>
+        <text>{{item.avoid_suit_food}} : </text>
+        <text>{{item.avoid_suit_reason}}</text>
+      </view>
+    </block>
+  </view>
+</view>

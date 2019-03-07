@@ -1,0 +1,31 @@
+<!-- 食物列表 -->
+<view class='food_list_container'>
+  <view class='search'>
+    <!--设置图片 style='background: url(../../image/icon_search.png) no-repeat;' -->
+    <!-- 设置返回键 -->
+    <image class='back_home' src='../../image/main.png' bindtap='backhome'></image>
+    <input type='text' maxlength='20' placeholder='请输入食材名称或疾病名称' bindinput="searchInput" bindconfirm='search'
+    value='{{inputValue}}'></input>
+    <image class='search_icon' wx:if="{{isSearch}}" src='../../image/icon_search.png'></image>
+    <image class='search_icon' bindtap='cancel' wx:if="{{!isSearch}}" src='../../image/icon_cancel.png'></image>
+  </view>
+
+  <view class='no_res' wx:if="{{foodList.length <= 0}}">
+    <text>{{noResTip}}</text>
+  </view>
+  <view class='list'>
+    <block wx:for="{{foodList}}" wx:key="{{index}}" wx:for-item="food">
+      <view class='food' bindtap="getFoodDetail" data-id='{{food.id}}' data-imgUrl='{{food.imgUrl}}' data-name='{{food.name}}'>
+        <image src='{{food.imgUrl}}'></image>
+        <view><text class='food_name'>{{food.name}}</text></view>
+        <view><text class='brief' max-length="20">{{food.brief}}</text></view>
+        <view class='value'>
+          <text>功效<text class='affact'>{{food.affect}}</text></text>
+          <text>营养<text class='nutrition'>{{food.nutrition}}</text></text>
+          <text>相克<text class='avoid_num'>{{food.avoidNum}}</text></text>
+          <text>宜搭<text class='suitable_num'>{{food.suitableNum}}</text></text>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

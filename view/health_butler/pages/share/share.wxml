@@ -1,0 +1,15 @@
+<!-- 发表文章界面,参考 恋伴儿-->
+<view class="textareaView">
+  <textarea placeholder="记录这健康时刻..." auto-focus adjust-position bindinput="bindblur" class="textarea" maxlength='512' bindconfirm='bindconfirm'></textarea>
+  <view class="imgs_Insert">
+    <view wx:for="{{imgUrls}}" wx:key="{{index}}" class="selectedImg_cancel">
+      <image src="{{item}}" class="selectedImg" mode="aspectFill"></image>
+      <image src="../../image/deleteImg.png" class="cancelIcon" bindtap="deleteSelectedImg" data-index="{{index}}" />
+    </view>
+    <image src="../../image/addPhoto.png" class="insertImg" bindtap="chooseImage"></image>
+  </view>
+</view>
+<view class="topView">
+  <switch class="setPrivate" bindchange="changeSwitch">仅自己可见</switch>
+  <view bindtap="confirmShare" class="confirmShare">发表</view>
+</view>

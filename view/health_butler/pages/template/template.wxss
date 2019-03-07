@@ -1,0 +1,92 @@
+.head_img {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 35rpx;
+}
+
+.user_info {
+  margin: 10rpx 10rpx;
+}
+
+.user_info>image,view {
+  float: left;
+}
+
+.list_image {
+  width: 230rpx;
+  height: 230rpx;
+  margin: 0rpx 6rpx;
+}
+
+.info text {
+  display: flex;
+  margin: 0rpx 20rpx;
+  font-size: 30rpx;
+}
+
+.content {
+  width: 100%;
+  margin-left: 20rpx;
+}
+
+.content>text {
+  display: flex;
+  margin: 10rpx 5rpx;
+  font-size: 30rpx;
+}
+
+.praiseIcon,.commentIcon,.rewardIcon {
+  width: 48rpx;
+  height: 48rpx;
+  margin: 10rpx 40rpx 10rpx 10rpx;
+}
+
+.comment {
+  width: 100%;
+}
+
+.commentData {
+  display: flex;
+  flex-direction: row;
+  padding-left: 30rpx;
+  padding-bottom: 10rpx;
+  border-bottom:1rpx solid #efefef;
+  width: 100%;
+  font-size: 30rpx;
+}
+
+.commentData text {
+  margin-right: 30rpx;
+  margin-left: 5rpx;
+}
+
+.commentData button::after {
+  border: none;
+}
+
+.praiseDetail {
+  margin-top: 10rpx;
+  font-size: 30rpx;
+  width: 98%;
+  margin: 15rpx 5rpx;
+}
+
+.praiseDetail image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 10rpx;
+}
+
+.user_text{
+  color: #1ECBBE;
+}
+
+.commentDetail {
+  margin: 20rpx 5rpx;
+  font-size: 32rpx;
+}
+
+.share_time {
+  color: #b3aeae;
+  font-size: 30rpx;
+}

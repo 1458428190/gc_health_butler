@@ -1,0 +1,220 @@
+.clock_in_container {
+  background-color: white;
+  display: table;
+  margin-right: 0;
+  height: 100vh;
+  width: 100%;
+}
+
+.nav {
+  margin: 10rpx 0rpx;
+  padding-top: 20rpx;
+  color: black;
+  font-weight: bold;
+}
+
+.nav text{
+  padding: 10rpx 52rpx;
+}
+
+.select_nav {
+  color: #1ECBBE;
+  border-bottom: 5rpx solid #1ECBBE; 
+}
+
+.clock_info {
+  /* border: 2rpx solid #1ECBBE; */
+  /* box-shadow: 0rpx 2rpx 4rpx 2rpx #1ECBBE; */
+  border-radius: 50rpx;
+  margin: 30rpx 20rpx 20rpx 20rpx;
+  padding-bottom: 20rpx;
+}
+
+.impData {
+  font-weight: bold;
+  /* font-size: 48rpx; */
+  color: #1ECBBE;
+}
+
+.continue_info {
+  margin: 10rpx 10rpx;
+  font-size: 28rpx;
+  padding: 5rpx 15rpx;
+  display: flex;
+  flex-direction: row;
+  padding-right: 0rpx;
+}
+
+.continue_info button::after {
+  border: none;
+}
+
+.no_clockIn_button,.cancelRemind {
+  display: inline;
+  border-radius: 40rpx;
+  margin: 0rpx 5rpx 0rpx 350rpx;
+  outline: none;
+  padding: 2rpx 5rpx;
+  color: white;
+  font-size: 30rpx;
+  background-color: #1ECBBE;
+  /* height: 42rpx; */
+  width: 80rpx;
+  height: 80rpx;
+}
+
+/* .remind {
+  margin-left: 0rpx;
+  font-size: 30rpx;
+  line-height: 20rpx;
+  height: 30rpx;
+  padding: 10rpx 5rpx;
+  margin: 19rpx 5rpx 0rpx 5rpx;
+} */
+
+
+/* 取消提醒 */
+/* .cancelRemind {
+  margin-left: 5rpx;
+  background-color: #05ff2e;
+} */
+form {
+  display: inline;
+  border-radius: 40rpx;
+  margin: 0rpx 5rpx 0rpx 10rpx;
+  outline: none;
+  padding: 5rpx 0rpx;
+  color: white;
+  font-size: 25rpx;
+  background-color: #575555;
+  /* height: 42rpx; */
+  width: 80rpx;
+  height: 80rpx;
+  background-color: #1ECBBE;
+  padding: 0rpx;
+}
+
+
+.remind {
+  outline: none;
+  color: white;
+  padding: 0rpx 0rpx;
+  margin: 0rpx;
+  background-color: #1ECBBE;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  /* height: 42rpx; */
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.clockIn_button{
+  display: inline;
+  border-radius: 40rpx;
+  margin: 0rpx 5rpx 0rpx 350rpx;
+  outline: none;
+  padding: 5rpx 0rpx;
+  color: white;
+  font-size: 25rpx;
+  background-color: #575555;
+  /* height: 42rpx; */
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.cancelRemind {
+  background-color: #575555;
+  margin: 0rpx 5rpx 0rpx 10rpx;
+  padding: 0rpx;
+}
+
+.calendar {
+  background-color:white; /*背景色为白色*/
+  margin: 10rpx 20rpx;
+  color: black;
+  border-radius: 30rpx;   /*添加边框圆角*/
+  border: 2rpx solid #1ECBBE;
+  -webkit-box-shadow:0 0 20rpx #575555;
+  -moz-box-shadow:0 0 20rpx #575555;
+  box-shadow: 0rpx 2rpx 4rpx 2rpx #1ECBBE;
+  align-items: center;
+  padding-bottom: 10rpx;
+}
+
+/* 头样式 */
+.header-style{
+  background: #575555;  
+  color: #fff;
+  border-top-right-radius: 30rpx;
+  border-top-left-radius: 30rpx;
+}
+
+/* 选中样式 */
+.active-coloro {
+  color: #fff;
+  background: #188be4;
+}
+
+.active-colort {
+  color: #fff;
+  background: #b8d5eb;
+}
+
+/* 周六日样式 */
+.restcolor_style {
+  background: rgb(196, 12, 12) !important;
+}
+
+/* 出勤  */
+.dotcolor-o{
+    background-color: #188be4 !important;  
+}
+
+/* 未出勤  */
+.dotcolor-t{
+    background-color: rgb(253, 72, 6) !important;  
+}
+
+/* 备注信息为headline样式  */
+.headline-style{
+  background: #ddcbf3 !important;
+  display: flex;
+  justify-content: space-around;
+}
+/*key的样式*/
+.counttxt_style{
+  color: #333;
+}
+/*vuale的样式*/
+.countber_style{
+  color: #1ECBBE;
+}
+
+/* 时间选择器 */
+picker {
+  padding: 18rpx 5rpx 10rpx 10rpx;
+  margin: 0rpx 0rpx 10rpx 15rpx;
+  width: 80rpx;
+  height: 37rpx;
+  text-align: right;
+}
+
+picker text {
+  font-size: 30rpx;
+  color: #1ECBBE;
+  font-weight: bold;
+  line-height: 35rpx;
+}
+
+.txt_style{
+  font-size: 20rpx;
+  margin-top: -20rpx;
+}
+
+.accumulative {
+  font-size: 30rpx;
+  line-height: 20rpx;
+  height: 30rpx;
+  padding: 10rpx 5rpx;
+  margin: 19rpx 5rpx 0rpx 5rpx;
+}

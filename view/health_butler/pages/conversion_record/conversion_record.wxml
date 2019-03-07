@@ -1,0 +1,32 @@
+<!-- 兑换记录 -->
+<wxs src="./../tools.wxs" module="tools" />
+<view class='conversion_record_container'>
+  <view class='head'>
+    <view class='sum'>
+      <view><text class='balance'>{{conversionRecord.sumCoin}}</text></view>
+      <view><text>累计花费</text></view>
+    </view>
+    <view class='sum'>
+      <view><text class='balance'>{{conversionRecord.recordList.length}}</text></view>
+      <view><text>累计兑换</text></view>
+    </view>
+  </view>
+
+  <view class='detail'>
+    <view class='no_conversion' wx:if='{{conversionRecord.recordList.length <= 0}}'>
+      <text> 暂无兑换记录 </text>
+    </view>
+    <block wx:for='{{conversionRecord.recordList}}' wx:key='{{index}}'>
+      <view>
+      <image class='goods_img' src='{{item.imgUrl}}'></image>
+      <view class='record'>
+        <view><image src='../../image/health_coin.png' class='icon'></image><text>-{{item.coin}}</text></view>
+        <view>
+          <text>{{item.goodsName}}</text>
+          <text>{{tools.formatTime(item.time)}}</text>
+        </view>
+      </view>
+      </view>  
+    </block>
+  </view>
+</view>

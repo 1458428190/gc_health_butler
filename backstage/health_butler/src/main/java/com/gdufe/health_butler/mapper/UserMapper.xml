@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gdufe.health_butler.dao.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.gdufe.health_butler.entity.User">
+        <id column="id" property="id" />
+        <result column="open_id" property="openId" />
+        <result column="nick_name" property="nickName" />
+        <result column="gender" property="gender" />
+        <result column="city" property="city" />
+        <result column="province" property="province" />
+        <result column="country" property="country" />
+        <result column="avatar_url" property="avatarUrl" />
+        <result column="health_coin" property="healthCoin" />
+        <result column="reward" property="reward" />
+        <result column="morning_time" property="morningTime" />
+        <result column="night_time" property="nightTime" />
+        <result column="sport_time" property="sportTime" />
+        <result column="sum_step" property="sumStep" />
+        <result column="now_step" property="nowStep" />
+        <result column="cover_img_url" property="coverImgUrl" />
+        <result column="create_time" property="createTime" />
+        <result column="modified_time" property="modifiedTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, open_id, nick_name, gender, city, province, country, avatar_url, health_coin, reward, morning_time, night_time, sport_time, sum_step, now_step, cover_img_url, create_time, modified_time
+    </sql>
+
+</mapper>

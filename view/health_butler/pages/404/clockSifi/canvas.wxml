@@ -1,0 +1,8 @@
+<view class='test_container'>
+  <canvas class="canvas-test" canvas-id="firstCanvas"></canvas>
+
+  <view class='tip'><text> 还在紧急开发中~~ </text></view>
+  <image bindtap='playMusic' wx:if="{{!isPlay}}" src='../../../image/play.png'></image>
+  <image bindtap='pauseMusic' wx:if="{{isPlay}}" src='../../../image/pause.png'></image>
+
+</view>

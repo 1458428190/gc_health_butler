@@ -1,0 +1,50 @@
+## 食物详情 food_detail 来源 - 160趣健康
+
+## 针对 https://api.160nurse.com/index.php?c=foods&a=food&food_id=224 的抓包记录
+
+### 请求 Request:
+
+GET /index.php?c=foods&a=food&food_id=224 HTTP/1.1
+Host: api.160nurse.com
+Content-Type: application/json
+Connection: keep-alive
+Accept: */*
+User-Agent: Mozilla/5.0 (iPad; CPU OS 12_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16C50 MicroMessenger/7.0.2(0x17000222) NetType/WIFI Language/zh_CN
+Referer: https://servicewechat.com/wx4e358e1f2ead4c7b/67/page-frame.html
+Accept-Language: zh-cn
+Accept-Encoding: br, gzip, deflate
+
+### 请求 Response:
+
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 21 Feb 2019 14:02:02 GMT
+Content-Type: application/json; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Vary: Accept-Encoding
+Set-Cookie: XHSESSION=t3mmj16tivvl03g0m1toj2sjq3; path=/; HttpOnly
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Pragma: no-cache
+Content-Encoding: gzip
+
+{
+    "status": 1,
+    "info": "",
+    "data": {
+        "id": "224",
+        "first_cat": "水果类",
+        "second_cat": "",
+        "food_name": "高橙",
+        "alias_name": "",
+        "brief": "",
+        "img_url": "http://resource.160nurse.com/upload/foods/224.jpg",
+        "nutrition": "",
+        "affect": "1、和胃降逆\n橙子味酸，性寒凉，入肝、胃经。有和中开胃，降逆止呕之功。善用于饮食停滞而引起的呕吐，胃中浮风恶气，肝胃郁热等疾病。\n2、化痰\n吃橙子可有帮助化痰。\n3、杀鱼蟹之毒\n橙子味酸芳香，酸能杀菌，有除醒脾，杀鱼蟹之毒的作用。橙子可使菜肴更加可口适中，并且有一定的解酒作用。\n4、解酒\n饮酒之后多吃橙子等富含维生素C和纤维素的水果，这样能够使消化功能尽快恢复正常，还可帮助排毒。\n5、治粉刺\n橙子核可治疝气，诸淋病，腰痛，外用可治面黔粉刺，可治肾脏之患。",
+        "avoid": "糖尿病患者忌食。",
+        "suitable": "一般人群均可食用。胸膈满闷、恶心欲吐者，饮酒过多、宿醉未醒者尤宜食用。",
+        "foods_void_suit": 0
+    }
+}
+

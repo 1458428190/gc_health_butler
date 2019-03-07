@@ -1,0 +1,19 @@
+<!-- 食谱入口界面 -->
+<view class="food_container">
+  <view class='search'>
+    <!--设置图片 style='background: url(../../image/icon_search.png) no-repeat;' -->
+    <input type='text' maxlength='20' placeholder='请输入食材名称或疾病名称' bindinput="searchInput" bindconfirm='search'
+    value='{{inputValue}}'></input>
+    <image wx:if="{{isSearch}}" src='../../image/icon_search.png'></image>
+    <image bindtap='cancel' wx:if="{{!isSearch}}" src='../../image/icon_cancel.png'></image>
+  </view>
+
+  <view class='type'> 
+    <block wx:for="{{foods}}" wx:key="{{index}}">
+      <view bindtap='getFoodList' data-id='{{item.id}}'>
+          <image src='{{item.imgUrl}}'></image>
+          <view class='name'><text>{{item.name}}</text></view>
+      </view>
+    </block>
+  </view>
+</view>

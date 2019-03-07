@@ -1,0 +1,54 @@
+<!-- 打卡界面 -->
+<wxs src="./../tools.wxs" module="tools" />
+<view class='clock_in_container'>
+    <view class='nav'>
+      <text bindtap='getUpEarly' class='{{navSelect===0?"select_nav":""}}'>早起打卡</text>
+      <text bindtap='goodNight' class='{{navSelect===1?"select_nav":""}}'>晚安打卡</text>
+      <text bindtap='movement' class='{{navSelect===2?"select_nav":""}}'>运动打卡</text>
+    </view>
+
+    <!-- 打卡日历记录 -->
+    <view class='clock_info'>
+      <view class='continue_info'>
+        <text class='accumulative'><text class='impData'>{{clockRecordList[navSelect].accumulative}}</text>天累计打卡</text>
+        <!-- <picker
+          mode="time"
+          value="{{clockRecordList[navSelect].remindTime.length>0?tools.formatRemind(clockRecordList[navSelect].remindTime):'无'}}"
+          start="00:00"
+          end="23:59"
+          bindchange="bindTimeChange"
+          bindcancel="bindTimeCancel"
+        >
+        <text>{{clockRecordList[navSelect].remindTime.length>0?tools.formatRemind(clockRecordList[navSelect].remindTime):'无'}}</text>
+        </picker> -->
+        <!-- 当用户在小程序内发生过提交表单行为且该表单声明为要发模板消息的，开发者需要向用户提供服务时，可允许开发者向用户在7天内推送有限条数的模板消息（1次提交表单可下发1条，多次提交下发条数独立，相互不影响）
+        次数太少，舍弃此功能-->
+        <!-- <text class='remind' wx:if="{{tools.isRemind(clockRecordList[navSelect].remindTime)}}">提醒</text>
+        <text class='remind' wx:if="{{!tools.isRemind(clockRecordList[navSelect].remindTime)}}">已取消</text> -->
+        <!-- <form bindsubmit="remind" report-submit="true" wx:if="{{!tools.isRemind(clockRecordList[navSelect].remindTime)}}" >
+          <button class="remind" form-type="submit">提醒</button>
+        </form>
+        <button bindtap="cancelRemind" wx:if="{{tools.isRemind(clockRecordList[navSelect].remindTime)}}" class='cancelRemind'>取消</button> -->
+
+        <button class='no_clockIn_button' wx:if="{{!clockRecordList[navSelect].hasClock}}" bindtap='clockIn'>打卡</button>
+        <button class='clockIn_button' wx:if="{{clockRecordList[navSelect].hasClock}}">已打卡</button>
+      </view>
+      
+      <calendar 
+      calendar-style="calendar" 
+      circle_show="{{false}}"
+      header-style='header-style' 
+      active-coloro="active-coloro" 
+      active-colort="active-colort"
+      remark_show="{{true}}"
+      remark_style="userdefined"
+      count_txt_user="{{count_txt_user}}"
+      headline-style="headline-style"
+      counttxt_style="counttxt_style"
+      countber_style="countber_style"
+      weekheight="94"
+      speciallist="{{clockRecordList[navSelect].record}}"
+      txt_style='txt_style'
+      />
+    </view>
+</view>

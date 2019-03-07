@@ -1,0 +1,303 @@
+.center_container {
+  background-color: #fafafa;
+  display: table;
+  width: 100%;
+  height: 100vh;
+}
+
+.health_info {
+  /* background: linear-gradient(rgb(127, 236, 222),  rgb(180,232,225)); */
+  /* https://play.minio.io:9000/laichengfeng-health-butler/bg_5.jpg */
+  background-image: url("https://play.minio.io:9000/laichengfeng-health-butler/bg_5.jpg"); 
+  width: 100%;
+  display: table;
+  border-bottom: 20rpx solid #e0dfdf;
+  background-size:100% 100%;
+  -moz-background-size:100% 100%;
+}
+
+.invite button::after {
+  border: none;
+}
+
+.strategy, .invite button{
+  background-color: rgb(250, 250, 250);
+  color: #1ECBBE;
+  font-size: 33rpx;
+  margin: 20rpx 0rpx;
+  padding: 3rpx 15rpx;
+}
+
+.nav_head {
+  width: 100%;
+}
+
+.strategy {
+  border-top-right-radius: 30rpx;
+  border-bottom-right-radius: 30rpx;
+  float: left;
+  padding-left: 10rpx;
+}
+
+.invite button {
+  float: right;
+  border-top-left-radius: 30rpx;
+  border-bottom-left-radius: 30rpx;
+  border-top-right-radius: 0rpx; 
+  border-bottom-right-radius: 0rpx; 
+  padding: 5rpx 0rpx 5rpx 0rpx;
+  line-height: 40rpx;
+  width: 130rpx;
+}
+
+.data {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  color: black;
+  margin: 10rpx 0rpx;
+  padding: 0rpx 0rpx;
+}
+
+.data>view {
+  margin: 10rpx auto;
+}
+
+.health_coin,.rank {
+  padding: 100rpx 5rpx;
+}
+
+.health_coin>view:first-child,.rank>view:first-child {
+  font-size: 30rpx;
+  color:black;
+}
+
+.health_coin>view:last-child,.rank>view:last-child {
+  font-size: 33rpx;
+  font-weight: bold;
+  color: #1ECBBE;
+}
+
+.step {
+  width: 300rpx;
+  height: 300rpx;
+  border-radius: 150rpx;
+  border: 1rpx solid #1ECBBE;
+  display: flex;
+}
+
+.step>view {
+  width: 280rpx;
+  height: 255rpx;
+  border-radius: 140rpx;
+  border: 1rpx solid white;
+  margin: 12rpx 12rpx;
+}
+
+.step>view:first-child {
+  font-size: 32rpx;
+  padding-top: 20rpx;
+}
+
+.step>view>view:nth-child(2) {
+  font-size: 60rpx;
+  margin: 7rpx auto;
+  font-weight: bold;
+  color: rgb(6, 206, 189);
+}
+
+.step>view>view:nth-child(3) {
+  font-size: 22rpx;
+  color: rgb(59, 59, 253);
+  margin-top: 30rpx;
+}
+
+/** 消除button默认样式 */
+.nav_button button::after {
+  border: none;
+}
+
+.nav_button {
+  display: flex;
+  flex-direction: row;
+}
+
+.nav_button button {
+  display: inline;
+  border-radius: 50rpx;
+  margin: 20rpx auto;
+  outline: none;
+  color: #1ECBBE;
+  font-size: 35rpx;
+  font-weight: bold;
+  line-height: 50rpx;
+  padding-top: 0rpx;
+  padding-bottom: 0rpx;
+}
+
+.task {
+  background-color: #fafafa;
+  margin-right: 0rpx;
+}
+
+.nav_task {
+  margin-bottom: 20rpx;
+  padding-top: 20rpx;
+  color: black;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+}
+
+.nav_task text{
+  margin: 10rpx auto;
+}
+
+.task_detail {
+  border: 1rpx solid #1ECBBE;
+  box-shadow: 0rpx 2rpx 4rpx 2rpx #1ECBBE;
+  margin: 10rpx 20rpx;
+  border-radius: 20rpx;
+  padding: 10rpx 10rpx;
+  padding-bottom: 20rpx;
+  height: 120rpx;
+}
+
+.task_img {
+  width: 120rpx;
+  height: 120rpx;
+  float: left;
+  margin: 5rpx 10rpx;
+  padding: 0rpx 0rpx;
+}
+
+.icon {
+  width: 30rpx;
+  height: 30rpx;
+  margin-top: 10rpx;
+}
+
+.task_description {
+  float: left;
+  margin: 3rpx 5rpx;
+  padding: 0rpx;
+  padding-bottom: 3rpx;
+}
+
+.task_description>view:first-child {
+  font-size: 30rpx;
+  margin-bottom: 10rpx;
+}
+
+.task_description>view:last-child {
+  font-size: 24rpx;
+  width: 420rpx;
+  color: rgb(165, 162, 162);
+}
+
+.award button::after{
+  border: none;
+}
+
+.award button {
+  display: flex;
+  border-radius: 20rpx;
+  margin: 10rpx 0rpx;
+  outline: none;
+  color: white;
+  font-size: 26rpx;
+  width: 100rpx;
+  height: 40rpx;
+  background-color: red;
+  padding: 0rpx 10rpx;
+  padding-top: 0rpx;
+  line-height: 38rpx;
+  margin-left: 10rpx;
+}
+
+.award {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10rpx;
+  margin-top: 30rpx;
+}
+
+.award view {
+  margin: 5rpx 10rpx;
+  margin-right: 0rpx;
+  margin-bottom: 0rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: black;
+}
+
+.award text {
+  padding-bottom: 100rpx;
+}
+
+.select_nav {
+  color: #1ECBBE;
+  border-bottom: 5rpx solid #1ECBBE; 
+}
+
+.bmi, .ai_test {
+  position: relative;
+  width: 96%;
+  height: 150rpx;
+  margin: 20rpx 2%;
+  border-radius: 20rpx;
+  border: 1rpx #efefef solid;
+  color: white;
+  font-weight: bold;
+}
+
+.health_test {
+  margin-top: 60rpx;
+}
+
+.health_test image{
+  width: 100%;
+  height: 150rpx;
+  border-radius: 20rpx;
+  border: 1rpx solid #1ECBBE;
+  box-shadow: 0rpx 2rpx 4rpx 2rpx #1ECBBE;
+}
+
+.bmi view, .ai_test view {
+  position: absolute;
+  top: 10rpx;
+  margin: 15rpx 30rpx;
+  color: white;
+}
+
+.bmi text, .ai_test text {
+  display: block;
+  /* margin: 45rpx 30rpx; */
+}
+
+.nav_to {
+  background-color: rgba(182, 176, 176, 0.2);
+  border: 1rpx #7c7979 solid;
+  border-radius: 20rpx;
+  font-size: 30rpx;
+  width: 140rpx;
+  padding-left: 20rpx;
+}
+
+.middle_icon {
+  width: 50rpx;
+  height: 50rpx;
+  margin-bottom: 0rpx;
+  padding-bottom: 0rpx;
+}
+
+.head_icon {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.test_name {
+  margin-top: 0rpx;
+  padding: 0rpx;
+}

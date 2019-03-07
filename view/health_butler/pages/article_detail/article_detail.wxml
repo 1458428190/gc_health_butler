@@ -1,0 +1,12 @@
+<!-- 文章详情页 -->
+<wxs src="./../tools.wxs" module="tools" />
+<view class='article_container'>
+  <view class='article_data'>
+    <text>{{article.title}}</text>
+    <view>
+      <text>来源: {{article.author}}   {{tools.formatTime(article.createTime)}}   阅读量: {{article.see}}</text>
+    </view>
+  </view>
+  <!-- <rich-text nodes='{{article.content}}'></rich-text>  -->
+  <rich-text nodes='{{article.content}}'></rich-text>
+</view>

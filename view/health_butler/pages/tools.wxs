@@ -1,0 +1,107 @@
+// 字符串转JSON
+var parseToJson = function(s) {
+  return JSON.parse(s);
+}
+var keepTwo = function(s) {
+  return s.slice(0, 2);
+}
+// 日期时间格式转换
+var formatTime = function(s) {
+  // var date = getDate(s/1000);
+  // console.log("s= "+ s);
+  // console.log("date = "+date);
+  // var year = date.getFullYear()
+  // var month = date.getMonth() + 1
+  // var day = date.getDate()
+  // var hour = date.getHours()
+  // var minute = date.getMinutes()
+  // var second = date.getSeconds()
+
+  // var res = year + "/" + month + "/" + day+" "+hour+":"+minute+":"+second;
+  // console.log("res += " + res);
+  // return res;
+  var date = getDate(s);
+  var year = date.getFullYear()
+  var month = cover(date.getMonth() + 1)
+  var day = cover(date.getDate())
+  var hour = cover(date.getHours())
+  var minute = cover(date.getMinutes())
+  var second = date.getSeconds()
+  var res = year + "/" + month + "/" + day + " " + hour + ":" + minute;
+  return res;
+}
+
+var cover = function(n) {
+  if (n < 10) {
+    n = '0' + n;
+  }
+  return n;
+}
+
+// 格式化提醒时间
+var formatRemind = function(s) {
+  return s.slice(0, 5);
+}
+
+// 是否设置为提醒
+var isRemind = function(s) {
+  var remind = (s.indexOf("remind") != -1);
+  return remind;
+}
+
+// 字符串转list 以#^$^#符号分隔
+var parseImgList = function(s) {
+  var list = s.split('#^$^#');
+  return list;
+}
+
+// 格式化分享时间
+var formatShareTime = function(s) {
+  var shareDate = getDate(s);
+  var shareYear = shareDate.getFullYear()
+  var shareMonth = cover(shareDate.getMonth() + 1)
+  var shareDay = cover(shareDate.getDate())
+  var shareHour = cover(shareDate.getHours())
+  var shareMinute = cover(shareDate.getMinutes())
+
+  var date = getDate();
+  var year = date.getFullYear()
+  var month = cover(date.getMonth() + 1)
+  var day = cover(date.getDate())
+
+  date = getDate(year+"/"+month+"/"+day+" 23:59:59:999");
+  var res = "";
+  if(shareYear < year) {
+    res += shareYear + "-" + month + "-" + day;
+  } else {
+    // 今天
+    if (date - shareDate < 24 * 3600000) {
+      res = "今天"
+    } else if (date - shareDate < 48 * 3600000){
+      res = "昨天"
+    } else if (date - shareDate < 72 * 3600000) {
+      res = "前天"
+    } else {
+      res = month + "-" + day;
+    }
+  }
+  res += " " + shareHour + ":" + shareMinute;
+  return res;
+}
+
+var isEqual = function(s1, s2) {
+  console.log("s1=", s1, "+s2="+s2);
+  return s1==s2;
+}
+
+module.exports = 
+{
+  parseToJson: parseToJson,
+  formatTime: formatTime,
+  keepTwo: keepTwo,
+  formatRemind: formatRemind,
+  isRemind: isRemind,
+  parseImgList: parseImgList,
+  formatShareTime: formatShareTime,
+  isEqual: isEqual
+};

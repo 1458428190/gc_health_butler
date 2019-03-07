@@ -1,0 +1,69 @@
+/* pages/test/test.wxss */
+
+.topView{
+  display: flex;
+  justify-content: space-between;   
+  align-items: center;
+  margin: 10px 0 10rpx 40rpx;
+
+  padding: 7px 0;
+  border-bottom: #eee solid 1px;
+  border-top: #eee solid 1px;
+}
+
+.confirmShare{
+  background: #1ECBBE;
+  padding: 5px 15px;
+  border-radius: 2px;
+  font-size: 18px;
+  color: #FFFFFF;
+  margin-right: 40rpx;
+}
+.textareaView{
+  margin: 10px 40rpx; 
+  padding: 10rpx;
+  /* height: 50vh; */
+  position: relative;
+}
+textarea{
+  margin-bottom: 20rpx;
+}
+.selectedImg, .selectedImg_cancel, .insertImg{
+  height: 140rpx;
+  width: 140rpx;
+ margin: 6rpx;
+  display: inline-block;
+   /* border: 1px solid red;  */
+}
+.insertImg{
+  margin-left: 10rpx;
+  /* margin-top: 15rpx; */
+  /* border: 1px solid red;   */
+  /* margin: 12rpx;
+  margin-top: 2px; */
+}
+.selectedImg_cancel{
+  position: relative;
+   margin: 6rpx;
+    /* border: 1px solid red;   */
+}
+.cancelIcon{
+  height: 30rpx;
+  width: 30rpx;
+  position: absolute;
+   top: -2px;
+  right: -4px; 
+}
+.imgs_Insert{
+
+  position: relative;
+  left: 0px;
+  bottom: 5px;
+}
+.loveHeat{
+  height: 30px;
+  width: 30px;
+  position: relative;
+  top: -15px;
+  left: 5px;
+}

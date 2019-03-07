@@ -1,0 +1,129 @@
+.bmi_container {
+  width: 100%;
+  display: table;
+}
+
+.show {
+  color: white;
+  display: table;
+  background-color: #1ECBBE;
+  width: 100%;
+}
+
+.show>view {
+  margin: 10rpx 20rpx;
+}
+
+.status text{
+  display: inline-block;
+  width: 44%;
+  background-color: #0aa8cf;
+  font-size: 31rpx;
+  padding-left: 30rpx;
+  line-height: 60rpx;
+}
+
+.status text:first-child {
+  margin-right: 25rpx;
+}
+
+.suggest {
+  font-size: 31rpx;
+  margin: 10rpx 1%;
+  background-color: #0aa8cf;
+  margin-bottom: 20rpx;
+}
+
+.suggest>view {
+  margin: 10rpx 30rpx;
+}
+
+.suggest text {
+  line-height: 45rpx;
+}
+
+.suggest>view:first-child {
+  line-height: 60rpx;
+}
+
+.input_from>view{
+  display: flex;
+  flex-direction: row;
+  margin: 40rpx 20rpx;
+  font-size: 30rpx;
+}
+
+.input_from>view text {
+  margin-right: 20rpx;
+  margin-top: 5rpx;
+}
+
+input {
+  border: 1rpx black solid;
+  margin-right: 20rpx;
+  width: 450rpx;
+}
+
+.placeholder {
+  padding-left: 10rpx;
+}
+
+.button_view {
+  display: flex;
+  flex-direction: row;
+}
+
+button::after {
+  border: none;
+}
+
+.calculate, .afresh, .getHistory {
+  width: 32%;
+  border-radius: 10rpx;
+  background-color: #0aa8cf;
+  color: white;
+  height: 60rpx;
+  font-size: 30rpx;
+  line-height: 60rpx;
+}
+
+.table {
+  margin-top: 20rpx;
+}
+
+.table view {
+  align-items: center;
+  text-align: center;
+  padding: 8rpx 0rpx;
+  margin: 0rpx 20rpx;
+}
+
+.table view:nth-child(1) {
+  background-color: #8CD9F7;
+}
+
+.table view:nth-child(2) {
+  background-color: #CCC;
+}
+
+.table view:nth-child(3) {
+  background-color: #65CC00;
+}
+
+.table view:nth-child(4) {
+  background-color: #FFFF00;
+}
+
+.table view:nth-child(5) {
+  background-color: #FE9900;
+}
+
+.table text {
+  display: inline-block;
+  width: 48%;
+  font-size: 30rpx;
+}
+
+.bmi_data {
+  font-size: 60rpx;
+}
