@@ -31,7 +31,6 @@ import java.util.List;
  * @since 2019-03-01
  */
 @Service
-@Transactional
 public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements GoodsService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());

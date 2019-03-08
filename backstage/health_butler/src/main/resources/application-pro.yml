@@ -1,6 +1,6 @@
 spring:
   datasource:
-    name: druidDataSource
+    name: dataSource
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/health_butler?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false
@@ -18,7 +18,7 @@ spring:
       test-while-idle: true
       test-on-borrow: false
       test-on-return: false
-      pool-prepared-statements: true
+      pool-prepared-statements: false
       max-open-prepared-statements: 50
       max-pool-prepared-statement-per-connection-size: 20
 
@@ -26,6 +26,11 @@ logging:
   level:
     com.gdufe.health_butler.dao: debug
 
-
+# minio配置
+minio:
+  endpoint: http://ruanjiangongcheng2.xyz:9000
+  accessKey: XTUE4F5MQ9MB80G4EITD
+  secretKey: uYLv2+FqC7Bng+fLi4S2r0FNGsBR8kG73eLGZcPc
+  imgBucket: health-butler
 
 

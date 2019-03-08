@@ -3,6 +3,7 @@ package com.gdufe.health_butler.service;
 import com.gdufe.health_butler.bean.vo.ResponseVO;
 import com.gdufe.health_butler.entity.BmiRecord;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

@@ -45,7 +45,6 @@ import java.util.*;
  * @since 2019-03-01
  */
 @Service
-@Transactional
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -99,8 +98,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             String token = TokenContainer.add(code2Session);
             logger.info("[op_rslt: success, token: {}]", token);
             return token;
-        } catch (HttpException e) {
-            throw new SystemErrorException("请求: " + url + " 失败");
+        } catch (Exception e) {
+            throw new SystemErrorException("请求: " + url + " 失败, 或者code不正确");
         }
     }
 

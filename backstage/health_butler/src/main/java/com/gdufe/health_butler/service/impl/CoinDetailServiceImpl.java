@@ -28,7 +28,6 @@ import java.util.concurrent.atomic.AtomicLong;
  * @since 2019-03-01
  */
 @Service
-@Transactional
 public class CoinDetailServiceImpl extends ServiceImpl<CoinDetailMapper, CoinDetail> implements CoinDetailService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -45,7 +44,7 @@ public class CoinDetailServiceImpl extends ServiceImpl<CoinDetailMapper, CoinDet
         coinDetailVO.setHealthCoin(user.getHealthCoin());
 
         QueryWrapper<CoinDetail> coinDetailQueryWrapper = new QueryWrapper<>();
-        coinDetailQueryWrapper.lambda().eq(CoinDetail::getUid, user.getId());
+        coinDetailQueryWrapper.lambda().eq(CoinDetail::getUid, user.getId()).orderByDesc(CoinDetail::getCreateTime);
         List<CoinDetail> list = list(coinDetailQueryWrapper);
 
         AtomicLong sumIncome = new AtomicLong();

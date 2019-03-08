@@ -2,6 +2,7 @@ package com.gdufe.health_butler.service;
 
 import com.gdufe.health_butler.entity.FoodCategory;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>

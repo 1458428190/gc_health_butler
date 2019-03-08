@@ -2,6 +2,7 @@ package com.gdufe.health_butler.manager;
 
 import com.gdufe.health_butler.bean.dto.wx.Code2Session;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,8 +13,6 @@ import java.util.Map;
  * @Date: 2019/2/26 21:41
  */
 public class TokenContainer {
-
-    private static String SECRET = "laichengfeng";
 
     /**
      * 有效期为3小时
@@ -30,15 +29,12 @@ public class TokenContainer {
         code2Session.setExpiresIn(expiresIn);
         // 移除旧token
         String oldToken = openidMap.get(code2Session.getOpenId());
-        if(oldToken!=null) {
+        if(StringUtils.isNotBlank(oldToken) && tokenMap.containsKey(oldToken)) {
             tokenMap.remove(oldToken);
         }
         tokenMap.put(token, code2Session);
         openidMap.put(code2Session.getOpenId(), token);
         return token;
-//        String token = JWT.create().withAudience(code2Session.getOpenId())
-//                .sign(Algorithm.HMAC256(SECRET));
-//        return token;
     }
 
     public static Code2Session get(String token) {

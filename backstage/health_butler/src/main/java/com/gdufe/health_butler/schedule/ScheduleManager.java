@@ -24,12 +24,12 @@ public class ScheduleManager {
     public void collectArticle() {
         articleCollectorWork.collectNewArticle();
     }
-//
-//    /**
-//     * 清理过期token
-//     */
-//    @Scheduled(cron = "0 0 * * * ?")
-//    public void tokenClean() {
-//        TokenContainer.clean();
-//    }
+
+    /**
+     * 清理过期token
+     */
+    @Scheduled(cron = "0 0 * * * ?")
+    public void tokenClean() {
+        TokenContainer.clean();
+    }
 }

@@ -27,7 +27,6 @@ import java.util.List;
  * @since 2019-03-04
  */
 @Service
-@Transactional
 public class BmiRecordServiceImpl extends ServiceImpl<BmiRecordMapper, BmiRecord> implements BmiRecordService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -57,7 +56,7 @@ public class BmiRecordServiceImpl extends ServiceImpl<BmiRecordMapper, BmiRecord
         long uid = user.getId();
         logger.info("[op:saveRecord, uid:{}, token:{}]", uid, token);
         QueryWrapper<BmiRecord> bmiRecordQueryWrapper = new QueryWrapper<>();
-        bmiRecordQueryWrapper.lambda().eq(BmiRecord::getUid, uid);
+        bmiRecordQueryWrapper.lambda().eq(BmiRecord::getUid, uid).orderByDesc(BmiRecord::getCreateTime);
         List<BmiRecord> list = list(bmiRecordQueryWrapper);
         logger.info("[op_rslt: success, bmiRecordlist:{}]", JSON.toJSON(list));
         return list;

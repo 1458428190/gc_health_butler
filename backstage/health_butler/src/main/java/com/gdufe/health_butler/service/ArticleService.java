@@ -2,6 +2,7 @@ package com.gdufe.health_butler.service;
 
 import com.gdufe.health_butler.entity.Article;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -35,4 +36,10 @@ public interface ArticleService extends IService<Article> {
      * @return
      */
     List<Article> listByid(long cid);
+
+    /**
+     * 更新看的人数
+     * @param id
+     */
+    void updateSee(long id);
 }

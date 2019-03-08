@@ -1,6 +1,5 @@
 HELP.md
 /target/
-/log/
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
@@ -27,4 +26,3 @@ HELP.md
 /nbdist/
 /.nb-gradle/
 /build/
-

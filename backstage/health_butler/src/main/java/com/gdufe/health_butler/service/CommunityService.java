@@ -64,4 +64,19 @@ public interface CommunityService extends IService<Community> {
      * 更新imgUrlList
      */
     void updateImgUrlList(long cid, String newImgUrl, int imgNo);
+
+    /**
+     * 获取动态数
+     * @return
+     */
+    int listSize(String token);
+
+    /**
+     * 分页获取所有动态
+     * @param token
+     * @param pageNo
+     * @param size
+     * @return
+     */
+    List<CommunityVO> pageList(String token, int pageNo, int size);
 }

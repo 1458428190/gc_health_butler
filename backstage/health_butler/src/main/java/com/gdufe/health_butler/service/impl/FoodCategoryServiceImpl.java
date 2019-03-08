@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @since 2019-02-22
  */
 @Service
-@Transactional
 public class FoodCategoryServiceImpl extends ServiceImpl<FoodCategoryMapper, FoodCategory> implements FoodCategoryService {
 
 }

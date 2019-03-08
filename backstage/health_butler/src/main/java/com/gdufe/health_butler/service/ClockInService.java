@@ -1,6 +1,7 @@
 package com.gdufe.health_butler.service;
 
 import com.gdufe.health_butler.bean.vo.ClockInVO;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

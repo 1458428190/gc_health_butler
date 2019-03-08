@@ -28,7 +28,6 @@ import java.util.List;
  * @since 2019-03-04
  */
 @Service
-@Transactional
 public class CommunityRecordServiceImpl extends ServiceImpl<CommunityRecordMapper, CommunityRecord> implements CommunityRecordService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());

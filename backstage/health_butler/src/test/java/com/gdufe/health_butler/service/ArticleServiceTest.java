@@ -1,6 +1,7 @@
 package com.gdufe.health_butler.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.gdufe.health_butler.HealthButlerApplicationTests;
 import com.gdufe.health_butler.entity.Article;
 import com.gdufe.health_butler.entity.ArticleCategory;
@@ -77,7 +78,11 @@ public class ArticleServiceTest extends HealthButlerApplicationTests {
 
     @Test
     public void pageListByCid() {
-        List<Article> articles = articleService.pageListByCid(1, 1, 10);
-        System.out.println(articles);
+//        List<Article> articles = articleService.pageListByCid(1, 1, 10);
+//        System.out.println(articles);
+
+        UpdateWrapper<Article> articleUpdateWrapper = new UpdateWrapper<>();
+        articleUpdateWrapper.lambda().setSql("see = see+1").eq(Article::getId, 1);
+        articleService.update(articleUpdateWrapper);
     }
 }

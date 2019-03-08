@@ -29,7 +29,6 @@ import java.util.Map;
  * @Date: 2019/3/3 20:49
  */
 @Service
-@Transactional
 public class ClockInServiceImpl implements ClockInService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());

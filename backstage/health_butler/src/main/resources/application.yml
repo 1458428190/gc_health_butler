@@ -5,9 +5,9 @@ spring:
     name: health_butler
 
 server:
-  port: 8443
   servlet:
     context-path: /health_butler
+  port: 8086
 
 logging:
   config: classpath:logback-spring.xml

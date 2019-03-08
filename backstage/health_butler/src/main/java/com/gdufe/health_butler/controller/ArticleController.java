@@ -82,6 +82,7 @@ public class ArticleController {
      */
     @RequestMapping("/detail")
     public ResponseVO getArticle(@RequestParam long id) {
+        articleService.updateSee(id);
         return new ResponseVO(ResponseStatusEnum.SUCCESS, filter(articleService.getById(id)));
     }
 

@@ -10,6 +10,11 @@ import lombok.Data;
 public class ConversionGoodsVO {
 
     /**
+     * 兑换记录id
+     */
+    private long rid;
+
+    /**
      * 耗费健康币
      */
     private long coin;

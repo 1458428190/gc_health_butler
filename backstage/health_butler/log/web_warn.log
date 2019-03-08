@@ -1,0 +1,85 @@
+2019-03-06 19:47:34.472 [http-nio-8085-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.gdufe.health_butler.common.exception.TokenErrorException: token无效]
+2019-03-06 19:57:34.146 [http-nio-8085-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.gdufe.health_butler.common.exception.TokenErrorException: token无效]
+2019-03-06 20:07:34.211 [http-nio-8085-exec-5] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.gdufe.health_butler.common.exception.TokenErrorException: token无效]
+2019-03-06 20:17:34.133 [http-nio-8085-exec-7] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.gdufe.health_butler.common.exception.TokenErrorException: token无效]
+2019-03-06 20:20:50.368 [main] WARN  o.s.b.t.j.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/E:/maven/maven-repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/E:/maven/maven-repository/org/json/json/20170516/json-20170516.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2019-03-06 20:20:51.534 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'articleCategoryMapper' and 'com.gdufe.health_butler.dao.ArticleCategoryMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 20:20:51.535 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'articleMapper' and 'com.gdufe.health_butler.dao.ArticleMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 20:20:51.535 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'bmiRecordMapper' and 'com.gdufe.health_butler.dao.BmiRecordMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 20:20:51.535 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'coinDetailMapper' and 'com.gdufe.health_butler.dao.CoinDetailMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 20:20:51.535 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'communityMapper' and 'com.gdufe.health_butler.dao.CommunityMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 20:20:51.535 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'communityRecordMapper' and 'com.gdufe.health_butler.dao.CommunityRecordMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 20:20:51.536 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'foodCategoryMapper' and 'com.gdufe.health_butler.dao.FoodCategoryMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 20:20:51.536 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'foodDetailMapper' and 'com.gdufe.health_butler.dao.FoodDetailMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 20:20:51.537 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'foodMapper' and 'com.gdufe.health_butler.dao.FoodMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 20:20:51.537 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'goodsMapper' and 'com.gdufe.health_butler.dao.GoodsMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 20:20:51.537 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'recordMapper' and 'com.gdufe.health_butler.dao.RecordMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 20:20:51.537 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'taskMapper' and 'com.gdufe.health_butler.dao.TaskMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 20:20:51.537 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'userMapper' and 'com.gdufe.health_butler.dao.UserMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 20:20:51.537 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.gdufe.health_butler.dao]' package. Please check your configuration.
+2019-03-06 20:22:24.551 [pool-1-thread-7] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.551 [pool-1-thread-8] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.560 [pool-1-thread-5] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.561 [pool-1-thread-9] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.584 [pool-1-thread-4] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.584 [pool-1-thread-8] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.587 [pool-1-thread-7] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.590 [pool-1-thread-8] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.590 [pool-1-thread-5] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.592 [pool-1-thread-4] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.593 [pool-1-thread-1] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.595 [pool-1-thread-9] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.632 [pool-1-thread-5] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.632 [pool-1-thread-4] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.634 [pool-1-thread-7] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.637 [pool-1-thread-9] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.637 [pool-1-thread-1] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.641 [pool-1-thread-4] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.643 [pool-1-thread-9] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.644 [pool-1-thread-5] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.646 [pool-1-thread-1] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.650 [pool-1-thread-1] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.651 [pool-1-thread-5] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.653 [pool-1-thread-4] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.658 [pool-1-thread-5] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.659 [pool-1-thread-6] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.663 [pool-1-thread-6] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.664 [pool-1-thread-4] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:22:24.675 [pool-1-thread-6] WARN  c.g.h.service.impl.CommunityServiceImpl - [op_rslt: lock conflict]
+2019-03-06 20:27:34.218 [http-nio-8085-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.gdufe.health_butler.common.exception.TokenErrorException: token无效]
+2019-03-06 20:37:34.239 [http-nio-8085-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.gdufe.health_butler.common.exception.TokenErrorException: token无效]
+2019-03-06 20:47:34.310 [http-nio-8085-exec-4] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.gdufe.health_butler.common.exception.TokenErrorException: token无效]
+2019-03-06 20:57:34.191 [http-nio-8085-exec-7] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.gdufe.health_butler.common.exception.TokenErrorException: token无效]
+2019-03-06 21:07:34.142 [http-nio-8085-exec-9] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.gdufe.health_butler.common.exception.TokenErrorException: token无效]
+2019-03-06 21:17:34.811 [http-nio-8085-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.gdufe.health_butler.common.exception.TokenErrorException: token无效]
+2019-03-06 22:08:25.248 [main] WARN  o.s.b.t.j.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/E:/maven/maven-repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/E:/maven/maven-repository/org/json/json/20170516/json-20170516.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2019-03-06 22:08:26.240 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'articleCategoryMapper' and 'com.gdufe.health_butler.dao.ArticleCategoryMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 22:08:26.240 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'articleMapper' and 'com.gdufe.health_butler.dao.ArticleMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 22:08:26.240 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'bmiRecordMapper' and 'com.gdufe.health_butler.dao.BmiRecordMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 22:08:26.241 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'coinDetailMapper' and 'com.gdufe.health_butler.dao.CoinDetailMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 22:08:26.241 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'communityMapper' and 'com.gdufe.health_butler.dao.CommunityMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 22:08:26.241 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'communityRecordMapper' and 'com.gdufe.health_butler.dao.CommunityRecordMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 22:08:26.241 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'foodCategoryMapper' and 'com.gdufe.health_butler.dao.FoodCategoryMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 22:08:26.241 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'foodDetailMapper' and 'com.gdufe.health_butler.dao.FoodDetailMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 22:08:26.241 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'foodMapper' and 'com.gdufe.health_butler.dao.FoodMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 22:08:26.241 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'goodsMapper' and 'com.gdufe.health_butler.dao.GoodsMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 22:08:26.242 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'recordMapper' and 'com.gdufe.health_butler.dao.RecordMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 22:08:26.242 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'taskMapper' and 'com.gdufe.health_butler.dao.TaskMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 22:08:26.242 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'userMapper' and 'com.gdufe.health_butler.dao.UserMapper' mapperInterface. Bean already defined with the same name!
+2019-03-06 22:08:26.242 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.gdufe.health_butler.dao]' package. Please check your configuration.

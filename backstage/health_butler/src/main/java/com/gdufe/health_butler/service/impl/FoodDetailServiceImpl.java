@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @since 2019-02-22
  */
 @Service
-@Transactional
 public class FoodDetailServiceImpl extends ServiceImpl<FoodDetailMapper, FoodDetail> implements FoodDetailService {
 
     @Override

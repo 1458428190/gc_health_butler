@@ -1,10 +1,13 @@
 package com.gdufe.health_butler.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gdufe.health_butler.bean.vo.CommunityVO;
 import com.gdufe.health_butler.common.exception.ParamErrorException;
 import com.gdufe.health_butler.common.exception.SystemErrorException;
 import com.gdufe.health_butler.common.util.MinioUtils;
+import com.gdufe.health_butler.common.util.ResourceLockUtils;
 import com.gdufe.health_butler.entity.Community;
 import com.gdufe.health_butler.dao.CommunityMapper;
 import com.gdufe.health_butler.entity.User;
@@ -15,6 +18,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.gdufe.health_butler.service.UserService;
 import io.minio.MinioClient;
 import org.apache.commons.lang.StringUtils;
+import org.junit.jupiter.api.parallel.ResourceLock;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -40,7 +45,6 @@ import java.util.concurrent.locks.ReentrantLock;
  * @since 2019-02-22
  */
 @Service
-@Transactional
 public class CommunityServiceImpl extends ServiceImpl<CommunityMapper, Community> implements CommunityService {
 
 //    private static Lock lock  = new ReentrantLock();
@@ -155,7 +159,8 @@ public class CommunityServiceImpl extends ServiceImpl<CommunityMapper, Community
             String newImgUrl = MinioUtils.FileUploaderByStream(minioClient, imgBucket, file.getInputStream(), originalFileName);
             updateImgUrlList(cid, newImgUrl, imgNo);
         } catch (Exception e) {
-            throw new SystemErrorException("内部系统出错");
+            logger.error("[op_rslt: error]", e);
+            throw new SystemErrorException("内部系统出错", e);
         }
         return "上传成功";
     }
@@ -181,49 +186,118 @@ public class CommunityServiceImpl extends ServiceImpl<CommunityMapper, Community
 
     /**
      * 以事务的形式 更新imgUrlList
-     *     old-已舍弃:    设置隔离级别为系列化，即顺序执行（为了准确的判断是否超过9张，同时为了防止覆盖）（效果未如愿）
+     *     old1-已舍弃:    设置隔离级别为系列化，即顺序执行（为了准确的判断是否超过9张，同时为了防止覆盖）（效果未如愿）
      *                      循环争取锁
-     *     new: 增加imgNo, 和sum 判断当前上传的是第几张，如果跟当前张数一致， 便上传，否则自旋200ms等待。
+     *     old2: 增加imgNo, 和sum 判断当前上传的是第几张，如果跟当前张数一致， 便上传，否则自旋200ms等待。(造成死锁等待)
+     *     old3: 使用java锁
+     *     new: 编写更新语句
      * @param cid
      * @param newImgUrl
      */
 //    @Transactional(isolation=Isolation.SERIALIZABLE)
     public void updateImgUrlList(long cid, String newImgUrl, int imgNo) {
         logger.info("[op:updateImgUrlList, cid: {}, newImgUrl:{}, imgNo:{}]", cid, newImgUrl, imgNo);
-        // 第一张直接加
-        if(imgNo == 1) {
-            Community community = getById(cid);
-            community.setImgUrlList(newImgUrl);
-            community.setModifiedTime(System.currentTimeMillis());
-            updateById(community);
-            return;
+
+        // 判断是否超过9张
+        Community community = getById(cid);
+        String imgUrlList = community.getImgUrlList();
+        List<String> newImgUrlList = new ArrayList<>();
+        if (StringUtils.isNotBlank(imgUrlList)) {
+            newImgUrlList = new ArrayList<>(Arrays.asList(imgUrlList.split(imgSeparator)));
         }
-        boolean lock = true;
-        while(lock) {
-            try {
-                Community community = getById(cid);
-                String imgUrlList = community.getImgUrlList();
-                List<String> newImgUrlList = new ArrayList<>();
-                if (StringUtils.isNotBlank(imgUrlList)) {
-                    newImgUrlList = new ArrayList<>(Arrays.asList(imgUrlList.split(imgSeparator)));
-                }
-                if (newImgUrlList.size() >= 9) {
-                    lock = false;
-                    throw new ParamErrorException("您的图片数量已经超了");
-                }
-                if(newImgUrlList.size() == imgNo - 1) {
-                    newImgUrlList.add(newImgUrl);
-                    community.setImgUrlList(String.join(imgSeparator, newImgUrlList));
-                    community.setModifiedTime(System.currentTimeMillis());
-                    updateById(community);
-                    lock = false;
-                } else {
-                    // 随机休息
-                    Thread.sleep(100 + (long) (Math.random() * 200));
-                }
-            } catch (Exception e) {
-                logger.warn("[op_rslt: lock conflict]");
-            }
+        if (newImgUrlList.size() >= 9) {
+            throw new ParamErrorException("您的图片数量已经超了");
         }
+
+        String updateSql = "img_url_list=(case when img_url_list='' then '"
+                + newImgUrl +"' else concat(img_url_list, '"+(imgSeparator+newImgUrl)+"') end) where id="+cid;
+        logger.info("[updateSql: {}]", updateSql);
+        UpdateWrapper communityUpdateWrapper = new UpdateWrapper<>();
+        communityUpdateWrapper.setSql(updateSql);
+        update(communityUpdateWrapper);
+
+//        AtomicInteger resource = ResourceLockUtils.getAtomicInteger(cid);
+//        synchronized (resource) {// 防止多个线程同时操作数据同一条实体数据
+//            //业务操作
+//            Community community = getById(cid);
+//            String imgUrlList = community.getImgUrlList();
+//            List<String> newImgUrlList = new ArrayList<>();
+//            if (StringUtils.isNotBlank(imgUrlList)) {
+//                newImgUrlList = new ArrayList<>(Arrays.asList(imgUrlList.split(imgSeparator)));
+//            }
+//            if (newImgUrlList.size() >= 9) {
+//                throw new ParamErrorException("您的图片数量已经超了");
+//            }
+//            newImgUrlList.add(newImgUrl);
+//            community.setImgUrlList(String.join(imgSeparator, newImgUrlList));
+//            community.setModifiedTime(System.currentTimeMillis());
+//            updateById(community);
+//        }
+//        ResourceLockUtils.giveUpAtomicInteger(cid);
+
+
+//        // 第一张直接加
+//        if(imgNo == 1) {
+//            Community community = getById(cid);
+//            community.setImgUrlList(newImgUrl);
+//            community.setModifiedTime(System.currentTimeMillis());
+//            updateById(community);
+//            return;
+//        }
+//        boolean lock = true;
+//        while(lock) {
+//            try {
+//                Community community = getById(cid);
+//                String imgUrlList = community.getImgUrlList();
+//                List<String> newImgUrlList = new ArrayList<>();
+//                if (StringUtils.isNotBlank(imgUrlList)) {
+//                    newImgUrlList = new ArrayList<>(Arrays.asList(imgUrlList.split(imgSeparator)));
+//                }
+//                if (newImgUrlList.size() >= 9) {
+//                    lock = false;
+//                    throw new ParamErrorException("您的图片数量已经超了");
+//                }
+//                if(newImgUrlList.size() == imgNo - 1) {
+//                    newImgUrlList.add(newImgUrl);
+//                    community.setImgUrlList(String.join(imgSeparator, newImgUrlList));
+//                    community.setModifiedTime(System.currentTimeMillis());
+//                    updateById(community);
+//                    lock = false;
+//                } else {
+//                    // 随机休息
+//                    Thread.sleep(100 + (long) (Math.random() * 200));
+//                }
+//            } catch (Exception e) {
+//                logger.warn("[op_rslt: lock conflict]");
+//            }
+//        }
+    }
+
+    @Override
+    public int listSize(String token) {
+        String openId = TokenContainer.get(token).getOpenId();
+        User user = userService.getByOpenId(openId);
+        logger.info("[op:listSize, uid:{}, token:{}]", user.getId(), token);
+        QueryWrapper<Community> communityQueryWrapper = new QueryWrapper<>();
+        communityQueryWrapper.lambda().eq(Community::getIsDelete, false).and(wrapper ->
+                wrapper.eq(Community::getUid, user.getId()).or().eq(Community::getOnlyMe, false))
+                .orderByDesc(Community::getCreateTime);
+        int count = count(communityQueryWrapper);
+        logger.info("[op_rslt: success, count:{}]", count);
+        return count;
+    }
+
+    @Override
+    public List<CommunityVO> pageList(String token, int pageNo, int size) {
+        String openId = TokenContainer.get(token).getOpenId();
+        User user = userService.getByOpenId(openId);
+        logger.info("[op:pageList, uid:{}, token:{}]", user.getId(), token);
+        QueryWrapper<Community> communityQueryWrapper = new QueryWrapper<>();
+        communityQueryWrapper.lambda().eq(Community::getIsDelete, false).and(wrapper ->
+                wrapper.eq(Community::getUid, user.getId()).or().eq(Community::getOnlyMe, false))
+                .orderByDesc(Community::getCreateTime);
+        Page<Community> page = new Page<>(pageNo, size);
+        List<Community> communityList = page(page, communityQueryWrapper).getRecords();
+        return getCommunityVoList(communityList, user.getId());
     }
 }

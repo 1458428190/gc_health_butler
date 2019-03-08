@@ -50,7 +50,7 @@ spring:
     password: 123456
     druid:
       filters: stat,wall
-      max-active: 30
+      max-active: 20
       initial-size: 5
       max-wait: 60000
       min-idle: 5
@@ -60,20 +60,24 @@ spring:
       test-while-idle: true
       test-on-borrow: false
       test-on-return: false
-      pool-prepared-statements: true
-      max-open-prepared-statements: 50
-      max-pool-prepared-statement-per-connection-size: 20
+      pool-prepared-statements: false
+      remove-abandoned-timeout: 1800
+#      max-open-prepared-statements: 50
+#      max-pool-prepared-statement-per-connection-size: 20
 
   devtools:                                                           # 热加载资源设置
     restart:
       exclude: static/**,public/**
       enabled: true
 
-
 logging:
   level:
     com.gdufe.health_butler.dao: debug
 
-
-
+# minio配置
+minio:
+  endpoint: https://play.minio.io:9000
+  accessKey: Q3AM3UQ867SPQQA43P2F
+  secretKey: zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG
+  imgBucket: laichengfeng-health-butler
 

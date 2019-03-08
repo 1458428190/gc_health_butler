@@ -39,4 +39,12 @@ public interface RecordService extends IService<Record> {
      * @return
      */
     List<StepVO> getRunData(String token, String toUid);
+
+    /**
+     * 获取已兑换的商品详情
+     * @param token
+     * @param rid
+     * @return
+     */
+    String getDetail(String token, long rid);
 }

@@ -60,6 +60,15 @@ public class RecordController {
     }
 
     /**
+     * 获取已兑换的商品详情
+     */
+    @AuthToken
+    @RequestMapping("/getDetail")
+    public ResponseVO getDetail(@RequestParam String token, @RequestParam long rid) {
+        return new ResponseVO(ResponseStatusEnum.SUCCESS, recordService.getDetail(token, rid));
+    }
+
+    /**
      * 获取步数记录
      * @param token
      * @param uid

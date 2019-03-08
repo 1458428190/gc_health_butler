@@ -41,6 +41,24 @@ public class CommunityController {
     }
 
     /**
+     * 获取社区分享 动态数
+     */
+    @AuthToken
+    @RequestMapping("/list_size")
+    public ResponseVO listSize(@RequestParam String token) {
+        return new ResponseVO(ResponseStatusEnum.SUCCESS, communityService.listSize(token));
+    }
+
+    /**
+     * 分页获取动态
+     */
+    @AuthToken
+    @RequestMapping("/pageList")
+    public ResponseVO pageList(@RequestParam String token, @RequestParam int pageNo, @RequestParam int size) {
+        return new ResponseVO(ResponseStatusEnum.SUCCESS, communityService.pageList(token, pageNo, size));
+    }
+
+    /**
      * 分享发表内容
      */
     @AuthToken

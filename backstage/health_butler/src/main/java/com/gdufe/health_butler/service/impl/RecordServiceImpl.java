@@ -8,6 +8,7 @@ import com.gdufe.health_butler.bean.vo.ConversionRecordVO;
 import com.gdufe.health_butler.bean.vo.StepVO;
 import com.gdufe.health_butler.bean.vo.TaskVO;
 import com.gdufe.health_butler.common.enums.RecordType;
+import com.gdufe.health_butler.common.exception.ParamErrorException;
 import com.gdufe.health_butler.common.util.TimeUtils;
 import com.gdufe.health_butler.common.util.WxBizDataCryptUtils;
 import com.gdufe.health_butler.entity.Goods;
@@ -43,7 +44,6 @@ import java.util.concurrent.atomic.AtomicLong;
  * @since 2019-02-22
  */
 @Service
-@Transactional
 public class RecordServiceImpl extends ServiceImpl<RecordMapper, Record> implements RecordService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -122,7 +122,8 @@ public class RecordServiceImpl extends ServiceImpl<RecordMapper, Record> impleme
         ConversionRecordVO conversionRecordVO = new ConversionRecordVO();
         List<ConversionGoodsVO> conversionGoodsVOList = new ArrayList<>();
         QueryWrapper<Record> recordQueryWrapper = new QueryWrapper<>();
-        recordQueryWrapper.lambda().eq(Record::getType, RecordType.CONVERSION.getValue()).eq(Record::getUid, user.getId());
+        recordQueryWrapper.lambda().eq(Record::getType, RecordType.CONVERSION.getValue()).eq(Record::getUid, user.getId())
+            .orderByDesc(Record::getCreateTime);
         List<Record> recordList = list(recordQueryWrapper);
         AtomicLong sumCoin = new AtomicLong();
         recordList.forEach(record -> {
@@ -131,6 +132,7 @@ public class RecordServiceImpl extends ServiceImpl<RecordMapper, Record> impleme
             Goods goods = goodsService.getById(gid);
             ConversionGoodsVO conversionGoodsVO = new ConversionGoodsVO();
             conversionGoodsVO.setCoin(goods.getPrice());
+            conversionGoodsVO.setRid(record.getId());
             conversionGoodsVO.setGoodsName(goods.getName());
             conversionGoodsVO.setImgUrl(goods.getImgUrl());
             conversionGoodsVO.setTime(record.getCreateTime());
@@ -168,5 +170,22 @@ public class RecordServiceImpl extends ServiceImpl<RecordMapper, Record> impleme
             runData.add(stepVO);
         });
         return runData;
+    }
+
+    @Override
+    public String getDetail(String token, long rid) {
+        User user = userService.getByOpenId(TokenContainer.get(token).getOpenId());
+        long uid = user.getId();
+        logger.info("[op:getDetail, uid: {}, token:{}, rid:{}]", uid, token, rid);
+        QueryWrapper<Record> recordQueryWrapper = new QueryWrapper<>();
+        recordQueryWrapper.lambda().eq(Record::getId, rid).eq(Record::getType, RecordType.CONVERSION.getValue());
+        Record record = getOne(recordQueryWrapper);
+        if(null == record || record.getUid() != uid) {
+            throw new ParamErrorException("无权限进行此操作");
+        }
+        String extra = record.getExtra();
+        long gid = Long.parseLong(extra);
+        logger.info("[op_rslt: success, gid:{}]", gid);
+        return goodsService.getById(gid).getDetail();
     }
 }
