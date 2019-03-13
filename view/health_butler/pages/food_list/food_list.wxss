@@ -21,7 +21,7 @@
   border:1rpx solid #1ECBBE;
   border-radius: 20rpx;
   color:#6a6f77;
-  background-color: rgb(218, 212, 212);
+  background-color: rgb(233, 230, 230);
   width: 60%;
   position: fixed;
   top: 20rpx;
@@ -33,7 +33,7 @@
   width: 50rpx;
   height: 50rpx;
   position: fixed;
-  top: 33rpx;
+  top: 30rpx;
   left: 90rpx;
 }
 

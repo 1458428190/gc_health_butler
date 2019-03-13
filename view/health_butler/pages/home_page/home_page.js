@@ -26,7 +26,7 @@ Page({
 
     coin: {},
 
-    defaultImg: ["../../image/cover_2.jpg", "../../image/cover_1.jpg", "../../image/cover_3.jpg"],
+    defaultImg: ["https://play.minio.io:9000/laichengfeng-health-butler/cover_2.jpg", "https://play.minio.io:9000/laichengfeng-health-butler/cover_1.jpg", "https://play.minio.io:9000/laichengfeng-health-butler/cover_3.jpg"],
 
     showModalStatus: false,
   },
@@ -248,6 +248,7 @@ Page({
    * 修改封面
    */
   changeCover() {
+    if(this.data.isMe) { 
     var self = this;
     wx.chooseImage({
       count: 9,
@@ -264,26 +265,59 @@ Page({
         })
 
         // 开始上传
-        
+        var leng = tempFilePaths.length
+        for (var i = 0; i < leng; i++) {
+          self.uploadImg(i, tempFilePaths[i])
+        }
+        var duration = leng * 1 * 1000;
+        wx.showToast({
+          title: '正在更改封面...',
+          icon: 'loading',
+          duration: duration,
+          mask: true,
+          success: function () {
+            setTimeout(function () {
+              wx.showToast({
+                title: '更改成功',
+                icon: 'success',
+                duration: 1000,
+                success(res) {
+                  wx.request({
+                    url: domain + '/user/seeHomePage',
+                    data: {
+                      token: app.globalData.token
+                    },
+                    success(res) {
+                      console.log("res ", res.data.data);
+                      self.setData({
+                        user: res.data.data,
+                        isMe: true
+                      });
+                    }
+                  });
+                }
+              })
+            }, duration);
+          }
+        })
       }
     })
+    }
   },
 
   /**
  *  用户上传图片
  */
-  uploadImg(index, cid) {
-    var imgList = this.data.imgUrls;
+  uploadImg(index, imgUrl) {
     const uploadTask = wx.uploadFile({
       url: domain + '/user/cover/upload',
-      filePath: imgList[index],
+      filePath: imgUrl,
       name: 'file',
       header: {
         "Content-Type": "multipart/form-data"
       },
       formData: {
         token: app.globalData.token,
-        cid: cid,
         imgNo: index + 1
       },
       success: function (res) {
@@ -334,7 +368,7 @@ Page({
       tip: ""
     })
     // 访问主页基本信息
-    console.log(" app.user.id", app.globalData.userData.user.id);
+    console.log("app.user.id", app.globalData.userData.user.id);
     console.log("toUid", toUid);
     if(toUid == undefined || toUid == '' || toUid.length <= 0 || toUid == app.globalData.userData.user.id) {
       wx.request({
@@ -411,7 +445,7 @@ Page({
 
     setTimeout(function () {
       wx.hideLoading()
-    }, 1500)
+    }, 2000)
   },
 
   /**

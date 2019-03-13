@@ -46,6 +46,7 @@ Page({
    */
   search(event) {
     var keyword = event.detail.value;
+    console.log("food > keyword: ", keyword);
     wx.navigateTo({
       url: '/pages/food_list/food_list?keyword=' + keyword,
     })
@@ -86,6 +87,17 @@ Page({
 
   },
 
+  refresh() {
+    console.log("---------------------------------")
+    var p = new Promise(function (resolve, reject) {
+      this.setData({
+        isSearch: 1
+      })
+      this.getFoods();
+    })
+    return p;
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -98,7 +110,6 @@ Page({
       title: '加载中',
       mask: true
     })
-
     setTimeout(function () {
       wx.hideLoading()
     }, 500)

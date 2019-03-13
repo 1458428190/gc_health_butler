@@ -13,7 +13,10 @@ Page({
     articleList: {},
     articleCategoryList: {},
     cid: 1,
-    articleTmp: []
+    articleTmp: [],
+    pageNo: 1,
+    noMore: false,
+    scrollTop: 0
   },
 
   /**
@@ -54,24 +57,67 @@ Page({
   /**
    * 获取指定分类的所有文章
    */
-  getArticleList(cid) {
+  getArticleList(cid, pageNo) {
     var self = this;
     // 获取文章
     wx.request({
-      url: domain + '/article/list',
+      url: domain + '/article/pageList',
       data: {
-        cid: cid
+        cid: cid,
+        page: pageNo,
+        size: size
       },
       header: {
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        var articleList = self.data.articleList;
+        if(pageNo != 1) {
+          articleList = articleList.concat(res.data.data);
+        } else {
+          articleList = res.data.data;
+        }
         self.setData({
-          articleList: res.data.data,
-          cid: cid
+          articleList: articleList,
+          cid: cid,
+          pageNo: pageNo
         })
       }
     });
+  },
+
+  // 底部加载
+  lower() {
+    var pageNo = this.data.pageNo + 1;
+    var self = this;
+    wx.request({
+      url: domain + '/article/list_size',
+      data: {
+        cid: self.data.cid
+      },
+      success(res) {
+        // 已经没有更多了
+        if (self.data.articleList.length >= res.data.data) {
+           self.setData({
+             noMore: true
+           })
+        } else {
+          self.getArticleList(self.data.cid, pageNo);
+        }
+      }
+    })
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 800)
+  },
+
+  // 顶部刷新
+  upper() {
+
   },
 
   /**
@@ -90,16 +136,18 @@ Page({
    */
   selectType(event) {
     var cid = event.target.dataset.cid;
-    this.getArticleList(cid);
-    
+    this.getArticleList(cid, 1);
+    this.setData({
+      noMore: false,
+      scrollTop: 0
+    })
     wx.showLoading({
       title: '加载中',
       mask: true
     })
-
     setTimeout(function () {
       wx.hideLoading()
-    }, 1000)
+    }, 800)
   },
 
   /**
@@ -121,7 +169,7 @@ Page({
         })
       }
     });
-    this.getArticleList(1);
+    this.getArticleList(1, 1);
     wx.showLoading({
       title: '加载中',
       mask: true
@@ -143,6 +191,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      pageNo: 1
+    })
   },
 
   /**

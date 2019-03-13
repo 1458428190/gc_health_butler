@@ -12,7 +12,8 @@ Page({
     foodList: [],
     briefLength: 29,
     keyword: '',
-    noResTip: ''
+    noResTip: '',
+    myOptions: {}
   },
 
   /**
@@ -77,40 +78,38 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  refresh() {
+    var options = this.data.myOptions;
+    var keyword = "";
+    let fcid = options.fcid;
+    if (options.keyword != undefined) {
+      keyword = decodeURIComponent(options.keyword);
+    }
+    let self = this;
+    // url += "fcid=0";
+    keyword = (keyword == undefined ? "" : keyword);
+    var duration = keyword==""?1000:3500;
     wx.showLoading({
       title: '加载中',
       mask: true
     })
-
     setTimeout(function () {
       wx.hideLoading()
-    }, 1000)
-
-    let fcid = options.fcid;
-    if(options.keyword!=undefined) {
-      var keyword = decodeURIComponent(options.keyword);
-    }
-    let self = this;
-    var url = domain + "/food/list?";
-    url += "fcid=" + (fcid==undefined?0:fcid);
-    url += "&keyword=" + (keyword == undefined ? 0 : keyword);
-
+    }, duration);
+    
+    fcid = (fcid == undefined ? 0 : fcid);
+    console.log("foodList > keyword: ", keyword);
     self.setData({
       noResTip: ''
     })
 
-    if(keyword!=undefined) {
+    if (keyword != undefined) {
       this.setData({
         inputValue: keyword,
         isSearch: 0
       })
     }
-    if(fcid!=undefined) {
+    if (fcid != undefined) {
       this.setData({
         cid: fcid
       })
@@ -121,8 +120,10 @@ Page({
     }
 
     wx.request({
-      url: url,
+      url: domain + "/food/list",
       data: {
+        keyword: keyword,
+        fcid: fcid
       },
       header: {
         'content-type': 'application/json' // 默认值
@@ -131,13 +132,23 @@ Page({
         self.setData({
           foodList: res.data.data
         });
-        if(res.data.length <= 0) {
+        if (res.data.length <= 0) {
           self.setData({
             noResTip: '无结果'
           })
         }
       }
     })
+  },
+
+  /** 
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.setData({
+      myOptions: options
+    })
+    this.refresh();
   },
 
   /**

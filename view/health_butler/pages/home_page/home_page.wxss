@@ -43,7 +43,7 @@ swiper-item {
 }
 
 .me_info {
-  width: 120rpx;
+  width: 230rpx;
   margin: 10rpx 0rpx;
   margin-top: 14rpx;
   padding-left: 0rpx;
@@ -54,18 +54,20 @@ swiper-item {
 .me_data {
   display: flex;
   flex-direction: row;
-  margin: 10rpx 0rpx;
-  margin-top: 14rpx;
-  margin-left: 5rpx;
+  margin: 20rpx 0rpx;
+  margin-top: 20rpx;
+  margin-left: 4rpx;
   padding-right: 0rpx;
 }
 
 .me_data>view {
-  margin: 0rpx 8rpx;
+  margin: 0rpx 4rpx;
 }
 
 .me_info>view:first-child {
   font-weight: bold;
+  width: 100%;
+  font-size: 35rpx;
 }
 
 .me_info>view:last-child,.me_data>view>view:last-child  {
@@ -74,7 +76,7 @@ swiper-item {
 }
 
 .me_info text{
-  width: 120rpx;
+  width: 100%;
   height: 50rpx;
   overflow : hidden;
   text-overflow: ellipsis;
@@ -87,6 +89,7 @@ swiper-item {
 .me_data>view>view:first-child {
   /* color: #FACC14; */
   font-weight: bold;
+  font-size: 30rpx;
 }
 
 .me_data>view:first-child>view:first-child {
@@ -96,8 +99,9 @@ swiper-item {
 ff-canvas {
   width: 95%;
   height: 50vh;
+  z-index: 90;
 }
-
+  
 .stepData {
   position: absolute;
   top: 47vh;
@@ -145,6 +149,10 @@ ff-canvas {
   margin: 10rpx 0rpx 10rpx 10rpx;
 }
 
+.name {
+  color: #1ECBBE;
+}
+
 /* 弹窗样式 */
 /*button*/  
 .btn {  
@@ -153,10 +161,10 @@ ff-canvas {
   border-radius: 10rpx;  
   text-align: center;  
   margin: 40rpx 10%;  
-  background: #000;  
+  background: #1ECBBE;  
   color: #fff;  
 }  
-  
+
 /*mask*/  
 .drawer_screen {  
   width: 100%;  
@@ -164,8 +172,8 @@ ff-canvas {
   position: fixed;  
   top: 0;  
   left: 0;  
-  z-index: 1000;  
-  background: #000;  
+  z-index: 9999;  
+  background: #1ECBBE;  
   overflow: hidden;  
 }  
   
@@ -176,7 +184,7 @@ ff-canvas {
   position: fixed;  
   top: 50%;  
   left: 0;  
-  z-index: 1001;  
+  z-index: 9999;  
   background: #FAFAFA;  
   margin: -150px 50rpx 0 50rpx;  
   border-radius: 3px;  

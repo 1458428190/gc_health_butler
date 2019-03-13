@@ -1,0 +1,19 @@
+<wxs src="./../tools.wxs" module="tools" />
+<view class='ai_history_container'>
+  <view class='head'>
+    <image src='{{userInfo.avatarUrl}} '></image>
+    <view><text>{{userInfo.nickName}}</text></view>
+  </view>
+  <view class='record'>
+  <block wx:for="{{recordList}}" wx:key="{{index}}">
+      <view bindtap='inquiry' data-id="{{item.id}}">
+        <image src='{{item.imgUrl}}'></image>
+        <view class='value'><text>{{item.faceQuality}}分</text></view>
+        <view class='time'><text>{{tools.formatTime(item.createTime)}}</text></view>
+      </view>
+    </block>
+      <view class='no_res' wx:if='{{recordList.length <= 0}}'>
+        <text>暂无测肤记录</text>
+      </view>
+  </view>
+</view>

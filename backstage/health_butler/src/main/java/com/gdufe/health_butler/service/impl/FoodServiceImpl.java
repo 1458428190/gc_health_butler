@@ -1,10 +1,7 @@
 package com.gdufe.health_butler.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gdufe.health_butler.entity.Food;
 import com.gdufe.health_butler.dao.FoodMapper;
 import com.gdufe.health_butler.entity.FoodCategory;
@@ -17,9 +14,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -41,9 +36,6 @@ public class FoodServiceImpl extends ServiceImpl<FoodMapper, Food> implements Fo
 
     @Autowired
     private FoodCategoryService foodCategoryService;
-
-    @Value("${batchSize}")
-    private int batchSize;
 
     @Override
     public List<Food> getFoodList(String keyword, long fcid) {
@@ -83,7 +75,7 @@ public class FoodServiceImpl extends ServiceImpl<FoodMapper, Food> implements Fo
                     foodRestList.forEach(food -> fidSet.add(food.getId()));
                 }
                 QueryWrapper<Food> foodQueryWrapper = new QueryWrapper<>();
-                foodQueryWrapper.lambda().select(Food::getId, Food::getName, Food::getBrief).like(Food::getName, keyword)
+                foodQueryWrapper.lambda().like(Food::getName, keyword)
                         .or().like(Food::getBrief, keyword);
                 // 从食物中 搜索关键字食物
                 list(foodQueryWrapper).forEach(food -> {
@@ -92,18 +84,21 @@ public class FoodServiceImpl extends ServiceImpl<FoodMapper, Food> implements Fo
                         foodRestList.add(food);
                     }
                 });
-                // 从食物详情中 搜索关键字食物  批量， 一次batchSize个
-                int foodCount = foodDetailService.count();
-                for(int i=0; i<(foodCount + batchSize - 1)/batchSize; i++) {
-                    Page<FoodDetail> page = new Page<>(i+1, batchSize);
-                    List<FoodDetail> foodDetailList = foodDetailService.page(page).getRecords();
-                    foodDetailList.forEach(foodDetail -> {
-                        if (!fidSet.contains(foodDetail.getFid()) && foodDetail.toString().contains(keyword)) {
-                            fidSet.add(foodDetail.getFid());
-                            foodRestList.add(getById(foodDetail.getId()));
-                        }
-                    });
-                }
+
+                // 使用模糊查找
+                QueryWrapper<FoodDetail> foodDetailQueryWrapper = new QueryWrapper<>();
+                foodDetailQueryWrapper.lambda().like(FoodDetail::getAliasName, keyword).or()
+                        .like(FoodDetail::getAffect, keyword).or().like(FoodDetail::getNutrition, keyword)
+                        .or().like(FoodDetail::getAvoid, keyword).or().like(FoodDetail::getSuitable, keyword).or()
+                        .like(FoodDetail::getFoodsSuit, keyword).or().like(FoodDetail::getFoodsAvoid, keyword);
+
+                List<FoodDetail> foodDetailList = foodDetailService.list(foodDetailQueryWrapper);
+                foodDetailList.forEach(foodDetail -> {
+                    if (!fidSet.contains(foodDetail.getFid())) {
+                        fidSet.add(foodDetail.getFid());
+                        foodRestList.add(getById(foodDetail.getId()));
+                    }
+                });
             }
         }
         logger.info("[op_rslt: sueccess, foodRestList: {}]", JSON.toJSON(foodRestList));

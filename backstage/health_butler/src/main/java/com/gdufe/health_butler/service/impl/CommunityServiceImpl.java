@@ -47,8 +47,6 @@ import java.util.concurrent.locks.ReentrantLock;
 @Service
 public class CommunityServiceImpl extends ServiceImpl<CommunityMapper, Community> implements CommunityService {
 
-//    private static Lock lock  = new ReentrantLock();
-
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Value("${minio.imgBucket}")
@@ -94,6 +92,7 @@ public class CommunityServiceImpl extends ServiceImpl<CommunityMapper, Community
         community.setReward(0);
         community.setUid(uid);
         save(community);
+
         logger.info("[op_rslt: success, cid:{}]", community.getId());
         return community.getId();
     }
@@ -143,7 +142,7 @@ public class CommunityServiceImpl extends ServiceImpl<CommunityMapper, Community
         long uid = user.getId();
         String originalFileName = file.getOriginalFilename();
         logger.info("[op:upload, uid:{}, token:{}, cid:{}, file:{}, imgNo:{}]", uid, token, cid,
-                file.getOriginalFilename(), imgNo);
+                originalFileName, imgNo);
 
         if(file.isEmpty()) {
             throw new ParamErrorException("文件有误");
@@ -156,7 +155,8 @@ public class CommunityServiceImpl extends ServiceImpl<CommunityMapper, Community
         }
 
         try {
-            String newImgUrl = MinioUtils.FileUploaderByStream(minioClient, imgBucket, file.getInputStream(), originalFileName);
+            String newImgUrl = MinioUtils.FileUploaderByStream(minioClient, imgBucket, file.getInputStream(),
+                    System.currentTimeMillis() + originalFileName);
             updateImgUrlList(cid, newImgUrl, imgNo);
         } catch (Exception e) {
             logger.error("[op_rslt: error]", e);
@@ -194,7 +194,6 @@ public class CommunityServiceImpl extends ServiceImpl<CommunityMapper, Community
      * @param cid
      * @param newImgUrl
      */
-//    @Transactional(isolation=Isolation.SERIALIZABLE)
     public void updateImgUrlList(long cid, String newImgUrl, int imgNo) {
         logger.info("[op:updateImgUrlList, cid: {}, newImgUrl:{}, imgNo:{}]", cid, newImgUrl, imgNo);
 
@@ -212,65 +211,9 @@ public class CommunityServiceImpl extends ServiceImpl<CommunityMapper, Community
         String updateSql = "img_url_list=(case when img_url_list='' then '"
                 + newImgUrl +"' else concat(img_url_list, '"+(imgSeparator+newImgUrl)+"') end) where id="+cid;
         logger.info("[updateSql: {}]", updateSql);
-        UpdateWrapper communityUpdateWrapper = new UpdateWrapper<>();
+        UpdateWrapper<Community> communityUpdateWrapper = new UpdateWrapper<>();
         communityUpdateWrapper.setSql(updateSql);
         update(communityUpdateWrapper);
-
-//        AtomicInteger resource = ResourceLockUtils.getAtomicInteger(cid);
-//        synchronized (resource) {// 防止多个线程同时操作数据同一条实体数据
-//            //业务操作
-//            Community community = getById(cid);
-//            String imgUrlList = community.getImgUrlList();
-//            List<String> newImgUrlList = new ArrayList<>();
-//            if (StringUtils.isNotBlank(imgUrlList)) {
-//                newImgUrlList = new ArrayList<>(Arrays.asList(imgUrlList.split(imgSeparator)));
-//            }
-//            if (newImgUrlList.size() >= 9) {
-//                throw new ParamErrorException("您的图片数量已经超了");
-//            }
-//            newImgUrlList.add(newImgUrl);
-//            community.setImgUrlList(String.join(imgSeparator, newImgUrlList));
-//            community.setModifiedTime(System.currentTimeMillis());
-//            updateById(community);
-//        }
-//        ResourceLockUtils.giveUpAtomicInteger(cid);
-
-
-//        // 第一张直接加
-//        if(imgNo == 1) {
-//            Community community = getById(cid);
-//            community.setImgUrlList(newImgUrl);
-//            community.setModifiedTime(System.currentTimeMillis());
-//            updateById(community);
-//            return;
-//        }
-//        boolean lock = true;
-//        while(lock) {
-//            try {
-//                Community community = getById(cid);
-//                String imgUrlList = community.getImgUrlList();
-//                List<String> newImgUrlList = new ArrayList<>();
-//                if (StringUtils.isNotBlank(imgUrlList)) {
-//                    newImgUrlList = new ArrayList<>(Arrays.asList(imgUrlList.split(imgSeparator)));
-//                }
-//                if (newImgUrlList.size() >= 9) {
-//                    lock = false;
-//                    throw new ParamErrorException("您的图片数量已经超了");
-//                }
-//                if(newImgUrlList.size() == imgNo - 1) {
-//                    newImgUrlList.add(newImgUrl);
-//                    community.setImgUrlList(String.join(imgSeparator, newImgUrlList));
-//                    community.setModifiedTime(System.currentTimeMillis());
-//                    updateById(community);
-//                    lock = false;
-//                } else {
-//                    // 随机休息
-//                    Thread.sleep(100 + (long) (Math.random() * 200));
-//                }
-//            } catch (Exception e) {
-//                logger.warn("[op_rslt: lock conflict]");
-//            }
-//        }
     }
 
     @Override

@@ -11,7 +11,7 @@
   border:1rpx solid #1ECBBE;
   border-radius: 20rpx;
   color:#6a6f77;
-  background-color: rgb(218, 212, 212);
+  background-color: rgb(233, 230, 230);
   width: 65%;
   position: fixed;
   top: 70rpx;

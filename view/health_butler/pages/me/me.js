@@ -14,7 +14,7 @@ Page({
 
   getOperation() {
     wx.navigateTo({
-      url: '/pages/404/clockSifi/canvas',
+      url: '/pages/operation/operation',
     })
   },
 

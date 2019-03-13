@@ -1,6 +1,7 @@
 // pages/community/community.js
 const app = getApp();
 const domain = app.globalData.domain;
+const size = 20;
 Page({
 
   /**
@@ -15,7 +16,11 @@ Page({
 
     user: app.globalData.userInfo,
 
-    userData: app.globalData.userData
+    userData: app.globalData.userData,
+
+    noMore: false,
+
+    pageNo: 1
   },
 
   /**
@@ -27,6 +32,63 @@ Page({
     wx.navigateTo({
       url: '/pages/home_page/home_page?toUid='+toUid,
     })
+  },
+
+  /**
+   * 加载更多
+   */
+  lower() {
+    var pageNo = this.data.pageNo + 1;
+    var self = this;
+    wx.request({
+      url: domain + '/community/list_size',
+      data: {
+        token: app.globalData.token
+      },
+      success(res) {
+        // 已经没有更多了
+        if (self.data.allShare.length >= res.data.data) {
+          self.setData({
+            noMore: true
+          })
+        } else {
+          self.getCommunity(pageNo);
+        }
+      }
+    })
+    
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 800)
+  },
+
+  getCommunity(pageNo) {
+    var self = this;
+    // 获取动态
+    wx.request({
+      url: domain + '/community/pageList',
+      data: {
+        token: app.globalData.token,
+        pageNo: pageNo,
+        size: size
+      },
+      success(res) {
+        var allShare = self.data.allShare;
+        if (pageNo != 1) {
+          allShare = allShare.concat(res.data.data);
+        } else {
+          allShare = res.data.data;
+        }
+        self.setData({
+          pageNo: pageNo,
+          allShare: allShare
+        })
+      }
+    });
   },
 
   /**
@@ -121,13 +183,16 @@ Page({
     // 获取健康小圈动态
     var self = this;
     wx.request({
-      url: domain + '/community/list',
+      url: domain + '/community/pageList',
       data: {
-        token: app.globalData.token
+        token: app.globalData.token,
+        pageNo: 1,
+        size: size
       },
       success(res) {
         self.setData({
-          allShare: res.data.data
+          allShare: res.data.data,
+          pageNo: 1
         })
       }
     });
@@ -196,6 +261,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
+      user: app.globalData.userInfo,
       userData: app.globalData.userData
     })
   },

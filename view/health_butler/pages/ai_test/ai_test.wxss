@@ -1,1 +1,35 @@
-/* pages/ai_test/ai_test.wxss */
+.ai_container {
+  background-color: #1ECBBE;
+  background: linear-gradient(rgb(3, 202, 186), rgb(250, 252, 252));
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20rpx 20rpx;
+  margin: 0rpx;
+}
+
+.ai_container > view {
+  margin: 50rpx 20rpx;
+  padding: 10rpx 20rpx;
+}
+
+.tip {
+  font-size: 35rpx;
+  color: rgb(13, 141, 130);
+}
+
+.ai_icon > image{
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 100rpx;
+  border: 1rpx #1ECBBE solid;
+  margin-top: 10vh;
+  margin-bottom: 2vh;
+}
+
+.ai_icon text {
+  padding: 20rpx 20rpx;
+  font-size: 35rpx;
+}

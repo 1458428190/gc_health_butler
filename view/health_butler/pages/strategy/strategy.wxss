@@ -1,7 +1,7 @@
 .strategy_container {
   align-items: center;
   text-align: center;
-  background-color: #1ECBBE;
+  background: linear-gradient(rgb(3, 202, 186), rgb(250, 252, 252));
   display: table;
   width: 100%;
   height: 100vh;
@@ -16,4 +16,24 @@
   text-align: left;
   margin-left: 50rpx;
   margin: 50rpx 20rpx;
+}
+
+.content view {
+  border: 3rpx #efefef solid;
+  text-align: center;
+  font-size: 40rpx;
+  padding: 0rpx 0rpx;
+}
+
+.content>view>text:first-child {
+  display: inline-block;
+  padding: 20rpx 0rpx;
+  width: 29%;
+  border-right: 2rpx #efefef solid;
+}
+
+.content>view>text:last-child {
+  display: inline-block;
+  width: 70%;
+  padding: 20rpx 0rpx;
 }

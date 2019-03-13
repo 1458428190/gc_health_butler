@@ -10,6 +10,36 @@ Page({
     conversionRecord:[]
   },
 
+  getDetail(event) {
+    var rid = event.currentTarget.dataset.rid;
+    console.log("rid ", rid);
+    wx.request({
+      url: domain + '/record/getDetail',
+      data: {
+        token: app.globalData.token,
+        rid: rid
+      }, 
+      success(res) {
+        wx.showModal({
+          title: '兑换详情',
+          content: res.data.data,
+          showCancel: false,
+          confirmText: "已记住",
+          confirmColor: "#ffa500"
+        })
+      }
+    })
+
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 800)
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

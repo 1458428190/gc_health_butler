@@ -47,7 +47,7 @@ Page({
         })
 
         var length = self.data.imgUrls.length;
-        var duration = length * 1 * 1000;
+        var duration = length * 0.6 * 1000;
         wx.showToast({
           title: '正在发表...',
           icon: 'loading',

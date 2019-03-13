@@ -3,11 +3,24 @@ spring:
     active: local
   application:
     name: health_butler
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+
 
 server:
   servlet:
     context-path: /health_butler
   port: 8086
+  ssl:
+    key-store: classpath:ruanjiangongcheng2.xyz.jks
+    key-store-password: 6be4e5stjz3q
+    keyStoreType: JKS
+    keyAlias: ruanjiangongcheng2.xyz
+  tomcat:
+    uri-encoding: UTF-8
 
 logging:
   config: classpath:logback-spring.xml
@@ -16,3 +29,38 @@ logging:
     org:
       mybatis: debug
 
+# 微信小程序相关
+wx:
+  appId: wxbf2baa40c56ce7a1
+  appSecret: f73d96e17ad26231c69fcd5bdc39283d
+
+# face++ API相关
+face:
+  apiKey: hd2UQo_vTAmCXZZgQ9aCH9c13QydA9T5
+  apiSecret: 7FBPPGzBU_IZgE_TUXrt_8fTR4edCY61
+  facesetToken: 142603ebf72d6e0708df65e4195e3760
+
+# 规约图片url分隔符
+img:
+  separator: "#^$^#"
+
+# 端口设置
+port:
+  http: 8085
+  https: 8086
+
+# 定时任务开关
+schedule:
+  oneTimeTask:
+    start: false
+
+# 奖励相关
+rewardCoin:
+  share: 10
+  clock: 10
+  step: 10
+
+# IP白名单列表
+white:
+  ip:
+    list: 127.0.0.1,119.29.9.243

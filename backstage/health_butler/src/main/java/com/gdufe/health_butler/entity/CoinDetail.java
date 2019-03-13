@@ -36,6 +36,7 @@ public class CoinDetail implements Serializable {
 
     /**
      * 交易类型
+     * 详见 {@link com.gdufe.health_butler.common.enums.DealType}
      */
     private Integer type;
 

@@ -1,6 +1,11 @@
 {
   "pages": [
     "pages/health_center/health_center",
+    "pages/operation/operation",
+    "pages/strategy/strategy",
+    "pages/ai_res/ai_res",
+    "pages/ai_history/ai_history",
+    "pages/ai_test/ai_test",
     "pages/auth/auth",
     "pages/404/clockSifi/canvas",
     "pages/health_coin_detail/health_coin_detail",
@@ -22,12 +27,10 @@
     "pages/food_detail/food_detail",
     "pages/404/clockNormal/canvas",
     "pages/404/metrix/canvas",
-    "pages/logs/logs",
-    "pages/strategy/strategy",
-    "pages/ai_test/ai_test"
+    "pages/logs/logs"
   ],
   "tabBar": {
-    "color": "black",
+    "color": "#000000",
     "selectedColor": "#1ECBBE",
     "backgroundColor": "#FFFFFF",
     "borderStyle": "black",

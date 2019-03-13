@@ -6,7 +6,8 @@
       <button data-cid='{{item.id}}' class='{{cid==item.id?"select":""}}'>{{tools.keepTwo(item.name)}}</button>
     </block>
   </view>
-  <view class='articleContent'>
+  <scroll-view class='articleContent' scroll-top='{{scrollTop}}' enable-back-to-top="true" scroll-with-animation="true" scroll-y="true"  bindscrolltoupper="upper"
+    bindscrolltolower="lower">
   <block wx:for='{{articleList}}' wx:key="{{key}}" wx:for-item="article">
     <view class='abstract' bindtap='getArticleDetail' data-id='{{article.id}}'>
       <image class="thumbnail" src='{{article.imgUrl}}'></image>
@@ -23,5 +24,7 @@
       </view>
     </view>
   </block>
-  </view>
+  <view class='noMore' wx:if="{{noMore}}"><text>已经没有更多文章啦~~~~</text></view>
+  <view class='noMore' wx:if="{{!noMore}}"><text>下滑加载更多文章~~~~</text></view>
+  </scroll-view>
 </view>

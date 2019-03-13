@@ -1,0 +1,13 @@
+<!--操作手册-->
+<wxs src="./../tools.wxs" module="tools" />
+<view class='head'>
+  <text>GC健康管家操作手册</text>
+</view>
+<block wx:for="{{operationList}}" wx:key="{{index}}">
+  <view class='description'><text>{{index+1}}、{{item.description}}</text></view>
+  <view>
+    <block wx:for='{{tools.parseImgList(item.imgList)}}' wx:key="{{index}}">
+      <image src='{{item}}'></image>
+    </block>
+  </view>
+</block>

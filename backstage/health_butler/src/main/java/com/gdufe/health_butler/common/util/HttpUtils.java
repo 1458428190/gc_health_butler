@@ -10,6 +10,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.GzipDecompressingEntity;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -126,9 +127,11 @@ public class HttpUtils {
                 params.forEach((key, param) -> list.add(new BasicNameValuePair(key, param.toString())));
             }
             HttpPost httpPost = new HttpPost(uriBuilder.build());
+
             if (null != headers) {
                 headers.forEach((key, value) -> httpPost.setHeader(key, value.toString()));
             }
+            httpPost.setEntity(new UrlEncodedFormEntity(list));
             httpPost.setConfig(requestConfig);
             response = httpClient.execute(httpPost);
             return handlerResponse(response, charset);

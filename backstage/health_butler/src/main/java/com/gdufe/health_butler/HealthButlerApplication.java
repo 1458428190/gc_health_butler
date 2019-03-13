@@ -15,11 +15,14 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling             // 定时任务
 public class HealthButlerApplication {
 
-    @Value("${http.port}")
+    @Value("${port.http}")
     private int httpPort;
 
-    @Value("${https.port}")
+    @Value("${port.https}")
     private int httpsPort;
+
+    @Value("${img.separator}")
+    private String separator;
 
     public static void main(String[] args) {
         // 安装 minio免费托管服务的 证书
@@ -46,6 +49,7 @@ public class HealthButlerApplication {
 
     @Bean
     public Connector httpConnector() {
+        System.out.println("----------separator----------" + separator);
         Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
         connector.setScheme("http");
         //Connector监听的http的端口号

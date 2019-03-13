@@ -1,5 +1,7 @@
 {
   "usingComponents": {},
   "navigationBarTitleText": "健康食谱",
-  "navigationBarBackgroundColor": "#1ECBBE"
+  "navigationBarBackgroundColor": "#1ECBBE",    
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#1ECBBE"
 }

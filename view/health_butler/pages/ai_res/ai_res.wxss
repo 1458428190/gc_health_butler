@@ -1,0 +1,73 @@
+.ai_res_container {
+  background-color: #1ECBBE;
+  background: linear-gradient(rgb(3, 202, 186), rgb(250, 252, 252));
+  display: table;
+  height: 100vh;
+  width: 100%;
+}
+
+.img_info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.img_info image {
+  width: 300rpx;
+  height: 300rpx;
+  border-radius: 20rpx;
+}
+
+.img_info text {
+  color: white;
+}
+
+.data {
+  background-color: white;
+  margin: 20rpx 20rpx;
+  border-radius: 10rpx;
+}
+
+.data_item {
+  height: 70rpx;
+  border-bottom: 2rpx #efefef solid;
+  padding: 10rpx 20rpx;
+  padding-bottom: 0rpx;
+  margin: 0rpx 0rpx;
+}
+
+.icon {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 25rpx;
+  float: left;
+  margin-right: 20rpx;
+  margin-top: 8rpx;
+}
+
+.des {
+  font-size: 35rpx;
+  line-height: 40rpx;
+}
+
+.value {
+  float: right;
+  margin-right: 40rpx;
+  color: #1ECBBE;
+  padding-top: 4rpx;
+}
+
+.fea {
+  margin: 10rpx 10rpx;
+}
+
+.feature {
+  padding: 10rpx 20rpx;
+  margin: 10rpx 10rpx;
+  color: #1ECBBE;
+  font-size: 30rpx;
+  display: inline-block;
+  border: 1rpx #1ECBBE solid;
+  border-radius: 10rpx;
+}

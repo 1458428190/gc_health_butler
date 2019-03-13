@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gdufe.health_butler.dao.AiSkinMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.gdufe.health_butler.entity.AiSkin">
+        <id column="id" property="id" />
+        <result column="uid" property="uid" />
+        <result column="img_url" property="imgUrl" />
+        <result column="face_quality" property="faceQuality" />
+        <result column="face_token" property="faceToken" />
+        <result column="beauty_f" property="beautyF" />
+        <result column="beauty_m" property="beautyM" />
+        <result column="gender" property="gender" />
+        <result column="skin_status" property="skinStatus" />
+        <result column="create_time" property="createTime" />
+        <result column="modified_time" property="modifiedTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, uid, img_url, face_quality, face_token, beauty_f, beauty_m, gender, skinstatus, create_time, modified_time
+    </sql>
+
+</mapper>

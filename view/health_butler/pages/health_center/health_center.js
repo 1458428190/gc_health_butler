@@ -18,7 +18,7 @@ Page({
    */
   nvAiTest() {
     wx.navigateTo({
-      url: '/pages/404/clockSifi/canvas',
+      url: '/pages/ai_test/ai_test',
     })
   },
 
@@ -78,11 +78,8 @@ Page({
    * 获取攻略
    */
   getStrategy() {
-    // wx.navigateTo({
-    //   url: '/pages/strategy/strategy'
-    // })
     wx.navigateTo({
-      url: '/pages/404/clockSifi/canvas',
+      url: '/pages/strategy/strategy'
     })
   },
 
@@ -168,8 +165,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("health_center ", "onLoad Start");
-
     var that = this;
 
     // 查询主页信息并上传信息
@@ -200,7 +195,6 @@ Page({
         }
       })
     })
-    console.log("health_center ", "onLoad End");
   },
 
   waitToken: function () {
@@ -227,7 +221,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log("health_center ", "onshow start");
 
     var self = this;
     // 查询主页信息(封面, 提醒, 总步数, 总健康币, 排名, 个人信息)
@@ -237,7 +230,6 @@ Page({
       navSelect: 0
     });
 
-    console.log("health_center ", "onshow end");
   },
 
   /**

@@ -8,6 +8,7 @@ import com.gdufe.health_butler.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,7 +37,7 @@ public class FoodController {
      * 查询分类
      * @return
      */
-    @RequestMapping("/category")
+    @RequestMapping(value = "/category")
     public ResponseVO getFoodCategory() {
         return new ResponseVO(ResponseStatusEnum.SUCCESS, foodCategoryService.list());
     }

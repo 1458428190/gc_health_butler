@@ -96,4 +96,9 @@ public interface UserService extends IService<User> {
      * @return
      */
     String coverUpload(String token, int imgNo, MultipartFile file);
+
+    /**
+     * 清除今日步数
+     */
+    void cleanNowStep();
 }

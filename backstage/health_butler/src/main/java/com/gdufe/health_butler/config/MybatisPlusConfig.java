@@ -17,7 +17,6 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 @Configuration
 @MapperScan("com.gdufe.health_butler.dao")
-
 public class MybatisPlusConfig {
     /**
      * 分页插件

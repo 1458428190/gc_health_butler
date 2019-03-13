@@ -114,9 +114,13 @@ public class ClockInServiceImpl implements ClockInService {
     private ClockInVO getClockInVO(List<Record> recordList) {
         ClockInVO clockInVO = new ClockInVO();
         clockInVO.setAccumulative(recordList.size());
+        List<Long> todayTime = TimeUtils.getTodayTime();
         clockInVO.setHasClock(false);
         if(recordList.size() > 0) {
-            clockInVO.setHasClock(System.currentTimeMillis() - recordList.get(recordList.size() - 1).getCreateTime() < 24 * 3600000);
+            QueryWrapper<Record> recordQueryWrapper = new QueryWrapper<>();
+            recordQueryWrapper.lambda().eq(Record::getUid, recordList.get(0).getUid()).eq(Record::getType,
+                    recordList.get(0).getType()).between(Record::getCreateTime, todayTime.get(0), todayTime.get(1));
+            clockInVO.setHasClock(recordService.list(recordQueryWrapper).size() > 0);
         }
         List<Map<String, String>> clockRecordList = new ArrayList<>();
         recordList.forEach(record -> {

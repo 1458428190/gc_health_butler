@@ -8,7 +8,7 @@
 .head {
   border-radius: 20rpx;
   margin: 10rpx 20rpx;
-  height: 240rpx;
+  height: 250rpx;
   border: 1rpx solid #636580;
   text-align: center;
   font-size: 33rpx;
@@ -26,6 +26,7 @@
   flex-direction: row;
   align-items: center;
   text-align: center;
+  margin-bottom: 20rpx;
 }
 
 .sum {
@@ -35,6 +36,8 @@
   font-size: 30rpx;
   line-height: 35rpx;
   font-weight: normal;
+  padding-bottom: 20rpx;
+  margin-bottom: 20rpx;
 }
 
 .sum_data {
@@ -95,7 +98,9 @@
 
 .deal>view:first-child {
   float: right;
-  margin: 25rpx 40rpx;
+  margin: 25rpx 0rpx;
+  align-items: left;
+  margin-left: 20rpx;
   color: orange;
 }
 

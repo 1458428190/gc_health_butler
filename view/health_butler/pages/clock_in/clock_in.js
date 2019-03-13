@@ -117,12 +117,53 @@ Page({
     } 
   },
 
+  //是否是打卡时间
+  canClock() {
+    var date = new Date();
+    var hour = date.getHours();
+    var resList = [];
+    if (hour >= 5 && hour <= 8) {
+      resList.push(true);
+    } else {
+      resList.push(false);
+    }
+
+    if (hour >= 19 && hour <= 23) {
+      resList.push(true);
+    } else {
+      resList.push(false);
+    }
+    return resList;
+  },
+
   /**
    * 打卡
    */
   clockIn() {
-    var express = 'clockRecordList[' + this.data.navSelect + '].hasClock';
-    var type = this.data.navSelect + 2;
+    // 判断是否是打卡时间
+    var navSelect = this.data.navSelect;
+    if(navSelect<=1) {
+      var resList = this.canClock();
+      if(!resList[navSelect]) {
+        wx.showModal({
+          title: '提示',
+          content: '打卡时间已过或未到',
+          showCancel: false,
+          confirmColor: "#1ECBBE",
+          success(res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+        return;
+      }
+    }
+
+    var express = 'clockRecordList[' + navSelect + '].hasClock';
+    var type = navSelect + 2;
     var self = this;
 
     // 后台记录打卡

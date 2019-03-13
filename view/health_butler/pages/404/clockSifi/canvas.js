@@ -80,7 +80,6 @@ function renderTime() {
 Page({
     data: {
       isPlay: false,
-      
       musicUrl: 'https://m10.music.126.net/20190307172938/ecd258d658cf953d07cab2f0bf5591e6/ymusic/5605/07fd/b516/a10d9e248c19d9ac2d40d2b0596fc09b.mp3'
     },
 

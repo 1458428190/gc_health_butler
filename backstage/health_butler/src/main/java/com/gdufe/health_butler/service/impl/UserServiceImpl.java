@@ -2,6 +2,7 @@ package com.gdufe.health_butler.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.gdufe.health_butler.bean.dto.wx.Code2Session;
 import com.gdufe.health_butler.bean.vo.MainVO;
 import com.gdufe.health_butler.bean.vo.RankVO;
@@ -50,10 +51,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     private static final String URL = "https://api.weixin.qq.com/sns/jscode2session?appid=%s&secret=%s&js_code=%s&grant_type=authorization_code";
 
-    @Value("${appId}")
+    @Value("${wx.appId}")
     private String appId;
 
-    @Value("${appSecret}")
+    @Value("${wx.appSecret}")
     private String secret;
 
     @Value("${minio.imgBucket}")
@@ -189,7 +190,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                 .between(Record::getCreateTime, startTime, endTime);
         List<Record> listRecordNight = recordService.list(recordQueryWrapper);
         for(int i=0; i<listRecordNight.size(); i++) {
-            if(user.getId() == listRecordMorning.get(i).getUid()) {
+            if(user.getId() == listRecordNight.get(i).getUid()) {
                 rankNight = i + 1;
                 break;
             }
@@ -215,7 +216,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         // 今日步数冠军
         QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
         userQueryWrapper.lambda().select(User::getId, User::getProvince, User::getCity, User::getNickName,
-                User::getAvatarUrl, User::getNowStep)
+                User::getAvatarUrl, User::getNowStep).gt(User::getNowStep, 0)
                 .orderByDesc(User::getNowStep);
         List<User> stepRank = list(userQueryWrapper);
         if(stepRank.size() > 0) {
@@ -227,7 +228,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         // 健康财富冠军
         userQueryWrapper = new QueryWrapper<>();
         userQueryWrapper.lambda().select(User::getId, User::getProvince, User::getCity, User::getNickName,
-                User::getAvatarUrl, User::getHealthCoin)
+                User::getAvatarUrl, User::getHealthCoin).gt(User::getHealthCoin, 0)
                 .orderByDesc(User::getHealthCoin);
         List<User> coinRank = list(userQueryWrapper);
         if(coinRank.size() > 0) {
@@ -252,7 +253,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         long yesterdayStartTime = startTime - 24 * 3600000;
         long yesterdayEndTime = endTime - 24 * 3600000;
         recordQueryWrapper = new QueryWrapper<>();
-        recordQueryWrapper.lambda().eq(Record::getType, RecordType.GOOD_NIGHT_CLOCK_IN)
+        recordQueryWrapper.lambda().eq(Record::getType, RecordType.GOOD_NIGHT_CLOCK_IN.getValue())
                 .between(Record::getCreateTime, yesterdayStartTime, yesterdayEndTime);
         List<Record> nightRank = recordService.list(recordQueryWrapper);
         if(nightRank.size() > 0) {
@@ -427,51 +428,47 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
 
         try {
-            String newImgUrl = MinioUtils.FileUploaderByStream(minioClient, imgBucket, file.getInputStream(), originalFileName);
+            String newImgUrl = MinioUtils.FileUploaderByStream(minioClient, imgBucket, file.getInputStream(),
+                    System.currentTimeMillis() + originalFileName);
             updateCoverImgUrlList(uid, newImgUrl, imgNo);
         } catch (Exception e) {
+            logger.error("[op_rslt: error]", e);
             throw new SystemErrorException("内部系统出错");
         }
         return "上传成功";
     }
 
+    @Override
+    public void cleanNowStep() {
+        logger.info("[op:cleanNowStep]");
+        UpdateWrapper<User> userUpdateWrapper = new UpdateWrapper<>();
+        userUpdateWrapper.lambda().set(User::getNowStep, 0);
+        update(userUpdateWrapper);
+    }
+
     public void updateCoverImgUrlList(long uid, String newImgUrl, int imgNo) {
         logger.info("[op:updateCoverImgUrlList, uid: {}, newImgUrl:{}, imgNo:{}]", uid, newImgUrl, imgNo);
-        // 第一张直接加
+        User user = getById(uid);
         if(imgNo == 1) {
-            User user = getById(uid);
             user.setCoverImgUrl(newImgUrl);
-            user.setModifiedTime(System.currentTimeMillis());
             updateById(user);
             return;
         }
-        boolean lock = true;
-        while(lock) {
-            try {
-                User user = getById(uid);
-                String coverImgUrl = user.getCoverImgUrl();
-                List<String> newImgUrlList = new ArrayList<>();
-                if (StringUtils.isNotBlank(coverImgUrl)) {
-                    newImgUrlList = new ArrayList<>(Arrays.asList(coverImgUrl.split(imgSeparator)));
-                }
-                if (newImgUrlList.size() >= 9) {
-                    lock = false;
-                    throw new ParamErrorException("您的封面图片数量已经超了");
-                }
-                if(newImgUrlList.size() == imgNo - 1) {
-                    newImgUrlList.add(newImgUrl);
-                    user.setCoverImgUrl(String.join(imgSeparator, newImgUrlList));
-                    user.setModifiedTime(System.currentTimeMillis());
-                    updateById(user);
-                    lock = false;
-                } else {
-                    // 随机休息
-                    Thread.sleep(100 + (long) (Math.random() * 200));
-                }
-            } catch (Exception e) {
-                logger.warn("[op_rslt: lock conflict]");
-            }
+        // 判断是否超过9张
+        String imgUrlList = user.getCoverImgUrl();
+        List<String> newImgUrlList = new ArrayList<>();
+        String updateSql = "cover_img_url=(case when cover_img_url='' then '"
+                + newImgUrl +"' else concat(cover_img_url, '"+(imgSeparator+newImgUrl)+"') end) where id="+uid;
+        logger.info("[imgUrlList:{}, updateSql: {}]", imgUrlList, updateSql);
+        if (StringUtils.isNotBlank(imgUrlList)) {
+            newImgUrlList = new ArrayList<>(Arrays.asList(imgUrlList.split(imgSeparator)));
         }
+        if (newImgUrlList.size() >= 9) {
+            throw new ParamErrorException("您的图片数量已经超了");
+        }
+        UpdateWrapper<User> userUpdateWrapper = new UpdateWrapper<>();
+        userUpdateWrapper.setSql(updateSql);
+        update(userUpdateWrapper);
     }
 
     @Override

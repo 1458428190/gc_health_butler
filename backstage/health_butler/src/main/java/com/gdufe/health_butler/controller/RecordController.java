@@ -71,7 +71,7 @@ public class RecordController {
     /**
      * 获取步数记录
      * @param token
-     * @param uid
+     * @param toUid
      *          访问他人时需要
      * @return
      */

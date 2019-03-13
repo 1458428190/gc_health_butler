@@ -2,9 +2,11 @@
 <view class='strategy_container'>
   <view class='header'><text>健康币攻略</text></view>
   <view class='content'>
-    <view><text>1. 步数自动换取</text></view>
-    <view><text>2. 完成任务</text></view>
-    <view><text>3. 打卡</text></view>
-    <view><text>4. 分享健康</text></view>
+    <block wx:for="{{strategyList}}" wx:index="{{index}}">
+      <view>
+        <text>{{index}}</text>
+        <text>{{item}}</text>
+      </view>
+    </block>
   </view>
 </view>

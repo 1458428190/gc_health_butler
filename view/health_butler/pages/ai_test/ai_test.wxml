@@ -1,2 +1,18 @@
 <!--pages/ai_test/ai_test.wxml-->
-<text>pages/ai_test/ai_test.wxml</text>
+<view class='ai_container'>
+  <view class='ai_icon'>
+    <image bindtap='chooseImg' wx:if="{{imgUrl==''}}" src='../../image/ai_icon.gif'></image>
+    <image bindtap='chooseImg' wx:if="{{imgUrl!=''}}" src='{{imgUrl}}'></image> 
+    <view class='mesure' >
+      <text wx:if="{{imgUrl==''}}" bindtap='chooseImg'>开始测试</text>
+      <text wx:if="{{imgUrl!=''}}" bindtap='measure'>确定</text>
+    </view>
+  </view>
+  <view>
+    <text class='tip'>为保证测试的准确性，请摘掉眼镜，拍摄或上传清晰的脸部图片，非脸部或模糊照片将导致评测失败</text>
+  </view>
+
+  <view bindtap='getHistory'>
+    <text>我的检测历史</text>
+  </view>
+</view>

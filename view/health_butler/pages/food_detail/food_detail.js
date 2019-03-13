@@ -9,19 +9,18 @@ Page({
   data: {
     food: {},
     imgUrl: {},
-    name: {}
+    name: {},
+    myOptions: {}
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+  refresh() {
+    var options = this.data.myOptions;
     var fid = options.fid;
     var imgUrl = options.imgurl;
     var name = options.name;
     let self = this;
     wx.request({
-      url: domain + '/food/detail', 
+      url: domain + '/food/detail',
       data: {
         fid: fid
       },
@@ -44,7 +43,18 @@ Page({
 
     setTimeout(function () {
       wx.hideLoading()
-    }, 1000)
+    }, 2000)
+
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.setData({
+      myOptions: options
+    })
+    this.refresh();
   },
 
   /**

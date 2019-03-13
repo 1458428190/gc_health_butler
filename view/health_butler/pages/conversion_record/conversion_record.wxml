@@ -17,7 +17,7 @@
       <text> 暂无兑换记录 </text>
     </view>
     <block wx:for='{{conversionRecord.recordList}}' wx:key='{{index}}'>
-      <view>
+      <view bindtap='getDetail' data-rid="{{item.rid}}">
       <image class='goods_img' src='{{item.imgUrl}}'></image>
       <view class='record'>
         <view><image src='../../image/health_coin.png' class='icon'></image><text>-{{item.coin}}</text></view>

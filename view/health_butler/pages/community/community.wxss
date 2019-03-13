@@ -2,6 +2,9 @@
 
 .community_container {
   width: 100%;
+  margin: 0rpx;
+  padding: 0rpx;
+  overflow-x: hidden;
 }
 
 .share_container {
@@ -14,10 +17,10 @@
 
 .head {
   background-color: #efefef;
-  width: 100%;
+  width: 98%;
   height: 80rpx;
   padding: 5rpx 10rpx;
-  margin: 0rpx 0rpx 10rpx 0rpx;
+  margin: 0rpx 0rpx 0rpx 0rpx;
   border-bottom: 2rpx #efefef solid;
 }
 
@@ -39,7 +42,7 @@
   float: right;
   width: 80rpx;
   height: 80rpx;
-  margin-right: 20rpx;
+  margin-right: 0rpx;
 }
 
 /* 弹窗样式 */
@@ -175,9 +178,12 @@ radio{
   width: 200rpx;
 }
 
-.content {
+.scroller_content {
   width: 100%;
-  margin: 5rpx 0rpx;
+  margin: 10rpx 0rpx;
+  height: 92vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .delete_icon {
@@ -219,14 +225,18 @@ radio{
 }
 
 .content {
-  width: 100%;
+  width: 98%;
   padding-left: 0rpx;
+  margin-left: 0rpx;
+  margin-right: 10rpx;
+  padding-right: 10rpx;
 }
 
 .content>text {
   display: flex;
   margin: 10rpx 5rpx;
   font-size: 30rpx;
+  padding-right: 20rpx;
 }
 
 .praiseIcon,.commentIcon,.rewardIcon {
@@ -236,7 +246,7 @@ radio{
 }
 
 .comment {
-  width: 100%;
+  width: 97%;
 }
 
 .commentData {
@@ -245,8 +255,9 @@ radio{
   padding-left: 30rpx;
   padding-bottom: 10rpx;
   border-bottom:1rpx solid #efefef;
-  width: 100%;
+  width: 96%;
   font-size: 30rpx;
+  margin-right: 10rpx;
 }
 
 .commentData text {
@@ -283,4 +294,9 @@ radio{
 .share_time {
   color: #b3aeae;
   font-size: 30rpx;
+}
+
+.noMore {
+  width: 100%;
+  text-align: center;
 }

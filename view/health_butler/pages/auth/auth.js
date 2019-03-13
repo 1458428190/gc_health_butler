@@ -20,11 +20,6 @@ Page({
             withCredentials: true,
             lang: 'zh_CN',
             success: function (res) {
-              //用户已经授权过
-              wx.switchTab({
-                url: '/pages/health_center/health_center'
-              })
-
               app.globalData.userInfo = res.userInfo;
               // 保存或更新用户信息
               var encryptedData = res.encryptedData;
@@ -36,6 +31,10 @@ Page({
                   iv: iv,
                   encryptedData: encryptedData
                 }
+              })
+              //用户已经授权过
+              wx.switchTab({
+                url: '/pages/health_center/health_center'
               })
             }
           });

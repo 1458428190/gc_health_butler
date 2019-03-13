@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Order(1)
-@ConditionalOnExpression("${oneTimeTask.start}")
+@ConditionalOnExpression("${schedule.oneTimeTask.start}")
 public class OneTimeTask implements CommandLineRunner {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());

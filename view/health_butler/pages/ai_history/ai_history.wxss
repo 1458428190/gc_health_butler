@@ -1,0 +1,60 @@
+.ai_history_container {
+  background-color: #1ECBBE;
+  background: linear-gradient(rgb(3, 202, 186), rgb(250, 252, 252));
+  display: table;
+  height: 100vh;
+  width: 100%;
+}
+
+.head {
+  margin-bottom: 30rpx;
+}
+
+.head image {
+  width: 100rpx;
+  height: 100rpx;
+  float: left;
+  margin-left: 20rpx;
+  border-radius: 50rpx;
+  margin-right: 20rpx;
+}
+
+.head view {
+  padding: 20rpx 20rpx;
+  margin-left: 20rpx;
+}
+
+.record {
+  margin: 10rpx 20rpx;
+  border-radius: 20rpx;
+  background-color: white;
+}
+
+.record>view {
+  border-bottom: 4rpx #efefef solid;
+  height: 120rpx;
+}
+
+.record image {
+  width: 100rpx;
+  height: 100rpx;
+  float: left;
+  border-radius: 20rpx;
+  margin: 10rpx 20rpx;
+}
+
+.value {
+  padding: 10rpx 0rpx 0rpx 20rpx;
+  color: #1ECBBE;
+  font-size: 40rpx;
+}
+
+.time {
+  color: #8f8b8b;
+  font-size: 30rpx;
+}
+
+.no_res {
+  text-align: center;
+  padding: 20rpx 20rpx;
+}

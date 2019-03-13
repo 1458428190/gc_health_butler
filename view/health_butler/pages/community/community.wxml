@@ -4,16 +4,11 @@
 <view class='community_container'>
   <view class='head'>
     <image wx:if="{{isMe}}" bindtap='back' class='back_all' src='../../image/back.png'></image>
-    <image wx:if="{{!isMe}}" bindtap='visitMe' class='head_image' src='{{user.avatarUrl}}'></image>
+    <image wx:if="{{!isMe}}" bindtap='visitMe' class='head_image' src='{{userData.user.avatarUrl==undefined?user.avatarUrl:userData.user.avatarUrl}}'></image>
     <image bindtap="share" class='share' src='../../image/share.png'></image>
   </view>
-
-  <!-- <view class="container">
-	<block wx:for="{{imgalist}}" wx:for-item="image" class="previewimg">
-		<image src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
-	</block>
-</view> -->
-  <view class='content'>
+  <scroll-view class='scroller_content' scroll-top='{{scrollTop}}' enable-back-to-top="true" scroll-with-animation="true" scroll-y="true"
+    bindscrolltolower="lower">
   <block wx:for="{{isMe?meShare:allShare}}" wx:key="{{index}}" wx:for-item="communityVo">
     <view class='share_container'> 
 		  <!-- <template is='share' data="{{...item}}"></template> -->
@@ -72,5 +67,7 @@
       </view>
     </view>
 	</block>
-  </view>
+  <view class='noMore' wx:if="{{noMore}}"><text>已经没有更多动态啦~~~~</text></view>
+  <view class='noMore' wx:if="{{!noMore}}"><text>下滑加载更多动态~~~~</text></view>
+  </scroll-view>
 </view>

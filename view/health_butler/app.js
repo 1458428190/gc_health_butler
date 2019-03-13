@@ -5,7 +5,7 @@ App({
   },
 
   onLaunch: function () {
-    console.log("app ", "onLaunch start");
+
     var that = this;
     that.getToken();
     // 查看是否授权
@@ -33,31 +33,10 @@ App({
     })
 
 
-    // wx.request({
-    //   url: 'test.php', //仅为示例，并非真实的接口地址
-    //   data: {
-    //   },
-    //   success: function (res) {
-    //     console.log('onLaunch-request-success');
-    //     // 将employId赋值给全局变量，提供给页面做判断
-    //     this.globalData.employId = res.employId;
-    //   }
-    // })
-
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
-    // wx.getSetting({
-    //   success(res) {
-    //     console.log(res.authSetting)
-    //     // res.authSetting = {
-    //     //   "scope.userInfo": true,
-    //     //   "scope.userLocation": true
-    //     // }
-    //   }
-    // });
 
     // 定时器， 每2小时更新token
     setInterval(this.getToken, 7200000);
@@ -67,8 +46,10 @@ App({
   },
 
   onLoad: function() {
-    console.log("app ", "onLoad start");
-    console.log("app ", "onLoad end");
+  },
+
+  onShow: function() {
+    // this.getToken();
   },
 
   getToken: function () {
@@ -84,7 +65,7 @@ App({
           success(res) {
             console.log("login ", res.data.data);
             that.globalData.token = res.data.data;
-            console.log(" ---------------------- ", res.data.data);
+            console.log("token", res.data.data);
             // 上传一次步数
             that.uploadRunData();
           }
@@ -141,7 +122,7 @@ App({
 
   globalData: {
     userInfo: null,
-    domain: 'https://localhost:8443/health_butler',
+    domain: 'https://ruanjiangongcheng2.xyz:8086/health_butler',
     token: '',
     userData:  {},
     employId: ''

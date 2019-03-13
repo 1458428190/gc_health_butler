@@ -1,0 +1,38 @@
+<!--pages/ai_res/ai_res.wxml-->
+<view class='ai_res_container'>
+  <view class='img_info'>
+    <image src='{{aiSkin.imgUrl}}'></image>
+    <view><text>{{userInfo.nickName}}</text></view>
+  </view>
+  <view class='data'>
+    <view class='data_item'>
+      <image class='icon' src='../../image/health_score.png'></image>
+      <view class='detail'><text class='des'>健康分</text><text class='value'>{{aiSkin.faceQuality}}</text></view>
+    </view>
+    <view class='data_item'>
+      <image class='icon' src='../../image/gender.png'></image>
+      <view class='detail'><text class='des'>性别</text><text class='value'>{{aiSkin.gender}}</text></view>
+    </view>
+    <view class='data_item'>
+      <image class='icon' src='../../image/age.png'></image>
+      <view class='detail'><text class='des'>年龄</text><text class='value'>{{aiSkin.age}}</text></view>
+    </view>
+    <view class='data_item'>
+      <image class='icon' src='../../image/skin.png'></image>
+      <view class='detail'><text class='des'>皮肤</text><text class='value'>{{aiSkin.skinStatus}}</text></view>
+    </view>
+    <view class='data_item'>
+      <image class='icon' src='../../image/beauty.png'></image>
+      <view class='detail'><text class='des'>男性认为的颜值</text><text class='value'>{{aiSkin.beautyM}}</text></view>
+    </view>
+    <view class='data_item'>
+      <image class='icon' src='../../image/beauty.png'></image>
+      <view class='detail'><text class='des'>女性认为的颜值</text><text class='value'>{{aiSkin.beautyF}}</text></view>
+    </view>
+    <view class='fea'>
+      <block wx:for='{{feature}}' wx:key="{{index}}"> 
+        <text class='feature'>{{item}}</text>
+      </block>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,20 @@
+.head {
+  width: 100%;
+  text-align: center;
+  color: #1ECBBE;
+  align-items: center;
+  margin: 40rpx auto;
+  font-size: 50rpx;
+}
+
+.description {
+  font-size: 30rpx;
+  margin: 40rpx 20rpx;
+}
+
+image {
+  display: block;
+  width: 700rpx;
+  height: 850rpx;
+  margin: 30rpx auto;
+}

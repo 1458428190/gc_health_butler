@@ -51,6 +51,9 @@ var isRemind = function(s) {
 
 // 字符串转list 以#^$^#符号分隔
 var parseImgList = function(s) {
+  if(s==null || s=='') {
+    return [];
+  }
   var list = s.split('#^$^#');
   return list;
 }
@@ -89,8 +92,26 @@ var formatShareTime = function(s) {
   return res;
 }
 
+//是否是打卡时间
+var canClock = function() {
+  var date = getDate();
+  var hour = date.getHours();
+  var resList = [];
+  if(hour >= 5 && hour <= 8) {
+    resList.push(true);
+  }else {
+    resList.push(false);
+  }
+
+  if (hour >= 19 && hour <= 23) {
+    resList.push(true);
+  } else {
+    resList.push(false);
+  }
+  return resList;
+}
+
 var isEqual = function(s1, s2) {
-  console.log("s1=", s1, "+s2="+s2);
   return s1==s2;
 }
 
@@ -103,5 +124,6 @@ module.exports =
   isRemind: isRemind,
   parseImgList: parseImgList,
   formatShareTime: formatShareTime,
-  isEqual: isEqual
+  isEqual: isEqual,
+  canClock: canClock
 };

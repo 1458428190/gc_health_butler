@@ -19,7 +19,7 @@
   <view class='me'>
     <image src='{{allRankData.user.avatarUrl}}'></image>
     <view class='me_info'>
-      <view><text>{{allRankData.user.nickName}}</text></view>
+      <view><text class='meNick'>{{allRankData.user.nickName}}</text></view>
       <view><text>{{allRankData.user.province + " "+ allRankData.user.city}}</text></view>
     </view>
     <view class='me_data'>
@@ -57,7 +57,7 @@
         <view><text>{{index+1}}</text></view>
         <image class='head_image' src='{{item.user.avatarUrl}}'></image>
         <view class='user_info'>
-          <view><text>{{item.user.nickName}}</text></view>
+          <view><text class='nick'>{{item.user.nickName}}</text></view>
           <view><text>{{item.user.province+" "+item.user.city}}</text></view>
         </view>
         <view class='praise'>

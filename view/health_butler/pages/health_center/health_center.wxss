@@ -8,7 +8,7 @@
 .health_info {
   /* background: linear-gradient(rgb(127, 236, 222),  rgb(180,232,225)); */
   /* https://play.minio.io:9000/laichengfeng-health-butler/bg_5.jpg */
-  background-image: url("https://play.minio.io:9000/laichengfeng-health-butler/bg_5.jpg"); 
+  background-image: url("http://ruanjiangongcheng2.xyz:9000/health-butler/bg_1.jpg"); 
   width: 100%;
   display: table;
   border-bottom: 20rpx solid #e0dfdf;
