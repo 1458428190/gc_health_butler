@@ -25,7 +25,7 @@ spring:
     cache-names: article_list, food, article
     redis:
       time-to-live: 10800000
-      key-prefix: health_butler.
+      key-prefix: health_butler:
 
 server:
   servlet:
