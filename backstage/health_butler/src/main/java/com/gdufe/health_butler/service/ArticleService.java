@@ -42,4 +42,11 @@ public interface ArticleService extends IService<Article> {
      * @param id
      */
     void updateSee(long id);
+
+    /**
+     * 获取指定文章并缓存
+     * @param id
+     * @return
+     */
+    Article getByIdAndCache(long id);
 }

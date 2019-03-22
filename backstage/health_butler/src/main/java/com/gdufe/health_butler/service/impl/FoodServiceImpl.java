@@ -14,6 +14,8 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -27,6 +29,7 @@ import java.util.*;
  * @since 2019-02-22
  */
 @Service
+@CacheConfig(cacheNames = "food", keyGenerator = "keyGenerator")
 public class FoodServiceImpl extends ServiceImpl<FoodMapper, Food> implements FoodService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -38,15 +41,10 @@ public class FoodServiceImpl extends ServiceImpl<FoodMapper, Food> implements Fo
     private FoodCategoryService foodCategoryService;
 
     @Override
+    @Cacheable
     public List<Food> getFoodList(String keyword, long fcid) {
 
-        /**
-         * TODO 使用Solr 或 ElasticSearch进行模糊查找
-         *             (MySQL不太适合进行全表模糊查询)
-         *      暂时使用低效率的代码实现(时间原因)
-         */
         logger.info("[op:getFoodList, keyword: {} fcid:{}]", keyword, fcid);
-
         List<Food> foodRestList = new ArrayList<>();
         if(StringUtils.isNotBlank(keyword)) {
             fcid = 0;

@@ -8,7 +8,24 @@ spring:
       charset: UTF-8
       force: true
       enabled: true
+  redis:
+    database: 0
+    host: 119.29.9.243
+    port: 6379
+    password: crazyboy
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
 
+
+  cache:
+    cache-names: article_list, food, article
+    redis:
+      time-to-live: 10800000
+      key-prefix: health_butler.
 
 server:
   servlet:
@@ -64,3 +81,4 @@ rewardCoin:
 white:
   ip:
     list: 127.0.0.1,119.29.9.243
+

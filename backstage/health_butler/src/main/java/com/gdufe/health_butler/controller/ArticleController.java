@@ -36,7 +36,7 @@ public class ArticleController {
      */
     @RequestMapping("/category")
     public ResponseVO getArticleCategoryList() {
-        return new ResponseVO(ResponseStatusEnum.SUCCESS, articleCategoryService.list());
+        return new ResponseVO(ResponseStatusEnum.SUCCESS, articleCategoryService.listAll());
     }
 
     /**
@@ -55,7 +55,7 @@ public class ArticleController {
     }
 
     /**
-     * 查询指定分类文章
+     * 查询指定分类文章， TODO 已弃用
      * @param cid
      * @return
      */
@@ -63,7 +63,6 @@ public class ArticleController {
     public ResponseVO getArticleList(@RequestParam long cid) {
         return new ResponseVO(ResponseStatusEnum.SUCCESS, articleService.listByid(cid));
     }
-
 
     /**
      * 查询文章数
@@ -83,17 +82,10 @@ public class ArticleController {
     @RequestMapping("/detail")
     public ResponseVO getArticle(@RequestParam long id) {
         articleService.updateSee(id);
-        return new ResponseVO(ResponseStatusEnum.SUCCESS, filter(articleService.getById(id)));
+        return new ResponseVO(ResponseStatusEnum.SUCCESS, articleService.getByIdAndCache(id));
     }
 
-    /**
-     * 过滤文章
-     * @param article
-     * @return
-     */
-    private Article filter(Article article) {
-        return article.setContent(article.getContent().replaceAll("px", "rpx"));
-    }
+
 }
 
 

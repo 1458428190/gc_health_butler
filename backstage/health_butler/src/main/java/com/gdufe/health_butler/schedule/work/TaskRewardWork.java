@@ -57,10 +57,10 @@ public class TaskRewardWork {
             deal(userList.get(0).getId(), 3 * stepRewardCoin, DealType.DO_TASK, "今日步数冠军得币");
         }
         if(userList.size() > 1) {
-            deal(userList.get(0).getId(), 2 * stepRewardCoin, DealType.DO_TASK, "今日步数亚军得币");
+            deal(userList.get(1).getId(), 2 * stepRewardCoin, DealType.DO_TASK, "今日步数亚军得币");
         }
         if(userList.size() > 2) {
-            deal(userList.get(0).getId(), stepRewardCoin, DealType.DO_TASK, "今日步数季军得币");
+            deal(userList.get(2).getId(), stepRewardCoin, DealType.DO_TASK, "今日步数季军得币");
         }
         for(User user: userList) {
             if(user.getNowStep() >= 10000) {
@@ -78,6 +78,7 @@ public class TaskRewardWork {
         long startTime = todayTime.get(0);
         long endTime = todayTime.get(1);
         QueryWrapper<Record> recordQueryWrapper = new QueryWrapper<>();
+        // 早起， 早睡， 运动
         recordQueryWrapper.lambda().eq(Record::getType, RecordType.MORNING_CLOCK_IN.getValue())
                 .between(Record::getCreateTime, startTime, endTime);
         List<Record> morningRecordList = recordService.list(recordQueryWrapper);
@@ -116,12 +117,12 @@ public class TaskRewardWork {
         deal(uid_1, 3 * clockRewardCoin, DealType.DO_TASK, recordType + "冠军打卡得币");
 
         if(recordList.size() >= 2) {
-            long uid_2 = recordList.get(0).getUid();
+            long uid_2 = recordList.get(1).getUid();
             deal(uid_2, 2 * clockRewardCoin, DealType.DO_TASK, recordType + "亚军打卡得币");
         }
 
         if(recordList.size() >= 3) {
-            long uid_3 = recordList.get(0).getUid();
+            long uid_3 = recordList.get(2).getUid();
             deal(uid_3, clockRewardCoin, DealType.DO_TASK, recordType + "季军打卡得币");
         }
     }

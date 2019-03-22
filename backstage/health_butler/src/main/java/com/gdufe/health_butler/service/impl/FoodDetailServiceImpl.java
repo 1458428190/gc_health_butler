@@ -5,6 +5,8 @@ import com.gdufe.health_butler.entity.FoodDetail;
 import com.gdufe.health_butler.dao.FoodDetailMapper;
 import com.gdufe.health_butler.service.FoodDetailService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,9 +19,11 @@ import org.springframework.transaction.annotation.Transactional;
  * @since 2019-02-22
  */
 @Service
+@CacheConfig(cacheNames = "food", keyGenerator = "keyGenerator")
 public class FoodDetailServiceImpl extends ServiceImpl<FoodDetailMapper, FoodDetail> implements FoodDetailService {
 
     @Override
+    @Cacheable
     public FoodDetail getByFid(long fid) {
         QueryWrapper<FoodDetail> foodDetailQueryWrapper = new QueryWrapper<>();
         foodDetailQueryWrapper.lambda().eq(FoodDetail::getFid, fid);

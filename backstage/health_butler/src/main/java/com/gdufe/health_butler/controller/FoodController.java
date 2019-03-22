@@ -39,7 +39,7 @@ public class FoodController {
      */
     @RequestMapping(value = "/category")
     public ResponseVO getFoodCategory() {
-        return new ResponseVO(ResponseStatusEnum.SUCCESS, foodCategoryService.list());
+        return new ResponseVO(ResponseStatusEnum.SUCCESS, foodCategoryService.listAll());
     }
 
     /**

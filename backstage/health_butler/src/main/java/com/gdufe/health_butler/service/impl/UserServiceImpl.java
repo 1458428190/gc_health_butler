@@ -449,23 +449,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public void updateCoverImgUrlList(long uid, String newImgUrl, int imgNo) {
         logger.info("[op:updateCoverImgUrlList, uid: {}, newImgUrl:{}, imgNo:{}]", uid, newImgUrl, imgNo);
         User user = getById(uid);
-        if(imgNo == 1) {
-            user.setCoverImgUrl(newImgUrl);
-            updateById(user);
-            return;
-        }
+
         // 判断是否超过9张
         String imgUrlList = user.getCoverImgUrl();
         List<String> newImgUrlList = new ArrayList<>();
-        String updateSql = "cover_img_url=(case when cover_img_url='' then '"
-                + newImgUrl +"' else concat(cover_img_url, '"+(imgSeparator+newImgUrl)+"') end) where id="+uid;
-        logger.info("[imgUrlList:{}, updateSql: {}]", imgUrlList, updateSql);
         if (StringUtils.isNotBlank(imgUrlList)) {
             newImgUrlList = new ArrayList<>(Arrays.asList(imgUrlList.split(imgSeparator)));
         }
         if (newImgUrlList.size() >= 9) {
             throw new ParamErrorException("您的图片数量已经超了");
         }
+        String updateSql = "cover_img_url=(case when cover_img_url='' then '"
+                + newImgUrl +"' else concat(cover_img_url, '"+(imgSeparator+newImgUrl)+"') end) where id="+uid;
+        logger.info("[imgUrlList:{}, updateSql: {}]", imgUrlList, updateSql);
         UpdateWrapper<User> userUpdateWrapper = new UpdateWrapper<>();
         userUpdateWrapper.setSql(updateSql);
         update(userUpdateWrapper);
