@@ -75,7 +75,7 @@ var formatShareTime = function(s) {
   date = getDate(year+"/"+month+"/"+day+" 23:59:59:999");
   var res = "";
   if(shareYear < year) {
-    res += shareYear + "-" + month + "-" + day;
+    res += shareYear + "-" + shareMonth + "-" + shareDay;
   } else {
     // 今天
     if (date - shareDate < 24 * 3600000) {
@@ -85,7 +85,7 @@ var formatShareTime = function(s) {
     } else if (date - shareDate < 72 * 3600000) {
       res = "前天"
     } else {
-      res = month + "-" + day;
+      res = shareMonth + "-" + shareDay;
     }
   }
   res += " " + shareHour + ":" + shareMinute;

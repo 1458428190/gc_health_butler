@@ -166,7 +166,14 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
 
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 1000)
     // 查询主页信息并上传信息
     this.waitToken().then(function () {
       that.getInfo();

@@ -26,7 +26,7 @@ Page({
 
     coin: {},
 
-    defaultImg: ["https://play.minio.io:9000/laichengfeng-health-butler/cover_2.jpg", "https://play.minio.io:9000/laichengfeng-health-butler/cover_1.jpg", "https://play.minio.io:9000/laichengfeng-health-butler/cover_3.jpg"],
+    defaultImg: ["http://ruanjiangongcheng2.xyz:9000/health-butler/cover_1.jpg", "http://ruanjiangongcheng2.xyz:9000/health-butler/cover_2.jpg", "http://ruanjiangongcheng2.xyz:9000/health-butler/cover_3.jpg"],
 
     showModalStatus: false,
   },
@@ -263,13 +263,21 @@ Page({
         self.setData({
           user: userTemp
         })
-
-        // 开始上传
-        var leng = tempFilePaths.length
-        for (var i = 0; i < leng; i++) {
-          self.uploadImg(i, tempFilePaths[i])
-        }
-        var duration = leng * 1 * 1000;
+        // 先重置封面
+        wx.request({
+          url: domain + '/user/cover/reset',
+          data: {
+            token: app.globalData.token
+          },
+          success(res) {
+            // 开始上传
+            var leng = tempFilePaths.length
+            for (var i = 0; i < leng; i++) {
+              self.uploadImg(i, tempFilePaths[i])
+            }
+          }
+        })
+        var duration = 2 * 1000;
         wx.showToast({
           title: '正在更改封面...',
           icon: 'loading',

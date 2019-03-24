@@ -446,6 +446,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         update(userUpdateWrapper);
     }
 
+    @Override
+    public boolean coverReset(String token) {
+        User user = getByOpenId(TokenContainer.get(token).getOpenId());
+        logger.info("[op:coverReset, uid:{}, token:{}]", user.getId(), token);
+        user.setCoverImgUrl("");
+        return updateById(user);
+    }
+
     public void updateCoverImgUrlList(long uid, String newImgUrl, int imgNo) {
         logger.info("[op:updateCoverImgUrlList, uid: {}, newImgUrl:{}, imgNo:{}]", uid, newImgUrl, imgNo);
         User user = getById(uid);

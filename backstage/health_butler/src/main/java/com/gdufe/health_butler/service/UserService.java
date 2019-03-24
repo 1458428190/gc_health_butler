@@ -101,4 +101,11 @@ public interface UserService extends IService<User> {
      * 清除今日步数
      */
     void cleanNowStep();
+
+    /**
+     * 重置封面
+     * @param token
+     * @return
+     */
+    boolean coverReset(String token);
 }

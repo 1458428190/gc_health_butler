@@ -123,5 +123,14 @@ public class UserController {
                                   @RequestParam(value = "file", required = false) MultipartFile file) {
         return new ResponseVO(ResponseStatusEnum.SUCCESS, userService.coverUpload(token, imgNo, file));
     }
+
+    /**
+     * 重置封面
+     */
+    @AuthToken
+    @RequestMapping("/cover/reset")
+    public ResponseVO coverUpload(@RequestParam String token) {
+        return new ResponseVO(ResponseStatusEnum.SUCCESS, userService.coverReset(token));
+    }
 }
 
