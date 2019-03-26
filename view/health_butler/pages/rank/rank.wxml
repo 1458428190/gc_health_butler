@@ -53,7 +53,7 @@
     </view>
 
     <block wx:for='{{allRankData.rankData[select]}}' wx:key='{{index}}'>
-      <view class='{{index<=2? "data topRank":"data"}}'>
+      <view class='{{index<=2? "data topRank":"data"}}' bindtap="visit" data-uid="{{item.user.id}}">
         <view><text>{{index+1}}</text></view>
         <image class='head_image' src='{{item.user.avatarUrl}}'></image>
         <view class='user_info'>

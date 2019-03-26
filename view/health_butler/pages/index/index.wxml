@@ -1,1 +1,10 @@
-<!--index.wxml-->
+<!-- invisible_model view 用于点击隐藏model评论框 -->
+<view class='invisible_model' catchtap='visibleComment'>点击评论</view>
+<!-- 评论框 -->
+<view class='model' wx:if="{{inputBoxShow}}" catchtap='inVisibleComment' catchtouchmove="noOp">
+  <view class='input-box' style='bottom:{{height}}px;' catchtap='noOp'>
+    <textarea class="comment_content" type="text" placeholder="评论" placeholder-class='comment_placeholder' show-confirm-bar="{{false}}" auto-height="{{true}}" bindfocus='bindfocus' adjust-position='{{false}}' auto-focus="{{true}}" focus='{{true}}' bindblur="bindblur" bindinput='bindinput' maxlength='100'>
+    </textarea>
+    <text class='send' bindtap='comment'>发送</text>
+  </view>
+</view>

@@ -1,0 +1,205 @@
+
+.info_detail_container {
+  width: 100%;
+  margin: 0rpx;
+  padding: 0rpx;
+  overflow: hidden;
+}
+
+.share_container {
+  width: 100%;
+  margin-top: 10rpx;
+  padding: 10rpx 10rpx;
+  margin-left: 0rpx;
+  border-bottom: 25rpx solid #efefef;
+}
+
+.head_image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50rpx;
+  margin-left: 0rpx;
+  border: 1rpx #1ECBBE solid;
+  float: left;
+}
+
+.delete_icon {
+  float: right;
+  margin-right: 20rpx;
+}
+
+.delete_icon image {
+  width: 40rpx;
+  height: 40rpx;
+  padding: 20rpx 20rpx;
+}
+
+.head_img {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 35rpx;
+}
+
+.user_info {
+  margin: 0rpx 0rpx;
+  width: 96%;
+}
+
+.user_info>image,view {
+  float: left;
+}
+
+.list_image {
+  width: 230rpx;
+  height: 230rpx;
+  margin: 0rpx 6rpx;
+}
+
+.info text {
+  display: flex;
+  margin: 0rpx 20rpx;
+  font-size: 30rpx;
+}
+
+.content {
+  width: 98%;
+  padding-left: 0rpx;
+  margin-left: 0rpx;
+  margin-right: 10rpx;
+  padding-right: 10rpx;
+}
+
+.content>text {
+  display: flex;
+  margin: 10rpx 5rpx;
+  font-size: 30rpx;
+  padding-right: 20rpx;
+}
+
+.praiseIcon,.commentIcon,.rewardIcon {
+  width: 48rpx;
+  height: 48rpx;
+  margin: 10rpx 40rpx 10rpx 0rpx;
+}
+
+.comment {
+  width: 97%;
+}
+
+.commentData {
+  display: flex;
+  flex-direction: row;
+  padding-left: 30rpx;
+  padding-bottom: 10rpx;
+  border-bottom:1rpx solid #efefef;
+  width: 96%;
+  font-size: 30rpx;
+  margin-right: 10rpx;
+}
+
+.commentData text {
+  margin-right: 30rpx;
+  margin-left: 5rpx;
+}
+
+.commentData button::after {
+  border: none;
+}
+
+.praiseDetail {
+  margin-top: 10rpx;
+  font-size: 30rpx;
+  width: 98%;
+  margin: 15rpx 5rpx;
+}
+
+.praiseDetail image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 10rpx;
+}
+
+.user_text{
+  color: #1ECBBE;
+}
+
+.commentDetail {
+  margin: 10rpx 5rpx;
+  margin-top: 0rpx;
+  padding-top: 0rpx;
+  font-size: 32rpx;
+}
+
+.commentDetail > view{
+  width: 100%;
+  margin: 3rpx 10rpx;
+}
+
+.share_time {
+  color: #b3aeae;
+  font-size: 30rpx;
+}
+
+.noMore {
+  width: 100%;
+  text-align: center;
+  font-size: 30rpx;
+}
+
+.model {
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+.input-box {
+  position: absolute;
+  background-color: #f8f8f8;
+  padding: 30rpx;
+  padding-left: 15rpx;
+  margin: 0rpx;
+  padding-bottom: 0rpx;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 101;
+}
+
+.comment_content {
+  background-color: #fff;
+  width: 88%;
+  padding: 5rpx;
+  padding-left: 10rpx;
+  height: 40rpx;
+  font-size: 30rpx;
+  float: left;
+  margin-bottom: 30rpx;
+}
+
+.comment_placeholder {
+  font-size: 30rpx;
+  padding-left: 10rpx;
+  padding: 5rpx;
+}
+
+.send {
+  font-size: 30rpx;
+  margin-top: 5rpx;
+  color: #09bb07;
+  float: right;
+  position: static;
+}
+
+.infoCount {
+  color: red;
+  font-size: 35rpx;
+}
+
+.infoText {
+  text-align: center;
+  margin: 15rpx 130rpx;
+  float: left;
+}

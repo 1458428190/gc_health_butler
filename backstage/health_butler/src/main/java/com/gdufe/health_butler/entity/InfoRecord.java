@@ -9,55 +9,43 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 社区点赞打赏记录表
+ * 用户消息记录表
  * </p>
  *
  * @author laichengfeng
- * @since 2019-03-04
+ * @since 2019-03-26
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class CommunityRecord implements Serializable {
+public class InfoRecord implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 用户id
+     */
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    /**
-     * 分享id
-     */
-    private Long cid;
+    private Long uid;
 
     /**
-     * 操作的用户id
+     * 信息类型
+     *  详见 {@link com.gdufe.health_butler.common.enums.InfoRecordType}
      */
-    private Long fUid;
+    private Integer type;
 
     /**
-     * 被操作的用户id
+     * 是否已读
      */
-    private Long toUid;
+    private Boolean readStatus;
 
     /**
-     * 分类
+     * 消息对应的id
      */
-    private Integer category;
+    private Long mid;
 
-    /**
-     * 逻辑删除
-     */
-    private Boolean isDelete;
-
-    /**
-     * 内容
-     */
-    private String content;
-
-    /**
-     * 操作时间
-     */
     private Long createTime;
 
     private Long modifiedTime;

@@ -162,6 +162,34 @@ Page({
   },
 
   /**
+   * 跳转至任务
+   */
+  nvToTask(event) {
+    var type = event.currentTarget.dataset.type;
+    if(type===6) {
+      // 跳转页面
+      wx.navigateTo({
+        url: '/pages/clock_in/clock_in',
+        success() {
+          console.log('跳转成功');
+        }
+      })
+    } else if (type === 7) {
+      // 跳转页面
+      wx.navigateTo({
+        url: '/pages/home_page/home_page',
+        success() {
+          console.log('跳转成功');
+        }
+      })
+    } else if (type === 8) {
+      wx.switchTab({
+        url: '/pages/community/community'
+      })
+    }
+  },
+
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
@@ -170,10 +198,10 @@ Page({
       title: '加载中',
       mask: true
     })
-
     setTimeout(function () {
       wx.hideLoading()
     }, 1000)
+
     // 查询主页信息并上传信息
     this.waitToken().then(function () {
       that.getInfo();

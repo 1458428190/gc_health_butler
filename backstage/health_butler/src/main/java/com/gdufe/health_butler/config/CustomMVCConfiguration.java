@@ -8,7 +8,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 import java.nio.charset.Charset;
 import java.util.List;
@@ -21,7 +21,7 @@ import java.util.List;
 @Configuration
 @EnableWebMvc
 @ComponentScan
-public class CustomMVCConfiguration extends WebMvcConfigurerAdapter {
+public class CustomMVCConfiguration extends WebMvcConfigurationSupport {
 
     @Bean
     public HttpMessageConverter<String> responseBodyConverter(){
@@ -32,6 +32,7 @@ public class CustomMVCConfiguration extends WebMvcConfigurerAdapter {
     public ObjectMapper getObjectMapper() {
         return new ObjectMapper();
     }
+
     @Bean
     public MappingJackson2HttpMessageConverter messageConverter() {
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();

@@ -274,15 +274,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         List<String> userData = new ArrayList<>();
         userData.add(user.getNowStep() + "");
         userData.add(user.getHealthCoin() + "");
-        if(userRank.get(2) != null) {
+        if(userRank.get(2) != null && userRank.get(2) > 0) {
             userData.add(TimeUtils.formatTimeDay(morningRank.get(userRank.get(2)-1).getCreateTime()).substring(0, 5));
         } else {
-            userData.add(null);
+            userData.add("无");
         }
-        if(userRank.get(3) != null) {
+        if(userRank.get(3) != null && userRank.get(3) > 0) {
             userData.add(TimeUtils.formatTimeDay(nightRank.get(userRank.get(3)-1).getCreateTime()).substring(0, 5));
         } else {
-            userData.add(null);
+            userData.add("无");
         }
 
         // 4大排名数据
@@ -557,14 +557,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                     return i + 1;
                 }
             }
-            return null;
+            return 0;
         }
         for(int i=0; i<recordList.size(); i++) {
             if(uid == recordList.get(i).getUid()) {
                 return i + 1;
             }
         }
-        return null;
+        return 0;
     }
 
     public static void main(String[] args) throws HttpException {

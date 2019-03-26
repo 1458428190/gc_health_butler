@@ -60,7 +60,7 @@
     </view>
 
     <block wx:if='{{navSelect==1}}' wx:for='{{taskList}}' wx:key='{{index}}' wx:for-item="task">
-      <view class='task_detail'>
+      <view class='task_detail' data-type="{{task.category2}}" bindtap='nvToTask'>
         <image class='task_img' src='{{task.imgUrl}}'></image>
         <view class='task_description'>
           <view><text>{{task.title}}</text></view>

@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/health_center/health_center",
+    "pages/index/index",
+    "pages/info_record/info_record",
     "pages/operation/operation",
     "pages/strategy/strategy",
     "pages/ai_res/ai_res",
@@ -14,7 +16,6 @@
     "pages/community/community",
     "pages/conversion/conversion",
     "pages/clock_in/clock_in",
-    "pages/index/index",
     "pages/bmi_cal/bmi_cal",
     "pages/bmi_history/bmi_history",
     "pages/conversion_record/conversion_record",
@@ -27,7 +28,8 @@
     "pages/food_detail/food_detail",
     "pages/404/clockNormal/canvas",
     "pages/404/metrix/canvas",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/info_detail/info_detail"
   ],
   "tabBar": {
     "color": "#000000",

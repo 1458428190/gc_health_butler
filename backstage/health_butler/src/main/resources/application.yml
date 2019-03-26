@@ -22,10 +22,21 @@ spring:
   cache:
     cache-names: food, article
     redis:
-      time-to-live: 10800000
+      time-to-live: 108000000
       key-prefix: health_butler
       use-key-prefix: true
-
+#  security:
+#    user:
+#      name: lcf
+#      password: ruanjaingongcheng
+#  boot:
+#    admin:
+#      client:
+#        url: 'http://localhost:8087'
+#        instance:
+#          service-url: 'http://192.168.106.250:8085/health_butler'
+#        username: lcf
+#        password: 123456
 
 server:
   servlet:
@@ -59,7 +70,7 @@ face:
 
 # 规约图片url分隔符
 img:
-  separator: "#^$^#"
+  separator: '#^$^#'
 
 # 端口设置
 port:
@@ -81,4 +92,14 @@ rewardCoin:
 white:
   ip:
     list: 127.0.0.1,119.29.9.243
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  trace:
+    http:
+      enabled: false
+
 

@@ -33,4 +33,9 @@ public class CommunityVO {
      * 其他用户的赞
      */
     private List<User> praiseUser;
+
+    /**
+     * 评论
+     */
+    private List<CommentVO> commentList;
 }

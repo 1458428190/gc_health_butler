@@ -1,0 +1,39 @@
+<!--pages/info_record/info_record.wxml-->
+<wxs src="./../tools.wxs" module="tools" />
+<view class='info_record_container'>
+  <block wx:for="{{infoList}}" wx:key="{{index}}" wx:for-item="info">
+    <view class='info'>
+      <view class='origin' data-uid="{{info.uid}}" data-type="{{info.type}}" bindtap='getDetail' data-cid="{{info.cid}}">
+        <image wx:if="{{info.originImgUrl!=null}}" src='{{info.originImgUrl}}'></image>
+        <view wx:if="{{info.originContent!=null}}"><text>{{info.originContent}}</text></view>
+      </view>
+      <image bindtap='visit' data-uid="{{info.uid}}" class='head_img' src='{{info.avatarUrl}}'></image>
+      <view class='userInfo' data-uid="{{info.uid}}" data-type="{{info.type}}" bindtap='getDetail' data-cid="{{info.cid}}">
+        <view><text class='nickName'>{{info.nickName}}</text></view>
+        <view><text class='content'>{{info.infoContent}}</text></view>
+        <view><text class='time'>{{tools.formatShareTime(info.recordTime)}}</text></view>
+      </view>
+    </view>
+  </block>
+    <view class='moreInfo' wx:if="{{!isMore}}">
+      <text bindtap='getMore'>查看更早的消息...</text>
+    </view>
+</view>
+
+<!-- <wxs src="./../tools.wxs" module="tools" />
+<view class='info_record_container'>
+    <view class='info'>
+      <view class='origin' bindtap='getDetail'>
+        <image  src='https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2500370282,42816182&fm=173&app=25&f=JPEG?w=218&h=146&s=23907A855A6015131088F8A50300E090'></image>
+      </view>
+      <image bindtap='visit' class='head_img' src='https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2500370282,42816182&fm=173&app=25&f=JPEG?w=218&h=146&s=23907A855A6015131088F8A50300E090'></image>
+      <view class='userInfo'>
+        <view><text class='nickName'>info.nickName</text></view>
+        <view><text class='content' max-length="20">g啊啊啊啊啊啊啊啊啊啊啊啊奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥所所所所所所多多多做做做做寻寻寻寻寻寻寻寻错寻做错寻做错做想啊啊啊啊啊啊啊啊啊1啊啊啊啊啊啊啊啊奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥所所所所所所多多多做做做做寻寻寻寻寻寻寻寻错寻做错寻做错做想</text></view>
+        <view><text class='time'>21：59</text></view>
+      </view>
+    </view>
+    <view class='moreInfo' wx:if="{{!isMore}}">
+      <text bindtap='getMore'>查看更早的消息...</text>
+    </view>
+</view> -->

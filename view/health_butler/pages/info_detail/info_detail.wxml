@@ -1,16 +1,7 @@
 <!-- 健康小圈 -->
 <!-- <import src='/pages/template/template' /> -->
 <wxs src="./../tools.wxs" module="tools" />
-<view class='community_container'>
-  <view class='head'>
-    <image wx:if="{{isMe}}" bindtap='back' class='back_all' src='../../image/back.png'></image>
-    <image wx:if="{{!isMe}}" bindtap='visitMe' class='head_image' src='{{userData.user.avatarUrl==undefined?user.avatarUrl:userData.user.avatarUrl}}'></image>
-    <view bindtap='getUnReadInfo' class='infoText'><text>你有<text class='infoCount'>{{unReadInfoCount}}</text>条未读消息</text></view>
-    <image bindtap="share" class='share' src='../../image/share.png'></image>
-  </view>
-  <scroll-view class='scroller_content' scroll-top='{{scrollTop}}' enable-back-to-top="true" scroll-with-animation="true" scroll-y="true"
-    bindscrolltolower="lower">
-  <block wx:for="{{isMe?meShare:allShare}}" wx:key="{{index}}" wx:for-index="shareIndex" wx:for-item="communityVo">
+<view class='info_detail_container'>
     <view class='share_container'> 
 		  <!-- <template is='share' data="{{...item}}"></template> -->
       <view class='user_info' >
@@ -34,20 +25,18 @@
       <view class='comment'>
         <view class='commentData'>
           <!-- 点赞 -->
-          <image bindtap='praise' wx:if='{{!communityVo.praise}}' data-cid='{{communityVo.community.id}}' class='praiseIcon' src="../../image/praise_1.png"></image>
+          <image bindtap='praise' wx:if='{{!communityVo.praise}}' class='praiseIcon' src="../../image/praise_1.png"></image>
           <!-- 取消点赞 -->
-          <image bindtap='cancel' wx:if='{{communityVo.praise}}' data-cid='{{communityVo.community.id}}' class='praiseIcon' src="../../image/praise.png"></image>
-          <!-- 时间限制, 去除评论功能-->
-          <image bindtap='visibleComment' data-index="{{shareIndex}}" data-cid="{{communityVo.community.id}}" class='commentIcon' src='../../image/comment.png'></image>
-          <!-- 打赏
-          <image bindtap='reward' data-id='{{id}}' data-statu="open" class='rewardIcon' src='../../image/reward_2.png'></image> -->
+          <image bindtap='cancel' wx:if='{{communityVo.praise}}' class='praiseIcon' src="../../image/praise.png"></image>
+          <!-- 评论功能-->
+          <image bindtap='visibleComment' class='commentIcon' src='../../image/comment.png'></image>
         </view>
         <view class='praiseDetail'>
           <image wx:if="{{communityVo.praiseUser.length >= 1}}" src='../../image/praise.png'></image>
-          <block wx:for="{{communityVo.praiseUser}}" wx:key="{{index}}">
+          <block wx:for="{{communityVo.praiseUser}}" wx:key="{{priseIndex}}">
             <!-- 访问对方主页 -->
             <text bindtap='visit' data-uid='{{item.id}}' class='user_text'>{{item.nickName}}</text>
-            <text wx:if="{{index < communityVo.praiseUser.length - 1}}">、</text>
+            <text wx:if="{{priseIndex < communityVo.praiseUser.length - 1}}">、</text>
           </block>
           <text wx:if="{{communityVo.praiseUser.length >= 1}}">等{{praiseUser.length}}人觉得很赞</text>
         </view>
@@ -62,23 +51,18 @@
                 <!-- 访问对方主页 -->
                 <text bindtap='visit' data-uid="{{item.toId}}" class='user_text'>{{item.toId==userData.user.id?"我":item.fromName}}</text>
               </block>
-              <text data-longpressindex="{{index}}" data-rid="{{item.rid}}" bindtap='replayVisibleComment' data-index="{{shareIndex}}" data-cid="{{communityVo.community.id}}"  data-toid="{{item.fromId}}" bindlongpress="longpressDelete" data-toname="{{item.fromName}}" >: {{item.content}}</text>
+              <text data-longpressindex="{{index}}" data-rid="{{item.rid}}" bindtap='replayVisibleComment' data-toid="{{item.fromId}}" bindlongpress="longpressDelete" data-toname="{{item.fromName}}" >: {{item.content}}</text>
             </view>
           </block>
         </view>
       </view>
     </view>
-	</block>
-  <view class='noMore' wx:if="{{noMore}}"><text>已经没有更多动态啦~~~~</text></view>
-  <view class='noMore' wx:if="{{!noMore}}"><text>下滑加载更多动态~~~~</text></view>
-  </scroll-view>
 </view>
 <!-- 评论框 -->
 <view class='model' wx:if="{{inputBoxShow}}" catchtap='inVisibleComment' catchtouchmove="noOp">
-  <view class='input-box' style='bottom:{{height}}px;' catchtap='noOp'>
-    <textarea class="comment_content" type="text" placeholder="{{toName==''?'评论':'回复:'+toName}}" placeholder-class='comment_placeholder' show-confirm-bar="{{false}}" auto-height="{{true}}" bindfocus='bindfocus' adjust-position='{{false}}' auto-focus="{{true}}" focus='{{true}}' bindblur="bindblur" bindinput='bindinput' maxlength='100'>
+  <view class='input-box' catchtap='noOp' style='bottom:{{height}}px;'>
+    <textarea class="comment_content" type="text" placeholder="{{toName==''?'评论':'回复:'+toName}}" placeholder-class='comment_placeholder' show-confirm-bar="{{false}}" auto-height="{{true}}" bindfocus='bindfocus' adjust-position='{{false}}' auto-focus="{{true}}" focus='{{true}}' bindblur="bindblur" bindinput='bindinput'>
     </textarea>
     <text class='send' bindtap='comment'>发送</text>
   </view>
 </view>
-

@@ -1,5 +1,6 @@
 package com.gdufe.health_butler.service;
 
+import com.gdufe.health_butler.bean.vo.CommentVO;
 import com.gdufe.health_butler.entity.CommunityRecord;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.gdufe.health_butler.entity.User;
@@ -40,4 +41,36 @@ public interface CommunityRecordService extends IService<CommunityRecord> {
      * @return
      */
     String praise(String token, long cid, int type);
+
+    /**
+     * 评论
+     * @param token
+     * @param cid
+     * @param content
+     * @return
+     */
+    void comment(String token, long cid, String content);
+
+    /**
+     * 获取指定文章的评论
+     * @param cid
+     * @return
+     */
+    List<CommentVO> getComment(long cid);
+
+    /**
+     * 回复指定评论
+     * @param token
+     * @param cid
+     * @param content
+     * @param toUid
+     */
+    void replay(String token, long cid, String content, long toUid);
+
+    /**
+     * 删除回复
+     * @param token
+     * @param rid
+     */
+    void deleteComment(String token, long rid);
 }

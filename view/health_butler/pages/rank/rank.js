@@ -19,6 +19,17 @@ Page({
   },
 
   /**
+   * 访问他人主页
+   */
+  visit(event) {
+    var toUid = event.currentTarget.dataset.uid;
+    console.log("event ", event);
+    wx.navigateTo({
+      url: '/pages/home_page/home_page?toUid=' + toUid,
+    })
+  },
+
+  /**
    * 步数榜
    */
   stepRank() {

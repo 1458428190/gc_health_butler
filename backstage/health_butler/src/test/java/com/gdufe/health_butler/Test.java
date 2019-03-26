@@ -2,8 +2,6 @@ package com.gdufe.health_butler;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.gdufe.health_butler.dao.GoodsMapper;
-import com.gdufe.health_butler.service.UserService;
-import com.gdufe.health_butler.service.impl.UserServiceImpl;
 
 import java.util.*;
 

@@ -23,9 +23,6 @@ public class HealthButlerApplication {
     @Value("${port.https}")
     private int httpsPort;
 
-    @Value("${img.separator}")
-    private String separator;
-
     public static void main(String[] args) {
         // 安装 minio免费托管服务的 证书
 //        System.setProperty("javax.net.ssl.trustStore", System.getProperty("user.dir") + "/jssecacerts");
@@ -51,7 +48,6 @@ public class HealthButlerApplication {
 
     @Bean
     public Connector httpConnector() {
-        System.out.println("----------separator----------" + separator);
         Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
         connector.setScheme("http");
         //Connector监听的http的端口号
@@ -61,7 +57,4 @@ public class HealthButlerApplication {
         connector.setRedirectPort(httpsPort);
         return connector;
     }
-
-
-
 }

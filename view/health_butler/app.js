@@ -5,8 +5,17 @@ App({
   },
 
   onLaunch: function () {
-
     var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log("app windowHeight ", res.windowHeight);
+        that.globalData.height_01 = res.windowHeight;
+      },
+      fail(res) {
+        console.log("res", res);
+      }
+    })
+
     that.getToken();
     // 查看是否授权
     wx.getSetting({
@@ -32,7 +41,6 @@ App({
       }
     })
 
-
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -42,10 +50,11 @@ App({
     setInterval(this.getToken, 7200000);
     
     // 每10分钟上传步数
-    setInterval(this.uploadRunData, 10 * 60000);
+    setInterval(this.uploadRunData, 1200000);
   },
 
   onLoad: function() {
+
   },
 
   onShow: function() {
@@ -125,6 +134,7 @@ App({
     domain: 'https://ruanjiangongcheng2.xyz:8086/health_butler',
     token: '',
     userData:  {},
-    employId: ''
+    employId: '',
+    height_01: 0
   }
 })

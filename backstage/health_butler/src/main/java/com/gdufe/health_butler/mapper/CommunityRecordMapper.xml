@@ -9,6 +9,7 @@
         <result column="f_uid" property="fUid" />
         <result column="to_uid" property="toUid" />
         <result column="category" property="category" />
+        <result column="is_delete" property="isDelete" />
         <result column="content" property="content" />
         <result column="create_time" property="createTime" />
         <result column="modified_time" property="modifiedTime" />
@@ -16,7 +17,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, cid, f_uid, to_uid, category, content, create_time, modified_time
+        id, cid, f_uid, to_uid, category, is_delete, content, create_time, modified_time
     </sql>
 
 </mapper>

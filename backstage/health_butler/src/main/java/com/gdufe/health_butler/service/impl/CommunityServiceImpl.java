@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
@@ -179,6 +180,7 @@ public class CommunityServiceImpl extends ServiceImpl<CommunityMapper, Community
             communityVO.setUser(userService.filter(userService.getById(community.getUid())));
             communityVO.setPraise(communityRecordService.isPraise(uid, community.getId()));
             communityVO.setPraiseUser(communityRecordService.getPraise(community.getId()));
+            communityVO.setCommentList(communityRecordService.getComment(community.getId()));
             list.add(communityVO);
         });
         return list;
@@ -194,6 +196,7 @@ public class CommunityServiceImpl extends ServiceImpl<CommunityMapper, Community
      * @param cid
      * @param newImgUrl
      */
+    @Transactional(isolation=Isolation.SERIALIZABLE)
     public void updateImgUrlList(long cid, String newImgUrl, int imgNo) {
         logger.info("[op:updateImgUrlList, cid: {}, newImgUrl:{}, imgNo:{}]", cid, newImgUrl, imgNo);
 
@@ -243,4 +246,14 @@ public class CommunityServiceImpl extends ServiceImpl<CommunityMapper, Community
         List<Community> communityList = page(page, communityQueryWrapper).getRecords();
         return getCommunityVoList(communityList, user.getId());
     }
+
+    @Override
+    public CommunityVO getByCid(String token, long cid) {
+        String openId = TokenContainer.get(token).getOpenId();
+        User user = userService.getByOpenId(openId);
+        logger.info("[op:getByCid, uid:{}, token:{}, cid:{}]", user.getId(), token, cid);
+        Community community = getById(cid);
+        return getCommunityVoList(Collections.singletonList(community), user.getId()).get(0);
+    }
+
 }

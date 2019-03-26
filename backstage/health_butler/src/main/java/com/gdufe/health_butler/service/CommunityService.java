@@ -79,4 +79,12 @@ public interface CommunityService extends IService<Community> {
      * @return
      */
     List<CommunityVO> pageList(String token, int pageNo, int size);
+
+    /**
+     * 获取指定动态
+     * @param token
+     * @param cid
+     * @return
+     */
+    CommunityVO getByCid(String token, long cid);
 }

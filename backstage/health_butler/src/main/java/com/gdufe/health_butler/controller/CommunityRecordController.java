@@ -41,5 +41,40 @@ public class CommunityRecordController {
     public ResponseVO praise(@RequestParam String token, @RequestParam long cid, @RequestParam int type) {
         return new ResponseVO(ResponseStatusEnum.SUCCESS, communityRecordService.praise(token, cid, type));
     }
+
+    /**
+     * 评论
+     * @param token
+     * @param cid
+     * @param content
+     * @return
+     */
+    @AuthToken
+    @RequestMapping("/comment")
+    public ResponseVO comment(@RequestParam String token, @RequestParam long cid, @RequestParam String content) {
+        communityRecordService.comment(token, cid, content);
+        return new ResponseVO(ResponseStatusEnum.SUCCESS, "");
+    }
+
+    /**
+     * 回复评论
+     */
+    @AuthToken
+    @RequestMapping("/replay")
+    public ResponseVO replay(@RequestParam String token, @RequestParam long cid, @RequestParam String content,
+                             @RequestParam long toUid) {
+        communityRecordService.replay(token, cid, content, toUid);
+        return new ResponseVO(ResponseStatusEnum.SUCCESS, "");
+    }
+
+    /**
+     * 删除评论或者回复
+     */
+    @AuthToken
+    @RequestMapping("/deleteComment")
+    public ResponseVO deleteComment(@RequestParam String token, @RequestParam long rid) {
+        communityRecordService.deleteComment(token, rid);
+        return new ResponseVO(ResponseStatusEnum.SUCCESS, "");
+    }
 }
 

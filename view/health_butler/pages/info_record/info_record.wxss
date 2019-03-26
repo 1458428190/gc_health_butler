@@ -1,0 +1,71 @@
+/* pages/info_record/info_record.wxss */
+.info_record_container {
+  width: 100%;
+  background-color: #fafafa;
+  display: table;
+  height: 100vh;
+}
+
+.info {
+  border-bottom: 2rpx solid #c0bfbf;
+  margin: 20rpx 0rpx;
+  padding: 0rpx 20rpx;
+  height: 140rpx;
+}
+
+.head_img {
+  width: 120rpx;
+  height: 120rpx;
+  float: left;
+  margin-right: 10rpx;
+}
+
+.origin image {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.origin view{
+  width: 120rpx;
+  height: 120rpx;
+  font-size: 30rpx;
+  text-align: center;
+  overflow: hidden;
+}
+
+.origin {
+  float: right;
+}
+
+.userInfo view {
+  width: 500rpx;
+  padding: 0rpx 10rpx;
+  line-height: 38rpx;
+}
+
+.nickName {
+  color: #1ECBBE;
+  font-size: 30rpx;
+}
+
+.content {
+  font-size: 30rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all; /* 追加这一行代码 */
+}
+
+.time {
+  color: #918f8f;
+  font-size: 25rpx;
+}
+
+.moreInfo {
+  text-align: center;
+  margin-bottom: 40rpx;
+  margin-top: 40rpx;
+}

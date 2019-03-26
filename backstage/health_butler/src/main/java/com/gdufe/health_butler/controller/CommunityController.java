@@ -104,5 +104,14 @@ public class CommunityController {
     public ResponseVO getMe(@RequestParam String token) {
         return new ResponseVO(ResponseStatusEnum.SUCCESS, communityService.getMe(token));
     }
+
+    /**
+     * 获取指定动态
+     */
+    @AuthToken
+    @RequestMapping("/getByCid")
+    public ResponseVO getById(@RequestParam String token, @RequestParam long cid) {
+        return new ResponseVO(ResponseStatusEnum.SUCCESS, communityService.getByCid(token, cid));
+    }
 }
 
