@@ -40,7 +40,7 @@ Page({
   /**
    * 选择挑战任务
    */
-  navToTask() {
+  getTask() {
     var self = this;
     var taskList = wx.getStorageSync('taskList');
     console.log(taskList);
@@ -186,6 +186,10 @@ Page({
       wx.switchTab({
         url: '/pages/community/community'
       })
+    } else if (type === 9) {
+      wx.navigateTo({
+        url: '/pages/rank/rank'
+      })
     }
   },
 
@@ -193,6 +197,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    // 默认健康测试
+    this.setData({
+      navSelect: 0
+    });
+
     var that = this;
     wx.showLoading({
       title: '加载中',
@@ -200,7 +210,7 @@ Page({
     })
     setTimeout(function () {
       wx.hideLoading()
-    }, 1000)
+    }, 1500)
 
     // 查询主页信息并上传信息
     this.waitToken().then(function () {
@@ -260,10 +270,7 @@ Page({
     var self = this;
     // 查询主页信息(封面, 提醒, 总步数, 总健康币, 排名, 个人信息)
     self.getInfo();
-    // 默认健康测试
-    this.setData({
-      navSelect: 0
-    });
+
 
   },
 

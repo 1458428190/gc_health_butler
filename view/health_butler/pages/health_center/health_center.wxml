@@ -40,7 +40,7 @@
   <view class='task'>
     <view class='nav_task'>
       <text bindtap='navToHealthTest' class='{{navSelect===0?"select_nav":""}}'>健康测试</text>
-      <text bindtap='navToTask' class='{{navSelect===1?"select_nav":""}}'>挑战任务</text>
+      <text bindtap='getTask' class='{{navSelect===1?"select_nav":""}}'>挑战任务</text>
     </view>
     <view wx:if='{{navSelect==0}}' class='health_test'>
       <view class='bmi' bindtap='nvToBmi'>

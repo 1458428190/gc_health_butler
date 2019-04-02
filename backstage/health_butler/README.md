@@ -12,7 +12,9 @@
   - Jsoup
   - Druid
   - Transactional
-  - Docker 
+  - Docker
+  - Aop
+
    
 ### 知识总结
   - 使用Docker搭建Minio服务以及配置
@@ -29,39 +31,131 @@
       - 微信
 
 ### 接口定义
-  - 查询食物分类
-      - /food/category
-  - 查询食物列表
-      - /food/list?keyword=&cat_name=
-  - 查询食物详请
-      - /food/detail?food_id=
-  - 查询文章列表(指定分类)
-      - /article/list?cat_name=
-  - 查询打卡和提醒记录
-      - /user/record/clock
-  - 查询任务列表(完成情况)
-      - /task/list
-  - 查询兑换记录
-      - /user/record/conversion
-  - 查询可兑换商品
-      - /goods/list
-  - 查询主页信息(封面, 总步数,总健康币,排名,历史步数, 个人信息)
-      - /user/info?uid=
-  - 查询健康币明细
-      - /user/coin/detail
-  - 查询排名
-      - /user/rank
-  - 查询社区小圈
-      - /community
-  - 发表
-      - /community/share
-  - 点赞
-      - /community/praise?cid=
-  - 打赏
-      - /community/reward?cid=&coin=
-  - 设置提醒
-      - /user/record/clock_remind
-    
+
+  - 健康食谱
+      - 查询分类
+          - /food/category
+      - 查询食物列表(关键字搜索，分类搜索)
+          - /food/list?keyword=&fcid=
+      - 查询食物详情
+          - /food/detail?fid=
+
+  - 健康资讯
+      - 查询分类
+          - /article/category
+      - 分页查询指定分类的文章列表
+          - /article/pageList?cid=&page=&size=
+      - 查询指定分类的所有文章列表
+          - /article/list?cid=
+      - 查询文章数
+          - /article/list_size?cid=
+      - 查询文章详情
+          - /article/detail?id=
+
+  - 用户信息相关
+      - 保存或更新用户信息
+          - /user/save/userInfo?token=&iv=&encryptedData=
+      - 获取token
+          - /user/getToken?code=
+      - 查询主页信息(封面, 提醒, 总步数, 总健康币, 排名, 个人信息)
+          - /user/info?token=
+      - 查询排行榜数据
+          - /user/rank?token=
+      - 设置打卡时间提醒
+          - /user/set/clockInRemind?token=&type=&time=
+      - 访问主页信息（可以是自己，也可以是他人的）
+          - /user/seeHomePage?token=&toUid=
+      - 邀请用户
+          - /user/invite?token=
+      - 打赏
+          - /user/reward?toUid=&coin=&token=
+      - 个人主页封面上传更新(POST)
+          - /user/cover/upload?token=&imgNo=&file=
+      - 重置封面
+          - /user/cover/reset?token=
+
+  - BMI指数计算相关
+      - 保存BMI计算记录
+          - /bmiRecord/save?token=&height=&weight
+      - 查询BMI历史记录
+          - /bmiRecord/list?token=
+
+  - AI测肤相关
+      - 测肤(POST)
+          - /aiSkin/measure?token=&file=
+      - 查询测肤历史
+          - /aiSkin/history?token=
+      - 查询指定测肤记录的结果
+          - /aiSkin/inquiry?token=&id=
+
+  - 打卡功能相关
+      - 获取各打卡记录(早睡、早起、运动)
+          - /clockIn/list?token=
+      - 打卡(早睡、早起、运动)
+          - /clockIn/clockIn?token=&type=
+
+  - 健康卡交易明细相关
+      - 获取交易明细
+          - /coinDetail/list?token=
+
+  - 健康小圈相关
+      - 获取社区分享
+          - /community/list?token=
+      - 获取社区分享 动态数
+          - /community/list_size?token=
+      - 分页获取动态
+          - /community/pageList?token=&pageNo=&size=
+      - 分享发表内容
+          - /community/share?token=&content=&onlyMe=
+      - 上传发表的图片文件(POST)
+          - /community/upload?token=&cid=&imgNo=&file=
+      - 删除动态
+          - /community/delete?token=&cid=
+      - 获取自己的动态
+          - /community/getMe?token=
+      - 获取指定的动态详情
+          - /community/getByCid?token=&cid=
+      - 点赞或取消点赞
+          - /communityRecord/praise?token=&cid=&type=
+      - 评论
+          - /communityRecord/comment?token=&cid=&content=
+      - 回复评论
+          - /communityRecord/replay?token=&cid=&content=&toUid=
+      - 删除回复或删除评论
+          - /communityRecord/deleteComment?token=&rid=
+      - 获取未读消息的个数
+          - /infoRecord/getUnReadInfoCount?token=
+      - 获取未读消息列表
+          - /infoRecord/getUnReadInfo?token=
+      - 获取已读消息列表
+          - /infoRecord/getReadInfo?token=
+
+  - 兑换的商品相关
+      - 查询可兑换的商品列表
+          - /goods/list
+      - 兑换商品
+          - /goods/conversion?token=&id=
+
+  - 后台管理相关
+      - 赠送健康币(此接口有ip访问限制，仅限服务器本身可以访问)
+          - /manager/give?uid=&coin=
+
+  - 操作手册相关
+      - 获取操作手册内容
+          - /operation/list
+
+  - 用户记录相关
+      - 上传步数数据
+          - /record/getAndUploadRunData?token=&iv=&encryptedData=
+      - 查询任务列表
+          - /record/task
+      - 查询兑换记录
+          - /record/conversion?token=
+      - 获取已兑换的商品详情
+          - /record/getDetail?token=&rid=
+      - 获取步数记录
+          - /record/step?token=&toUid=
+
 ### 问题
   - 对于token的设计、使用、以及存储
   - url传 '+' 号会变成空格

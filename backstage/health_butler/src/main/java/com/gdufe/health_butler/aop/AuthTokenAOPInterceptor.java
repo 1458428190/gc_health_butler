@@ -2,6 +2,7 @@ package com.gdufe.health_butler.aop;
 
 import com.gdufe.health_butler.bean.dto.wx.Code2Session;
 import com.gdufe.health_butler.common.exception.TokenErrorException;
+import com.gdufe.health_butler.common.util.ThreadPoolUtils;
 import com.gdufe.health_butler.manager.TokenContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

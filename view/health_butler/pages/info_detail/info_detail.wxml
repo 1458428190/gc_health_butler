@@ -33,12 +33,12 @@
         </view>
         <view class='praiseDetail'>
           <image wx:if="{{communityVo.praiseUser.length >= 1}}" src='../../image/praise.png'></image>
-          <block wx:for="{{communityVo.praiseUser}}" wx:key="{{priseIndex}}">
+          <block wx:for="{{communityVo.praiseUser}}" wx:key="{{index}}">
             <!-- 访问对方主页 -->
             <text bindtap='visit' data-uid='{{item.id}}' class='user_text'>{{item.nickName}}</text>
-            <text wx:if="{{priseIndex < communityVo.praiseUser.length - 1}}">、</text>
+            <text wx:if="{{index < communityVo.praiseUser.length - 1}}">、</text>
           </block>
-          <text wx:if="{{communityVo.praiseUser.length >= 1}}">等{{praiseUser.length}}人觉得很赞</text>
+          <text wx:if="{{communityVo.praiseUser.length >= 1}}">等{{communityVo.praiseUser.length}}人觉得很赞</text>
         </view>
         <!-- 评论 -->
         <view class='commentDetail' wx:if="{{communityVo.commentList.length > 0}}">

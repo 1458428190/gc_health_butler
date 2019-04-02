@@ -99,7 +99,6 @@ swiper-item {
 ff-canvas {
   width: 95%;
   height: 50vh;
-  z-index: 90;
 }
   
 .stepData {
@@ -168,7 +167,7 @@ ff-canvas {
 /*mask*/  
 .drawer_screen {  
   width: 100%;  
-  height: 100%;  
+  height: 100vh;  
   position: fixed;  
   top: 0;  
   left: 0;  
@@ -182,11 +181,11 @@ ff-canvas {
   width: 650rpx;  
   overflow: hidden;  
   position: fixed;  
-  top: 50%;  
+  z-index: 9999;
+  top: 50%;
   left: 0;  
-  z-index: 9999;  
   background: #FAFAFA;  
-  margin: -150px 50rpx 0 50rpx;  
+  margin: -150px 50rpx 0rpx 50rpx;  
   border-radius: 3px;  
 }  
   

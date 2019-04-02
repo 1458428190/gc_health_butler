@@ -7,6 +7,7 @@ import com.gdufe.health_butler.bean.dto.wx.Code2Session;
 import com.gdufe.health_butler.bean.vo.MainVO;
 import com.gdufe.health_butler.bean.vo.RankVO;
 import com.gdufe.health_butler.common.enums.DealType;
+import com.gdufe.health_butler.common.enums.InfoRecordType;
 import com.gdufe.health_butler.common.enums.RecordType;
 import com.gdufe.health_butler.common.exception.ParamErrorException;
 import com.gdufe.health_butler.common.exception.SystemErrorException;
@@ -14,13 +15,11 @@ import com.gdufe.health_butler.common.util.HttpUtils;
 import com.gdufe.health_butler.common.util.MinioUtils;
 import com.gdufe.health_butler.common.util.TimeUtils;
 import com.gdufe.health_butler.common.util.WxBizDataCryptUtils;
-import com.gdufe.health_butler.entity.CoinDetail;
-import com.gdufe.health_butler.entity.Community;
-import com.gdufe.health_butler.entity.Record;
-import com.gdufe.health_butler.entity.User;
+import com.gdufe.health_butler.entity.*;
 import com.gdufe.health_butler.dao.UserMapper;
 import com.gdufe.health_butler.manager.TokenContainer;
 import com.gdufe.health_butler.service.CoinDetailService;
+import com.gdufe.health_butler.service.InfoRecordService;
 import com.gdufe.health_butler.service.RecordService;
 import com.gdufe.health_butler.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -71,6 +70,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Autowired
     private CoinDetailService coinDetailService;
+
+    @Autowired
+    private InfoRecordService infoRecordService;
 
     @Override
     public String getToken(String code) {
@@ -491,6 +493,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setHealthCoin(user.getHealthCoin() - coin);
         user.setModifiedTime(nowTime);
         toUser.setHealthCoin(toUser.getHealthCoin() + coin);
+        toUser.setReward(toUser.getReward() + coin);
         toUser.setModifiedTime(nowTime);
         updateById(user);
         updateById(toUser);
@@ -514,6 +517,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         toUserCoinDetail.setToUid(user.getId());
         coinDetailService.save(userCoinDetail);
         coinDetailService.save(toUserCoinDetail);
+
+        // 存入消息记录
+        InfoRecord infoRecord = new InfoRecord();
+        infoRecord.setMid(toUserCoinDetail.getId());
+        infoRecord.setCreateTime(System.currentTimeMillis());
+        infoRecord.setModifiedTime(System.currentTimeMillis());
+        infoRecord.setReadStatus(false);
+        infoRecord.setType(InfoRecordType.REWARD.getValue());
+        infoRecord.setUid(toUser.getId());
+        infoRecordService.save(infoRecord);
     }
 
     /**

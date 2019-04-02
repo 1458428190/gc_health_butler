@@ -1,4 +1,4 @@
-<!-- 健康小圈 -->
+drawer_screendrawer_c<!-- 健康小圈 -->
 <!-- <import src='/pages/template/template' /> -->
 <wxs src="./../tools.wxs" module="tools" />
 <view class='community_container'>
@@ -9,7 +9,7 @@
     <image bindtap="share" class='share' src='../../image/share.png'></image>
   </view>
   <scroll-view class='scroller_content' scroll-top='{{scrollTop}}' enable-back-to-top="true" scroll-with-animation="true" scroll-y="true"
-    bindscrolltolower="lower">
+    bindscrolltolower="lower" bindscrolltoupper="upper">
   <block wx:for="{{isMe?meShare:allShare}}" wx:key="{{index}}" wx:for-index="shareIndex" wx:for-item="communityVo">
     <view class='share_container'> 
 		  <!-- <template is='share' data="{{...item}}"></template> -->
@@ -17,8 +17,13 @@
         <!-- 访问主页 -->
         <image bindtap='visit' data-uid="{{communityVo.user.id}}" class='head_img' src='{{communityVo.user.avatarUrl}}'></image>
         <view class='info'>
-          <text>{{communityVo.user.nickName}}</text>
-          <text class='share_time'>{{tools.formatShareTime(communityVo.community.createTime)}}</text>
+          <view class='info_nickname'>
+            <text>{{communityVo.user.nickName}}</text>
+            <image class='onlyMe' wx:if="{{communityVo.community.onlyMe}}" src='../../image/onlyMe.png'></image>
+          </view>
+          <view class='share_time'>
+            <text>{{tools.formatShareTime(communityVo.community.createTime)}}</text>
+          </view>
         </view>
         <!-- 自己的动态可以删除 -->
         <view class='delete_icon' bindtap='delete' data-cid='{{communityVo.community.id}}' wx:if="{{tools.isEqual(communityVo.community.uid, userData.user.id)}}">
@@ -34,9 +39,9 @@
       <view class='comment'>
         <view class='commentData'>
           <!-- 点赞 -->
-          <image bindtap='praise' wx:if='{{!communityVo.praise}}' data-cid='{{communityVo.community.id}}' class='praiseIcon' src="../../image/praise_1.png"></image>
+          <image bindtap='praise' wx:if='{{!communityVo.praise}}' data-index="{{shareIndex}}" data-cid='{{communityVo.community.id}}' class='praiseIcon' src="../../image/praise_1.png"></image>
           <!-- 取消点赞 -->
-          <image bindtap='cancel' wx:if='{{communityVo.praise}}' data-cid='{{communityVo.community.id}}' class='praiseIcon' src="../../image/praise.png"></image>
+          <image bindtap='cancel' wx:if='{{communityVo.praise}}' data-index="{{shareIndex}}" data-cid='{{communityVo.community.id}}' class='praiseIcon' src="../../image/praise.png"></image>
           <!-- 时间限制, 去除评论功能-->
           <image bindtap='visibleComment' data-index="{{shareIndex}}" data-cid="{{communityVo.community.id}}" class='commentIcon' src='../../image/comment.png'></image>
           <!-- 打赏
@@ -49,7 +54,7 @@
             <text bindtap='visit' data-uid='{{item.id}}' class='user_text'>{{item.nickName}}</text>
             <text wx:if="{{index < communityVo.praiseUser.length - 1}}">、</text>
           </block>
-          <text wx:if="{{communityVo.praiseUser.length >= 1}}">等{{praiseUser.length}}人觉得很赞</text>
+          <text wx:if="{{communityVo.praiseUser.length >= 1}}">等{{communityVo.praiseUser.length}}人觉得很赞</text>
         </view>
         <!-- 评论 -->
         <view class='commentDetail' wx:if="{{communityVo.commentList.length > 0}}">
@@ -60,7 +65,7 @@
                <block wx:if="{{item.toId!=null && item.toId!=0}}">
                 <text> 回复 </text>
                 <!-- 访问对方主页 -->
-                <text bindtap='visit' data-uid="{{item.toId}}" class='user_text'>{{item.toId==userData.user.id?"我":item.fromName}}</text>
+                <text bindtap='visit' data-uid="{{item.toId}}" class='user_text'>{{item.toId==userData.user.id?"我":item.toName}}</text>
               </block>
               <text data-longpressindex="{{index}}" data-rid="{{item.rid}}" bindtap='replayVisibleComment' data-index="{{shareIndex}}" data-cid="{{communityVo.community.id}}"  data-toid="{{item.fromId}}" bindlongpress="longpressDelete" data-toname="{{item.fromName}}" >: {{item.content}}</text>
             </view>

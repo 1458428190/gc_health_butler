@@ -1,9 +1,11 @@
 package com.gdufe.health_butler;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.gdufe.health_butler.common.util.ThreadPoolUtils;
 import com.gdufe.health_butler.dao.GoodsMapper;
 
 import java.util.*;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @Author: laichengfeng
@@ -32,5 +34,21 @@ public class Test {
         }
     }
 
+    @org.junit.Test
+    public void testThread() throws InterruptedException {
+        ThreadPoolExecutor threadPoolExecutor = ThreadPoolUtils.createDefaultThreadPoolExecutor(8, 10);
+        for(int i=1; i<=8; i++) {
+            int finalI = i;
+            threadPoolExecutor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    for(int j=0; j<1000000; j++) {
+                        System.out.println(finalI);
+                    }
+                }
+            });
+        }
+        Thread.sleep(Long.MAX_VALUE);
+    }
 
 }

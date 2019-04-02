@@ -111,7 +111,21 @@ Page({
       inputBoxShow: false,
       [express]: commentList
     });
+  },
+
+  /**
+   * 刷新
+   */
+  upper() {
+    console.log("上拉刷新");
     this.refresh();
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 1000)
   },
 
   /**
@@ -121,7 +135,7 @@ Page({
     console.log("长按删除");
     var rid = event.currentTarget.dataset.rid;
     var toId = event.currentTarget.dataset.toid;
-    if(toId === this.userData.user.id) {
+    if(toId === this.data.userData.user.id) {
       var self = this;
       wx.showModal({
         title: '提示',
@@ -207,7 +221,6 @@ Page({
       inputBoxShow: false,
       [express]: commentList
      });
-    this.refresh();
   },      
 
   bindinput(event) {
@@ -285,6 +298,10 @@ Page({
    * 加载更多
    */
   lower() {
+    console.log("下拉到底");
+    if(this.data.noMore) {
+      return;
+    }
     var pageNo = this.data.pageNo + 1;
     var self = this;
     wx.request({
@@ -387,6 +404,7 @@ Page({
    */
   cancel(event) {
     var cid = event.currentTarget.dataset.cid;
+    var index = event.currentTarget.dataset.index;
     var self = this;
     // 后端
     wx.request({
@@ -397,16 +415,32 @@ Page({
         type: 0
       },
       success(res) {
-        // 刷新 
-        self.refresh();
       }
     })
+
+    var communityVo = this.data.isMe ? this.data.meShare[index] : this.data.allShare[index];
+    var praiseUser = communityVo.praiseUser;
+    for(var i=0; i<praiseUser.length; i++) {
+      if(praiseUser[i].id == this.data.userData.user.id) {
+        console.log("取消点赞");
+        praiseUser.splice(i, 1);
+        break;
+      }
+    }
+    communityVo.praise = false;
+    console.log("communityVO", communityVo);
+    var express = (this.data.isMe ? "meShare[" : "allShare[") + index + "]";
+    this.setData({
+      [express]: communityVo
+    });
+
   },
   /**
    * 点赞
    */
   praise(event) {
     var cid = event.currentTarget.dataset.cid;
+    var index = event.currentTarget.dataset.index;
     var self = this;
     // 后端
     wx.request({
@@ -417,10 +451,21 @@ Page({
         type: 1
       }, 
       success(res) {
-        // 刷新 
-        self.refresh();
       }
     })
+
+    var communityVo = this.data.isMe ? this.data.meShare[index] : this.data.allShare[index];
+    var praiseUser = communityVo.praiseUser;
+    praiseUser.push({
+      "id":this.data.userData.user.id,
+      "nickName": this.data.userData.user.nickName
+    })
+    communityVo.praise = true;
+    console.log("communityVO", communityVo);
+    var express = (this.data.isMe ? "meShare[" : "allShare[") + index + "]";
+    this.setData({
+      [express]: communityVo
+    });
   },
 
   /**

@@ -103,8 +103,8 @@ public class InfoRecordServiceImpl extends ServiceImpl<InfoRecordMapper, InfoRec
             switch (type) {
                 case REWARD:
                     CoinDetail coinDetail = coinDetailService.getById(infoRecord.getMid());
-                    infoRecordVO.setInfoContent(coinDetail.getDescription());
-                    long uid = coinDetail.getUid();
+                    infoRecordVO.setInfoContent("打赏"+coinDetail.getCoin()+"健康币给你");
+                    long uid = coinDetail.getToUid();
                     infoRecordVO.setUid(uid);
                     User user = userService.getById(uid);
                     infoRecordVO.setNickName(user.getNickName());

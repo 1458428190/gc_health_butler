@@ -47,7 +47,12 @@ public enum TaskCategory2Enum {
     /**
      * 分享动态
      */
-    SHARE_DYNAMIC(8)
+    SHARE_DYNAMIC(8),
+
+    /**
+     * 排行榜
+     */
+    RANK(9)
     ;
 
     private int value;

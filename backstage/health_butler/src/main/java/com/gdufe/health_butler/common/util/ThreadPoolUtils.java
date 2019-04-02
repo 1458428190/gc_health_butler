@@ -66,7 +66,7 @@ public class ThreadPoolUtils {
             }
         };
         RejectedExecutionHandler handler = new ThreadPoolExecutor.AbortPolicy();
-        threadPoolExecutor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
+            threadPoolExecutor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
                 threadFactory, handler);
         return threadPoolExecutor;
     }

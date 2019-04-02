@@ -2,7 +2,7 @@
 <wxs src="./../tools.wxs" module="tools" />
 <!-- 打赏弹窗 -->
 <!--mask-->  
-<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>  
+<view class="drawer_screen" catchtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>  
 <!--content-->  
 <!--使用animation属性指定需要执行的动画-->  
 <view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">  
@@ -68,7 +68,7 @@
           <image wx:if='{{!isMe}}' bindtap='reward' data-id='{{id}}' data-statu="open" class='rewardIcon' src='../../image/reward.png'></image>
         </view>
     </view>
-    <view class="stepData">
+    <view class="stepData" wx:if="{{!showModalStatus}}">
 
       <!-- TODO 用户自己选择图形,有bug -->
       <!-- <view bindtap='changeType'>
