@@ -1,7 +1,7 @@
 # gc_health_butler
 	毕业设计-GC健康管家小程序
 	
-![image](https://github.com/1458428190/gc_health_butler/tree/master/files/qr_code.png)
+![image](https://github.com/1458428190/gc_health_butler/blob/master/files/qr_code.png?raw=true)
 
 ### 小程序相关
   - 开发者微信号：laicf12-28
